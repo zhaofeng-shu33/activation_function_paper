@@ -33,8 +33,11 @@
 \usepackage{cite}
 \usepackage[cmex10]{amsmath} % Use the [cmex10] option to ensure complicance
                              % with IEEE Xplore (see bare_conf.tex)
+\usepackage{amssymb}
+\usepackage{amsthm}
 \usepackage{graphicx}
 \usepackage{mathtools}
+\usepackage{bm}
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}
 \DeclarePairedDelimiter\inner{\langle}{\rangle}
@@ -142,22 +145,30 @@ In artificial neural network, activation functions are applied to linear combina
 
 Besides local perturbation assumption, we consider the simplest neural network with one output node and several input node. We also require the input features are orthogonal to each other. This can be simply achieved by commonly used techniques such as PCA. Our measure of activation function is not restricted to one specific problem but is averaged over many different problems. We find that the averaged loss function is minimized when the perturbation term is Hermite orthogonal polynomial. Hermite polynomial as activation function has been argued beneficial previously \cite{ma2005constructive} and our result confirms this fact to some extent.
 
-The paper is organized as follows. In Section \ref{sec:mm}, the universally good activation function problem
+The paper is organized as follows: In Section \ref{sec:mm}, the universally good activation function problem
 is formulated mathematically. In Section \ref{sec:hp}, the Hermite polynomial solution for our problem is briefly deducted. In Section \ref{sec:er}, numerical experiments are conducted to verify our results.
 In Section \ref{sec:con}, conclusion is given.
-\section{Mathematical Model}\label{sec:mm}
-As shown in Figure \ref{fig:ns}, random variable $Y$ is approximated by $ \sigma(\sum_{i=1}^k w_i X_i)$ where $\sigma(z) = z + \epsilon \xi(z)$. For a given problem, the number of sample $n$ is given and the L2 loss function is given by
-$ \norm{\bar{Y} - \sigma(\sum_{i=1}^k w_i \bar{X}_i)}^2 $ where $\bar{X}_i$ is the feature vector for the i-th dimension and $\bar{Y}$ is the probability vector for classification problem or the fitted value for the regression problem.
 
+Throught this paper, we use $X$ to represent random variables, $\underline{X}$ to represent random vectors, $\bm{X}$ to represent random matrix,
+lower case $x$ to represent a numerical value, $\underline{x}$ as a numerical vector and $\bm{x}$ as numerical matrix.
+
+\section{Mathematical Model}\label{sec:mm}
+We consider one node neural networks, whose structure is shown in Figure \ref{fig:ns}.
+Given a k dimensional random vector $\underline{X}=(X_1, \dots, X_k)$ and a random variable $Y$. Our goal is to predict $Y$ using the neural network with $\underline{X}$ as input. To be more specific,
+$Y$ is approximated by $ \sigma(\sum_{i=1}^k w_i X_i)$. For a given problem, we have $n$ data pairs $(x_1, y_1), \dots, (x_n, y_n)$ and the L2 loss function is given by
+$\ell_2(\underline{y}, \bm{x}) = \norm{\underline{y} - \sigma(\sum_{i=1}^k w_i \underline{x}_i)}^2 $ where $\underline{x}_i= (x_{i1}, \dots, x_{in})^T$ is the i-th column of the feature vector $\bm{x}$ and
+$\underline{y} = (y_1, \dots, y_n)$ is the label vector. $\sigma$ is applied to a vector elementwise.
+The optimal weight for a given activation function $\sigma$ is the solution to $\min \ell_2(\underline{y}, \bm{x})$.
 \begin{figure}\label{fig:ns}
 \includegraphics[width=\linewidth]{network_structure.eps}
 \end{figure}
 
-The papers are restricted in length to \textbf{five pages}, plus an optional extra (6th) page containting references only, in the IEEEtran-conference style as
-presented here.
-
-Each paper must be classified as ``eligible for student paper award''
-or ``not eligible for student paper award''. \textbf{Do not include any text concerning the student paper award in the abstract or manuscript.}
+For different problems, we suppose $\underline{y}, \bm{x}$ are drawing from some distribution $G$. That is, we treat them as random vectors and rewrite them as $\underline{Y}, \bm{X}$ and we are insterested to find a function $\sigma$ which minimizes
+$\E[ \min \ell_2(\underline{Y}, \bm{X})]$. Since $w_i$ is determined by $\underline{y}, \bm{x}$, it can also be converted to random variable $W_i$.
+Our contraint on the activation function $\sigma$ is that
+$\sigma(z) = z + \epsilon \xi(z)$.
+$\epsilon$ is a small constant.
+$\E[\xi(\bm{X}\underline{W})]=1$ where $\bm{X}\underline{W} = \sum_{i=1}^k W_i \underline{X}_i$ and  $\underline{W}=(W_1, \dots, W_k)$.
 
 
 \section{Hermite Polynomials}\label{sec:hp}
