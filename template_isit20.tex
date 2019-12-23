@@ -33,7 +33,17 @@
 \usepackage{cite}
 \usepackage[cmex10]{amsmath} % Use the [cmex10] option to ensure complicance
                              % with IEEE Xplore (see bare_conf.tex)
-
+\usepackage{graphicx}
+\usepackage{mathtools}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\DeclarePairedDelimiter\inner{\langle}{\rangle}
+\def\P{\mathcal{P}}
+\def\E{\mathbb{E}}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclareMathOperator*{\diag}{diag}
+\DeclareMathOperator*{\argmin}{argmin}
 %% Please note that the amsthm package must not be loaded with
 %% IEEEtran.cls because IEEEtran provides its own versions of
 %% theorems. Also note that IEEEXplore does not accepts submissions
@@ -48,7 +58,7 @@
 
 % ------------------------------------------------------------
 \begin{document}
-\title{On the Optimal Activation Function for Single Layer Neural Network} 
+\title{On the Universally Good Activation Function for One Node Neural Network} 
 
 % %%% Single author, or several authors with same affiliation:
 % \author{%
@@ -112,7 +122,7 @@
 %% to remove this comment!
 %%
 \begin{abstract}
-Non-linear activation function plays vital role in aritificial neural network.
+Non-linear activation function plays vital role in artificial neural network.
 In this paper, we show that under certain conditions Hermite orthogonal polynomial
 is universally good for orthogonal input features. Our study shares insight in the expressive
 power of neural network and can guide the choice of activation function in practice.
@@ -128,13 +138,20 @@ power of neural network and can guide the choice of activation function in pract
 \url{https://2020.ieee-isit.org/} 
 
 \section{Introduction}
+In artificial neural network, activation functions are applied to linear combinations of input features from last layer and contribute magically to the whole system. There are many choices for activation function \cite{laudani2015training} and none of them performs best for all problems. Previous study of activation function focuses mostly on the training efficiency and cost when choosing activation function. However, theoretical property is also important as a gurantee to the functionality of activation function in neural network. In this paper, we study how the activation function influences the network loss when the activation term is contrained to a small perturbation of linear function.
 
-Papers in the form of a PDF file, formatted as described below, may be
-submitted online at
-\begin{center}
-  \url{https://2020.ieee-isit.org/Papers.asp}
-\end{center}
-The deadline for registering the paper and uploading the manuscript is \textbf{January 12, 2020}.
+Besides local perturbation assumption, we consider the simplest neural network with one output node and several input node. We also require the input features are orthogonal to each other. This can be simply achieved by commonly used techniques such as PCA. Our measure of activation function is not restricted to one specific problem but is averaged over many different problems. We find that the averaged loss function is minimized when the perturbation term is Hermite orthogonal polynomial. Hermite polynomial as activation function has been argued beneficial previously \cite{ma2005constructive} and our result confirms this fact to some extent.
+
+The paper is organized as follows. In Section \ref{sec:mm}, the universally good activation function problem
+is formulated mathematically. In Section \ref{sec:hp}, the Hermite polynomial solution for our problem is briefly deducted. In Section \ref{sec:er}, numerical experiments are conducted to verify our results.
+In Section \ref{sec:con}, conclusion is given.
+\section{Mathematical Model}\label{sec:mm}
+As shown in Figure \ref{fig:ns}, random variable $Y$ is approximated by $ \sigma(\sum_{i=1}^k w_i X_i)$ where $\sigma(z) = z + \epsilon \xi(z)$. For a given problem, the number of sample $n$ is given and the L2 loss function is given by
+$ \norm{\bar{Y} - \sigma(\sum_{i=1}^k w_i \bar{X}_i)}^2 $ where $\bar{X}_i$ is the feature vector for the i-th dimension and $\bar{Y}$ is the probability vector for classification problem or the fitted value for the regression problem.
+
+\begin{figure}\label{fig:ns}
+\includegraphics[width=\linewidth]{network_structure.eps}
+\end{figure}
 
 The papers are restricted in length to \textbf{five pages}, plus an optional extra (6th) page containting references only, in the IEEEtran-conference style as
 presented here.
@@ -143,7 +160,7 @@ Each paper must be classified as ``eligible for student paper award''
 or ``not eligible for student paper award''. \textbf{Do not include any text concerning the student paper award in the abstract or manuscript.}
 
 
-\section{Submission of Accepted Papers}
+\section{Hermite Polynomials}\label{sec:hp}
 
 Accepted papers will be published in full. 
 A program booklet and a book of abstracts will also be
@@ -155,7 +172,7 @@ date will not appear in the ISIT proceedings and will not be included
 in the technical program of the ISIT.
 
 
-\section{Paper Format}
+\section{Experiment Result}\label{sec:er}
 
 \subsection{Templates}
 
@@ -268,7 +285,7 @@ suitable Acrobat Distiller Settings) is available from the IEEE
 website \cite{IEEE:pdfsettings, IEEE:AuthorToolbox}.
 
 
-\section{Conclusion}
+\section{Conclusion}\label{sec:con}
 
 We conclude by pointing out that on the last page the columns need to
 balanced. Instructions for that purpose are given in the source file.
@@ -332,38 +349,8 @@ We are indebted to Michael Shell for maintaining and improving
 
 %% Or you use manual references (pay attention to consistency and the
 %% formatting style!):
-\begin{thebibliography}{9}
-
-\bibitem{Laport:LaTeX}
-L.~Lamport,
-  \emph{\LaTeX: A Document Preparation System,} 
-  Addison-Wesley, Reading, Massachusetts, USA, 2nd~ed., 1994. 
-
-\bibitem{GMS:LaTeXComp}
-F.~Mittelbach, M,~Goossens, J.~Braams, D.~Carlisle, and
-C.~Rowley, \emph{The {\LaTeX} Companion,} Addison-Wesley,
-Reading, Massachusetts, USA, 2nd~ed., 2004.
-
-\bibitem{oetiker_latex}
-T.~Oetiker, H.~Partl, I.~Hyna, and E.~Schlegl, \emph{The Not So Short
-  Introduction to {\LaTeX2e}}, version 5.06, Jun.~20, 2016. [Online].
-  Available: \url{https://tobi.oetiker.ch/lshort/}
-
-\bibitem{typesetmoser}
-S.~M. Moser, \emph{How to Typeset Equations in {\LaTeX}}, version 4.6,
-  Sep. 29, 2017. [Online]. Available:
-  \url{http://moser-isi.ethz.ch/manuals.html#eqlatex}
-
-\bibitem{IEEE:pdfsettings}
-IEEE, \emph{Preparing Conference Content for the IEEE Xplore Digital
-  Library.} [Online]. Available:
-  \url{http://www.ieee.org/conferences_events/conferences/organizers/pubs/preparing_content.html}
-
-\bibitem{IEEE:AuthorToolbox}
-IEEE, \emph{Author Digital Toolbox.} [Online.] Available:
-  \url{http://www.ieee.org/publications_standards/publications/authors/authors_journals.html}
-
-\end{thebibliography}
+\bibliographystyle{plain}
+\bibliography{exportlist}
 
 
 \end{document}
