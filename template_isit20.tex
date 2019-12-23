@@ -36,6 +36,7 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
 \usepackage{graphicx}
 \usepackage{mathtools}
 \usepackage{bm}
@@ -172,15 +173,25 @@ $\epsilon$ is a small constant.
 $\E[\xi(\bm{X}\underline{w})]=1$ where $\bm{X}\underline{w} = \sum_{i=1}^k w_i \underline{X}_i$ and  $\underline{w}=(w_1, \dots, w_k)$.
 
 We formulate universally good activation function $\sigma$ as follows:
-\begin{definition}
+\begin{definition}\label{def:ug}
 Suppose $G$ is a distribution space for $(\bm{X}, \underline{Y})$, $F$ is a function space for $\xi(z)$.  The solution $\sigma$ to Equation \eqref{eq:ug}
 \begin{align}\label{eq:ug}
-\min \,& \E[ \min_{\underline{w}} \norm{\underline{Y} - \sigma(\bm{X} \underline{w})}^2] \nonumber\\
+\mathrm{E} = \min \,& \E[ \min_{\underline{w}} \norm{\underline{Y} - \sigma(\bm{X} \underline{w})}^2] \nonumber\\
 s.t. \,& \sigma(z) = z + \epsilon \xi(z) \nonumber \\
-&\E[\xi(\bm{X}\underline{w})]=1
+&\E[\norm{\xi(\bm{X}\underline{w})}^2]=1
 \end{align}
-is called universally good activation function for the single node neural network.
+is called the universally good activation function for the single node neural network.
 \end{definition}
+
+We restrict our discussion of universally good activation function to local regine analysis to make the analytic solution possible. We try to compare the performance of non-linearity with linear function and this restriction does not lose generality.
+
+Furthermore, we assume $\underline{Y}$ is Gaussian distribution with covariance matrix $\frac{1}{n} I_n$ and $\bm{X}$ is orthogonal random matrix. $\underline{Y}$ and $\bm{X}$ are independent. This defines our distribution space $G$. For functional space $F$, we choose $P_m(z)$, which consists of polynomials with the highest degree no more than $m$.
+
+\begin{proposition}\label{prop:linear}
+When $\epsilon = 0, \mathrm{E} = \frac{k}{n}$ from Definition \ref{def:ug}.
+\end{proposition}
+
+Proposition \ref{prop:linear} is the case for linear approximation
 \section{Hermite Polynomials}\label{sec:hp}
 
 Accepted papers will be published in full. 
@@ -330,8 +341,6 @@ found in the source file (they are commented out).
 
 \section*{Acknowledgment}
 
-We are indebted to Michael Shell for maintaining and improving
-\texttt{IEEEtran.cls}. 
 
 
 %%%%%%
