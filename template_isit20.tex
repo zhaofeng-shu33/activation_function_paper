@@ -35,6 +35,7 @@
                              % with IEEE Xplore (see bare_conf.tex)
 \usepackage{amssymb}
 \usepackage{amsthm}
+\newtheorem{definition}{Definition}
 \usepackage{graphicx}
 \usepackage{mathtools}
 \usepackage{bm}
@@ -164,13 +165,22 @@ The optimal weight for a given activation function $\sigma$ is the solution to $
 \end{figure}
 
 For different problems, we suppose $\underline{y}, \bm{x}$ are drawing from some distribution $G$. That is, we treat them as random vectors and rewrite them as $\underline{Y}, \bm{X}$ and we are insterested to find a function $\sigma$ which minimizes
-$\E[ \min \ell_2(\underline{Y}, \bm{X})]$. Since $w_i$ is determined by $\underline{y}, \bm{x}$, it can also be converted to random variable $W_i$.
+$\E[ \min \ell_2(\underline{Y}, \bm{X})]$.
 Our contraint on the activation function $\sigma$ is that
 $\sigma(z) = z + \epsilon \xi(z)$.
 $\epsilon$ is a small constant.
-$\E[\xi(\bm{X}\underline{W})]=1$ where $\bm{X}\underline{W} = \sum_{i=1}^k W_i \underline{X}_i$ and  $\underline{W}=(W_1, \dots, W_k)$.
+$\E[\xi(\bm{X}\underline{w})]=1$ where $\bm{X}\underline{w} = \sum_{i=1}^k w_i \underline{X}_i$ and  $\underline{w}=(w_1, \dots, w_k)$.
 
-
+We formulate universally good activation function $\sigma$ as follows:
+\begin{definition}
+Suppose $G$ is a distribution space for $(\bm{X}, \underline{Y})$, $F$ is a function space for $\xi(z)$.  The solution $\sigma$ to Equation \eqref{eq:ug}
+\begin{align}\label{eq:ug}
+\min \,& \E[ \min_{\underline{w}} \norm{\underline{Y} - \sigma(\bm{X} \underline{w})}^2] \nonumber\\
+s.t. \,& \sigma(z) = z + \epsilon \xi(z) \nonumber \\
+&\E[\xi(\bm{X}\underline{w})]=1
+\end{align}
+is called universally good activation function for the single node neural network.
+\end{definition}
 \section{Hermite Polynomials}\label{sec:hp}
 
 Accepted papers will be published in full. 
