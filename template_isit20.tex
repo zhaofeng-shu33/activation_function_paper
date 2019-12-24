@@ -201,13 +201,13 @@ We formulate universally good activation function $\sigma$ as follows:
 \begin{definition}\label{def:ug}
 Suppose $G$ is a distribution space for $(\bm{X}, \underline{Y})$,
 $F$ is a function space for $\xi(z)$.
-The solution $\sigma$ to Equation \eqref{eq:ug}
+$\mathrm{E}[\sigma]$ is called averaged estimation error whose definition is
 \begin{align}\label{eq:ug}
-\min\, & \mathrm{E}(\sigma) \\
 \mathrm{E}(\sigma) = & \E[ \min_{\underline{w}} \norm{\underline{Y} - \sigma(\bm{X} \underline{w})}^2] \nonumber\\
 s.t. \,& \sigma(z) = z + \epsilon \xi(z) \nonumber \\
-&\E[\norm{\xi(\bm{X}\underline{w})}^2]=1 \nonumber
+&\E[\norm{\xi(\bm{X}\underline{w})}^2]=1
 \end{align}
+The function $\sigma^*$ which minimizes $\mathrm{E}(\sigma)$
 is called the universally good activation function for the single node neural network.
 \end{definition}
 
@@ -222,7 +222,7 @@ For functional space $F$, we choose $P_m(z)$,
 which consists of polynomials with the highest degree no more than $m$.
 \subsection{Linear Function}
 \begin{proposition}\label{prop:linear}
-When $\epsilon = 0, \mathrm{E} = 1 - \frac{k}{n}$ from Definition \ref{def:ug}.
+When $\epsilon = 0, \sigma_0(z) = z, \mathrm{E}(\sigma_0) = 1 - \frac{k}{n}$ from Definition \ref{def:ug}.
 \end{proposition}
 
 Proposition \ref{prop:linear} is the case for linear approximation.
@@ -248,7 +248,32 @@ for given $\bm{X}$. Therefore $\E_{\underline{Y}}[\norm{\underline{Z}}^2] = \Tr[
 \end{proof}
 
 Proposition \ref{prop:linear} also justifies our choice of probability space $G$.
-We choose proper distribution for $\bm{X}$ and $\underline{Y}$ to make the linear case tractable.
+That is, we choose proper distribution for $\bm{X}$ and $\underline{Y}$ to make the linear case tractable.
+\subsection{Nonlinear perturbation}
+For very small $\epsilon$, we can quantify the averaged estimation error $E[\sigma]$ using the
+following proposition
+\begin{proposition}\label{prop:Esigma}
+$\mathrm{E}[\sigma] = \mathrm{E}[\sigma_0] +
+\mathrm{C}[\sigma]\epsilon^2 + o(\epsilon^2)$
+where
+\begin{align}\notag
+\mathrm{C}[\sigma]= & \E[\norm{\xi(\bm{A}\underline{Y})}^2 -
+\norm{\bm{X}^T\xi(\bm{A}\underline{Y})}^2 - \\
+&\norm{\bm{X}^T \nabla\xi(\bm{A}\underline{Y})(Y-\bm{A}\underline{Y})}^2]
+\end{align}
+\end{proposition}
+Proposition \ref{prop:Esigma} gets the second order approximation for $\mathrm{E}$.
+The coefficient of $\epsilon$ is zero while it is not obvious to determine the sign for 
+the coefficient of $\epsilon^2$. Therefore, we consider $\sigma \in P_m(z)$ and
+get the following result:
+\begin{proposition}
+We consider
+$\xi(z) = \sum_{i=0}^m a_i z^i$, and $\underline{q} = [a_0, a_1, \dots, a_m]^T$.
+The universally good activation function in $P_m(z)$ is the solution to
+\begin{align}
+a
+\end{align}
+\end{proposition}
 \section{Hermite Polynomials}\label{sec:hp}
 
 Accepted papers will be published in full. 
