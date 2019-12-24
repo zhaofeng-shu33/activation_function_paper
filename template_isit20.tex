@@ -49,6 +49,8 @@
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
 \DeclareMathOperator*{\diag}{diag}
+\DeclareMathOperator*{\Tr}{tr}
+\DeclareMathOperator*{\Cov}{cov}
 \DeclareMathOperator*{\argmin}{argmin}
 %% Please note that the amsthm package must not be loaded with
 %% IEEEtran.cls because IEEEtran provides its own versions of
@@ -201,9 +203,10 @@ Suppose $G$ is a distribution space for $(\bm{X}, \underline{Y})$,
 $F$ is a function space for $\xi(z)$.
 The solution $\sigma$ to Equation \eqref{eq:ug}
 \begin{align}\label{eq:ug}
-\mathrm{E} = \min \,& \E[ \min_{\underline{w}} \norm{\underline{Y} - \sigma(\bm{X} \underline{w})}^2] \nonumber\\
+\min\, & \mathrm{E}(\sigma) \\
+\mathrm{E}(\sigma) = & \E[ \min_{\underline{w}} \norm{\underline{Y} - \sigma(\bm{X} \underline{w})}^2] \nonumber\\
 s.t. \,& \sigma(z) = z + \epsilon \xi(z) \nonumber \\
-&\E[\norm{\xi(\bm{X}\underline{w})}^2]=1
+&\E[\norm{\xi(\bm{X}\underline{w})}^2]=1 \nonumber
 \end{align}
 is called the universally good activation function for the single node neural network.
 \end{definition}
@@ -217,18 +220,35 @@ $\underline{Y}$ and $\bm{X}$ are independent.
 This defines our distribution space $G$.
 For functional space $F$, we choose $P_m(z)$,
 which consists of polynomials with the highest degree no more than $m$.
-
+\subsection{Linear Function}
 \begin{proposition}\label{prop:linear}
-When $\epsilon = 0, \mathrm{E} = \frac{k}{n}$ from Definition \ref{def:ug}.
+When $\epsilon = 0, \mathrm{E} = 1 - \frac{k}{n}$ from Definition \ref{def:ug}.
 \end{proposition}
 
 Proposition \ref{prop:linear} is the case for linear approximation.
-It says the averaged estimation error $\mathrm{E}$ is equal to $\frac{k}{n}$.
+It says the averaged estimation error $\mathrm{E}$ for linear function is equal to $\frac{k}{n}$.
 This result is consistent with our intuition
 since we use $k$ degrees of freedom to estimate arbitrary vector in $n$ dimentional space.
 
-\begin{lemma}
+The proof of Proposition \ref{prop:linear} depends on the following lemma:
+\begin{lemma}\label{lem:A}
+Suppose $\bm{X}$ is uniformly distributed random orthogonal matrix, $\bm{A} = \bm{X}\bm{X}^T$.
+Then $\E[\bm{A}] = \frac{k}{n} I_n$.
 \end{lemma}
+We defined random matrix $\bm{A}$ in Lemma \ref{lem:A} for notation convenience.
+Since $\bm{X}$ is orthogonal, $\bm{A}$ is idempotent. That is, we have $\bm{A}^2 = \bm{A}$.
+
+\begin{proof}
+When $\epsilon = 0$, the optimal $\underline{w} = \bm{X}^T\underline{Y}$. Therefore
+$\E[\norm{\underline{Y} - \sigma(\bm{X} \underline{w})}^2] = \E[\norm{\underline{Y}-\bm{X}\bm{X}^T\underline{Y}}^2]$
+The expectation can be taken by $\underline{Y}$ first and then by $\bm{X}$.
+Let $\underline{Z} = (I-\bm{A}) \underline{Y}$ which transforms a Gaussian random vector $\underline{Y}$.
+for given $\bm{X}$. Therefore $\E_{\underline{Y}}[\norm{\underline{Z}}^2] = \Tr[(I-A)^T\Cov[Y](I-A)]
+= \frac{1}{n}\Tr[I - A]$. Using Lemma \ref{lem:A}. $\mathrm{E}(\sigma) = 1 - \frac{k}{n}$ follows.
+\end{proof}
+
+Proposition \ref{prop:linear} also justifies our choice of probability space $G$.
+We choose proper distribution for $\bm{X}$ and $\underline{Y}$ to make the linear case tractable.
 \section{Hermite Polynomials}\label{sec:hp}
 
 Accepted papers will be published in full. 
