@@ -149,9 +149,9 @@ power of neural network and can guide the choice of activation function in pract
 In artificial neural network, activation functions are applied to linear combinations of input features from last layer and contribute magically to the whole system.
 There are many choices for activation function \cite{laudani2015training} and none of them performs best for all problems.
 Previous study of activation function focuses mostly on the training efficiency and cost when choosing activation function.
-However, theoretical property is also important as a gurantee to the functionality of activation function in neural network.
+However, theoretical property is also important as a guarantee to the functionality of activation function in neural network.
 In this paper, we study how the activation function influences the network loss
-when the activation term is contrained to a small perturbation of linear function.
+when the activation term is constrained to a small perturbation of linear function.
 
 Besides local perturbation assumption, we consider the simplest neural network with one output node and several input node.
 We also require the input features are orthogonal to each other.
@@ -201,7 +201,7 @@ We formulate universally good activation function $\sigma$ as follows:
 \begin{definition}\label{def:ug}
 Suppose $G$ is a distribution space for $(\bm{X}, \underline{Y})$,
 $F$ is a function space for $\xi(z)$.
-$\mathrm{E}[\sigma]$ is called averaged estimation error whose definition is
+$\mathrm{E}[\sigma]$ is called the averaged estimation error whose definition is
 \begin{align}\label{eq:ug}
 \mathrm{E}(\sigma) = & \E[ \min_{\underline{w}} \norm{\underline{Y} - \sigma(\bm{X} \underline{w})}^2] \nonumber\\
 s.t. \,& \sigma(z) = z + \epsilon \xi(z) \nonumber \\
@@ -211,7 +211,7 @@ The function $\sigma^*$ which minimizes $\mathrm{E}(\sigma)$
 is called the universally good activation function for the single node neural network.
 \end{definition}
 
-We restrict our discussion of universally good activation function to local regine analysis to make the analytic solution possible.
+We restrict our discussion of universally good activation function to local regime analysis to make the analytic solution possible.
 We try to compare the performance of non-linearity with linear function and this restriction does not lose generality.
 
 Furthermore, we assume $\underline{Y}$ is Gaussian distribution with covariance matrix $\frac{1}{n} I_n$ and
@@ -266,14 +266,26 @@ Proposition \ref{prop:Esigma} gets the second order approximation for $\mathrm{E
 The coefficient of $\epsilon$ is zero while it is not obvious to determine the sign for 
 the coefficient of $\epsilon^2$. Therefore, we consider $\sigma \in P_m(z)$ and
 get the following result:
-\begin{proposition}
+\begin{proposition}\label{prop:quadratic}
 We consider
-$\xi(z) = \sum_{i=0}^m a_i z^i$, and $\underline{q} = [a_0, a_1, \dots, a_m]^T$.
-The universally good activation function in $P_m(z)$ is the solution to
+$\xi(z) = \sum_{i=0}^m q_i z^i$,
+Suppose $m << k$, then we have 
 \begin{align}
-a
+\mathrm{C}[\sigma] &= (1-\frac{k}{n}) q^T M q \\
+\textrm{where }q_i &= \frac{k^{i/2}}{n^{- 1/2 + i}}p_i \\
+M_{ij} =& -\delta(i,j)(i-1)(j-1)(i+j-3)!! 
 \end{align}
+and $p^*$ is the solution to the following quadratic optimization problem:
+\begin{align}
+\min \, & p^T M p \\
+s.t. \,& p^T N p = 1 \\
+N_{ij} =& \delta(i,j)(i+j-1)!!
+\end{align}
+Then the universally good activation function satisfies: 
 \end{proposition}
+
+From Proposition \ref{prop:quadratic}, we can inspect the impact of non-linear perturbation on the average error. Suppose we choose 
+
 \section{Hermite Polynomials}\label{sec:hp}
 
 Accepted papers will be published in full. 
