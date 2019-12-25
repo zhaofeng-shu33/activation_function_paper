@@ -162,7 +162,7 @@ Hermite polynomial as activation function has been argued beneficial previously 
 
 The paper is organized as follows: In Section \ref{sec:mm}, the universally good activation function problem
 is formulated mathematically.
-In Section \ref{sec:hp}, the Hermite polynomial solution for our problem is briefly deducted.
+In Section \ref{sec:hp}, the Hermite polynomial solution for our problem is briefly deduced.
 In Section \ref{sec:er}, numerical experiments are conducted to verify our results.
 In Section \ref{sec:con}, conclusion is given.
 
@@ -254,10 +254,10 @@ For very small $\epsilon$, we can quantify the averaged estimation error $E[\sig
 following proposition
 \begin{proposition}\label{prop:Esigma}
 $\mathrm{E}[\sigma] = \mathrm{E}[\sigma_0] +
-\mathrm{C}[\sigma]\epsilon^2 + o(\epsilon^2)$
+\mathrm{C}[\xi]\epsilon^2 + o(\epsilon^2)$
 where
 \begin{align}\notag
-\mathrm{C}[\sigma]= & \E[\norm{\xi(\bm{A}\underline{Y})}^2 -
+\mathrm{C}[\xi]= & \E[\norm{\xi(\bm{A}\underline{Y})}^2 -
 \norm{\bm{X}^T\xi(\bm{A}\underline{Y})}^2 - \\
 &\norm{\bm{X}^T \nabla\xi(\bm{A}\underline{Y})(Y-\bm{A}\underline{Y})}^2]
 \end{align}
@@ -267,21 +267,19 @@ The coefficient of $\epsilon$ is zero while it is not obvious to determine the s
 the coefficient of $\epsilon^2$. Therefore, we consider $\sigma \in P_m(z)$ and
 get the following result:
 \begin{proposition}\label{prop:quadratic}
-We consider
+If
 $\xi(z) = \sum_{i=0}^m q_i z^i$,
-Suppose $m << k$, then we have 
+and $m << k$, then we have 
 \begin{align}
-\mathrm{C}[\sigma] &= (1-\frac{k}{n}) q^T M q \\
-\textrm{where }q_i &= \frac{k^{i/2}}{n^{- 1/2 + i}}p_i \\
+\mathrm{C}[\sigma] &= (1-\frac{k}{n}) p^T M p \notag\\
+\textrm{where }p_i &= \frac{k^{i/2}}{n^{- 1/2 + i}}q_i \notag\\
 M_{ij} =& -\delta(i,j)(i-1)(j-1)(i+j-3)!! 
 \end{align}
-and $p^*$ is the solution to the following quadratic optimization problem:
+The constraint on vector $q$ is through
 \begin{align}
-\min \, & p^T M p \\
-s.t. \,& p^T N p = 1 \\
-N_{ij} =& \delta(i,j)(i+j-1)!!
+p^T N p & = 1 \notag\\
+N_{ij}  & = \delta(i,j)(i+j-1)!!
 \end{align}
-Then the universally good activation function satisfies: 
 \end{proposition}
 
 From Proposition \ref{prop:quadratic}, we can inspect the impact of non-linear perturbation on the average error. Suppose we choose 
