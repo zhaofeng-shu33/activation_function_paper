@@ -52,6 +52,7 @@
 \DeclareMathOperator*{\Tr}{tr}
 \DeclareMathOperator*{\Cov}{cov}
 \DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\id}{id}
 %% Please note that the amsthm package must not be loaded with
 %% IEEEtran.cls because IEEEtran provides its own versions of
 %% theorems. Also note that IEEEXplore does not accepts submissions
@@ -203,30 +204,25 @@ Suppose $G$ is a distribution space for $(\bm{X}, \underline{Y})$,
 $F$ is a function space for $\xi(z)$.
 $\mathrm{E}[\sigma]$ is called the averaged estimation error whose definition is
 \begin{align}\label{eq:ug}
-\mathrm{E}(\sigma) = & \E[ \min_{\underline{w}} \norm{\underline{Y} - \sigma(\bm{X} \underline{w})}^2] \nonumber\\
-s.t. \,& \sigma(z) = z + \epsilon \xi(z) \nonumber \\
-&\E[\norm{\xi(\bm{X}\underline{w})}^2]=1
+\mathrm{E}(\sigma) = & \E[ \min_{\underline{w}} \norm{\underline{Y} - \sigma(\bm{X} \underline{w})}^2] \nonumber
+%s.t. \,& \sigma(z) = z + \epsilon \xi(z) \nonumber \\
+%&\E[\norm{\xi(\bm{X}\underline{w})}^2]=1
 \end{align}
 The function $\sigma^*$ which minimizes $\mathrm{E}(\sigma)$
 is called the universally good activation function for the single node neural network.
 \end{definition}
 
-We restrict our discussion of universally good activation function to local regime analysis to make the analytic solution possible.
-We try to compare the performance of non-linearity with linear function and this restriction does not lose generality.
-
-Furthermore, we assume $\underline{Y}$ is Gaussian distribution with covariance matrix $\frac{1}{n} I_n$ and
+Definition \ref{def:ug} is a general formulation for any distribution space $G$.
+To get some analytical result we should choose some specific distribution.
+Indeed, we assume $\underline{Y}$ is Gaussian distribution with covariance matrix $\frac{1}{n} I_n$ and
 $\bm{X}$ is uniformly distributed random orthogonal matrix \cite{rm}.
 $\underline{Y}$ and $\bm{X}$ are independent.
-This defines our distribution space $G$.
-For functional space $F$, we choose $P_m(z)$,
-which consists of polynomials with the highest degree no more than $m$.
-\subsection{Linear Function}
-\begin{proposition}\label{prop:linear}
-When $\epsilon = 0, \sigma_0(z) = z, \mathrm{E}(\sigma_0) = 1 - \frac{k}{n}$ from Definition \ref{def:ug}.
-\end{proposition}
+This defines our distribution space $G$. Such choice is natural as it leads to simple expression of the averaged error for linear function.
 
-Proposition \ref{prop:linear} is the case for linear approximation.
-It says the averaged estimation error $\mathrm{E}$ for linear function is equal to $\frac{k}{n}$.
+\begin{proposition}\label{prop:linear}
+Let $\sigma_0$ be the identity function. That is $\sigma_0(z) = z$. Then $\mathrm{E}(\sigma_0) = 1 - \frac{k}{n}$.\end{proposition}
+
+Proposition \ref{prop:linear} says the averaged estimation error $\mathrm{E}$ for linear function is equal to $1-\frac{k}{n}$.
 This result is consistent with our intuition
 since we use $k$ degrees of freedom to estimate arbitrary vector in $n$ dimentional space.
 
@@ -238,7 +234,7 @@ Then $\E[\bm{A}] = \frac{k}{n} I_n$.
 We defined random matrix $\bm{A}$ in Lemma \ref{lem:A} for notation convenience.
 Since $\bm{X}$ is orthogonal, $\bm{A}$ is idempotent. That is, we have $\bm{A}^2 = \bm{A}$.
 
-\begin{proof}
+\begin{proof}[Proof of Proposition \ref{prop:linear}]
 When $\epsilon = 0$, the optimal $\underline{w} = \bm{X}^T\underline{Y}$. Therefore
 $\E[\norm{\underline{Y} - \sigma(\bm{X} \underline{w})}^2] = \E[\norm{\underline{Y}-\bm{X}\bm{X}^T\underline{Y}}^2]$
 The expectation can be taken by $\underline{Y}$ first and then by $\bm{X}$.
@@ -247,8 +243,30 @@ for given $\bm{X}$. Therefore $\E_{\underline{Y}}[\norm{\underline{Z}}^2] = \Tr[
 = \frac{1}{n}\Tr[I - A]$. Using Lemma \ref{lem:A}. $\mathrm{E}(\sigma) = 1 - \frac{k}{n}$ follows.
 \end{proof}
 
-Proposition \ref{prop:linear} also justifies our choice of probability space $G$.
-That is, we choose proper distribution for $\bm{X}$ and $\underline{Y}$ to make the linear case tractable.
+We have analyzed the averaged error for linear function. To extend our result on general non-linear functions, we need to choose a proper function space $F$. By detailed analysis we consider a "local" regime. That is, differential functions which are "near" to linear function. The distance is quantified by a positive value $\epsilon$. Thus we consider $F(\epsilon) =\{ \sigma \,|\, \norm{\sigma - \sigma_0} \leq \epsilon\}$. Then all differential functions can be treated as $\cup_{\epsilon>0} F(\epsilon)$. The norm is actually the expectation w.r.t. the distribution space $G$. That is $\E[\norm{(\sigma - \sigma_0)(\bm{A}\underline{Y})}^2] \leq \epsilon^2$.
+
+To get rid of the influence of $\epsilon$, we consider the limit of $\epsilon \to 0$ and we have the concept of the index of averaged estimation error.
+\begin{definition}
+Let
+\begin{equation}
+C = \lim_{\epsilon \to 0} \min_{\sigma \in F(\epsilon)} \frac{E[\sigma] - E[\sigma_0]}{\epsilon^2}
+\end{equation}
+$C$ is called the index of averaged estimation error.
+\end{definition}
+
+$C[\sigma]$ can represent the optimal direction of purterbation from linear function.
+If $C< 0 $ then we can choose certain $\epsilon'$ and $\sigma'$ such that $E[\sigma'] < E[\sigma_0] - \frac{1}{2}C\epsilon'^2$.
+We try to compare the performance of non-linearity with linear function and this restriction does not lose generality.
+
+
+For functional space $F$, we choose $P_m(z)$,
+which consists of polynomials with the highest degree no more than $m$.
+
+The formulation for local analysis goes as follows:
+\begin{definition}
+a
+\end{definition}
+
 \subsection{Nonlinear perturbation}
 For very small $\epsilon$, we can quantify the averaged estimation error $E[\sigma]$ using the
 following proposition
