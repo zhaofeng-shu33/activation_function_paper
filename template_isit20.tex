@@ -204,7 +204,7 @@ Suppose $G$ is a distribution space for $(\bm{X}, \underline{Y})$,
 $F$ is a function space for $\xi(z)$.
 $\mathrm{E}[\sigma]$ is called the averaged estimation error whose definition is
 \begin{align}\label{eq:ug}
-\mathrm{E}(\sigma) = & \E[ \min_{\underline{w}} \norm{\underline{Y} - \sigma(\bm{X} \underline{w})}^2] \nonumber
+\mathrm{E}(\sigma) = & \E[ \min_{\underline{w}} \norm{\underline{Y} - \sigma(\bm{X} \underline{w})}^2] 
 %s.t. \,& \sigma(z) = z + \epsilon \xi(z) \nonumber \\
 %&\E[\norm{\xi(\bm{X}\underline{w})}^2]=1
 \end{align}
@@ -243,19 +243,19 @@ for given $\bm{X}$. Therefore $\E_{\underline{Y}}[\norm{\underline{Z}}^2] = \Tr[
 = \frac{1}{n}\Tr[I - A]$. Using Lemma \ref{lem:A}. $\mathrm{E}(\sigma) = 1 - \frac{k}{n}$ follows.
 \end{proof}
 
-We have analyzed the averaged error for linear function. To extend our result on general non-linear functions, we need to choose a proper function space $F$. By detailed analysis we consider a "local" regime. That is, differential functions which are "near" to linear function. The distance is quantified by a positive value $\epsilon$. Thus we consider $F(\epsilon) =\{ \sigma \,|\, \norm{\sigma - \sigma_0} \leq \epsilon\}$. Then all differential functions can be treated as $\cup_{\epsilon>0} F(\epsilon)$. The norm is actually the expectation w.r.t. the distribution space $G$. That is $\E[\norm{(\sigma - \sigma_0)(\bm{A}\underline{Y})}^2] \leq \epsilon^2$.
+We have analyzed the averaged error for linear function. To extend our result on general non-linear functions, we need to choose a proper function space $F$. By detailed analysis we consider a "local" regime. That is, differential functions which are "near" to linear function. The distance is quantified by a positive value $\epsilon$. Thus we consider $F_{\sigma_0}(\epsilon) =\{ \sigma \,|\, \norm{\sigma - \sigma_0} \leq \epsilon\}$. Then all differential functions can be treated as $\cup_{\epsilon>0} F(\epsilon)$. The norm is actually the expectation w.r.t. the distribution space $G$. That is $\E[\norm{(\sigma - \sigma_0)(\bm{A}\underline{Y})}^2] \leq \epsilon^2$.
 
-To get rid of the influence of $\epsilon$, we consider the limit of $\epsilon \to 0$ and we have the concept of the index of averaged estimation error.
+We are particularly interested how the averaged error changes when $\sigma$ is contracted to $\sigma_0$ along a certain path in $F(\sigma)$. That is, given a function $\xi$ we can construct $\sigma = \sigma_0 + \epsilon \xi$ where $\xi \in F_0 = \{\xi | \norm{\xi} \leq 1 \}$. $\sigma \to \sigma_0$ is equivalent to $\epsilon \to 0$.
+
+To measure the change rate of $E[\sigma]$ in local regime of linear function we introduce the concept of the index of averaged estimation error as follows:
 \begin{definition}
-Let
+Let $\xi \in F_0$, the index of averaged estimation error for $\xi$ is
 \begin{equation}
-C = \lim_{\epsilon \to 0} \min_{\sigma \in F(\epsilon)} \frac{E[\sigma] - E[\sigma_0]}{\epsilon^2}
+\mathrm{C}[\xi] = \lim_{\substack{\epsilon \to 0 \\ \sigma = \sigma_0 + \epsilon \xi}} \frac{E[\sigma] - E[\sigma_0]}{\epsilon^2}
 \end{equation}
-$C$ is called the index of averaged estimation error.
 \end{definition}
 
-$C[\sigma]$ can represent the optimal direction of purterbation from linear function.
-If $C< 0 $ then we can choose certain $\epsilon'$ and $\sigma'$ such that $E[\sigma'] < E[\sigma_0] - \frac{1}{2}C\epsilon'^2$.
+$\mathrm{C}[\xi]$ can represent the change rate of perturbation from linear function. If $\mathrm{C}[\xi]$ then we can choose certain $\epsilon'$ such that $E[\sigma_0 + \epsilon \xi] \leq E[\sigma_0] - \frac{1}{2}\mathrm{C}[\xi]\epsilon^2$ holds for all $0\leq \epsilon < \epsilon'$.
 We try to compare the performance of non-linearity with linear function and this restriction does not lose generality.
 
 
