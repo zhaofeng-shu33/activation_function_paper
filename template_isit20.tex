@@ -250,40 +250,32 @@ We are particularly interested how the averaged error changes when $\sigma$ is c
 To measure the change rate of $E[\sigma]$ in local regime of linear function we introduce the concept of the index of averaged estimation error as follows:
 \begin{definition}
 Let $\xi \in F_0$, the index of averaged estimation error for $\xi$ is
-\begin{equation}
+\begin{equation}\label{eq:Cxi}
 \mathrm{C}[\xi] = \lim_{\substack{\epsilon \to 0 \\ \sigma = \sigma_0 + \epsilon \xi}} \frac{E[\sigma] - E[\sigma_0]}{\epsilon^2}
 \end{equation}
 \end{definition}
 
-$\mathrm{C}[\xi]$ can represent the change rate of perturbation from linear function. If $\mathrm{C}[\xi]$ then we can choose certain $\epsilon'$ such that $E[\sigma_0 + \epsilon \xi] \leq E[\sigma_0] - \frac{1}{2}\mathrm{C}[\xi]\epsilon^2$ holds for all $0\leq \epsilon < \epsilon'$.
-We try to compare the performance of non-linearity with linear function and this restriction does not lose generality.
-
-
-For functional space $F$, we choose $P_m(z)$,
-which consists of polynomials with the highest degree no more than $m$.
-
-The formulation for local analysis goes as follows:
-\begin{definition}
-a
-\end{definition}
-
-\subsection{Nonlinear perturbation}
-For very small $\epsilon$, we can quantify the averaged estimation error $E[\sigma]$ using the
-following proposition
-\begin{proposition}\label{prop:Esigma}
+$\mathrm{C}[\xi]$ can represent the change rate of perturbation from linear function. We can choose certain $\epsilon'$ such that $E[\sigma_0 + \epsilon \xi] \leq E[\sigma_0] + \frac{1}{2}\mathrm{C}[\xi]\epsilon^2$ holds for all $0\leq \epsilon < \epsilon'$. If $\mathrm{C}[\xi]$ it means that the perturbation along $\xi$ can decrease $\mathrm{E}[\sigma]$ in the rate of $\abs{\mathrm{C}[\xi]}$.
+The definition of $\mathcal{C}[\xi]$ in Equation \eqref{eq:Cxi} can also be rewritten in another way as
 $\mathrm{E}[\sigma] = \mathrm{E}[\sigma_0] +
-\mathrm{C}[\xi]\epsilon^2 + o(\epsilon^2)$
-where
+\mathrm{C}[\xi]\epsilon^2 + o(\epsilon^2)$. We can see more clearly that $\mathrm{C}[\xi]$ is the coefficient of second order term of $\mathrm{E}[\sigma]$.
+
+To justify the definition of $\mathrm{C}[\xi]$, we need to show the limit in Equation \eqref{eq:Cxi} exists, which is guaranteed by the following proposition:
+%For functional space $F$, we choose $P_m(z)$,
+%which consists of polynomials with the highest degree no more than $m$.
+
+\begin{proposition}\label{prop:Esigma} 
+Let $\nabla \xi(\underline{z})  = \diag[\xi(z_1), \dots, \xi(z_n)]$, we have
 \begin{align}\notag
 \mathrm{C}[\xi]= & \E[\norm{\xi(\bm{A}\underline{Y})}^2 -
 \norm{\bm{X}^T\xi(\bm{A}\underline{Y})}^2 - \\
 &\norm{\bm{X}^T \nabla\xi(\bm{A}\underline{Y})(Y-\bm{A}\underline{Y})}^2]
 \end{align}
 \end{proposition}
-Proposition \ref{prop:Esigma} gets the second order approximation for $\mathrm{E}$.
-The coefficient of $\epsilon$ is zero while it is not obvious to determine the sign for 
-the coefficient of $\epsilon^2$. Therefore, we consider $\sigma \in P_m(z)$ and
-get the following result:
+
+Our goal is to get the largest decrease rate for $E[\sigma]$ from $E[\sigma_0]$, this is equivalent to solve an optimization problem $\min \mathrm{C}[\xi]$ constraint by $\xi \in F_0$. It is hard to optimize on $F_0$ directly and we consider $F_{0,m} = F_0 \cap P_m$ first. $P_m$ consists of polynomials with the highest degree no more than $m$. And we have $F_0 = \lim_{m\to \infty} F_{0,m}$.
+
+For $\xi \in F_{0,m}$ we have the following result:
 \begin{proposition}\label{prop:quadratic}
 If
 $\xi(z) = \sum_{i=0}^m q_i z^i$,
@@ -293,7 +285,7 @@ and $m << k$, then we have
 \textrm{where }p_i &= \frac{k^{i/2}}{n^{- 1/2 + i}}q_i \notag\\
 M_{ij} =& -\delta(i,j)(i-1)(j-1)(i+j-3)!! 
 \end{align}
-The constraint on vector $p$ is through
+The constraint $\xi \in F_{0,m}$ is equivalent with
 \begin{align}
 p^T N p & = 1 \notag\\
 N_{ij}  & = \delta(i,j)(i+j-1)!!
