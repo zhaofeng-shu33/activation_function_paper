@@ -167,11 +167,12 @@ In Section \ref{sec:hp}, the Hermite polynomial solution for our problem is brie
 In Section \ref{sec:er}, numerical experiments are conducted to verify our results.
 In Section \ref{sec:con}, conclusion is given.
 
-Throught this paper, we use $X$ to represent random variables,
-$\underline{X}$ to represent random vectors,
-$\bm{X}$ to represent random matrix,
-lower case $x$ to represent a numerical value,
-$\underline{x}$ as a numerical vector and $\bm{x}$ as numerical matrix.
+Throught this paper, we use $X$ to represent random variables;
+$\underline{X}$ to represent random vectors;
+$\bm{X}$ to represent random matrix;
+lower case $x$ to represent a numerical value;
+$\underline{x}$ as a numerical vector;
+$\bm{x}$  or $\mathbf{M}$ as numerical matrix.
 
 \section{Mathematical Model}\label{sec:mm}
 We consider one node neural networks, whose structure is shown in Figure \ref{fig:ns}.
@@ -214,7 +215,7 @@ is called the universally good activation function for the single node neural ne
 
 Definition \ref{def:ug} is a general formulation for any distribution space $G$.
 To get some analytical result we should choose some specific distribution.
-Indeed, we assume $\underline{Y}$ is Gaussian distribution with covariance matrix $\frac{1}{n} I_n$ and
+Indeed, we assume $\underline{Y}$ is Gaussian distribution with covariance matrix $\frac{1}{n} \mathbf{I}_n$ and
 $\bm{X}$ is uniformly distributed random orthogonal matrix \cite{eaton1989group}.
 $\underline{Y}$ and $\bm{X}$ are independent.
 This defines our distribution space $G$. Such choice is natural as it leads to simple expression of the averaged error for linear function.
@@ -229,7 +230,7 @@ since we use $k$ degrees of freedom to estimate arbitrary vector in $n$ dimentio
 The proof of Proposition \ref{prop:linear} depends on the following lemma:
 \begin{lemma}\label{lem:A}
 Suppose $\bm{X}$ is uniformly distributed random orthogonal matrix, $\bm{A} = \bm{X}\bm{X}^T$.
-Then $\E[\bm{A}] = \frac{k}{n} I_n$.
+Then $\E[\bm{A}] = \frac{k}{n} \mathbf{I}_n$.
 \end{lemma}
 We defined random matrix $\bm{A}$ in Lemma \ref{lem:A} for notation convenience.
 Since $\bm{X}$ is orthogonal, $\bm{A}$ is idempotent. That is, we have $\bm{A}^2 = \bm{A}$.
@@ -273,7 +274,7 @@ Let $\nabla \xi(\underline{z})  = \diag[\xi(z_1), \dots, \xi(z_n)]$, we have
 \end{align}
 \end{proposition}
 
-Our goal is to get the largest decrease rate for $E[\sigma]$ from $E[\sigma_0]$, this is equivalent to solve an optimization problem $\min \mathrm{C}[\xi]$ constraint by $\xi \in F_0$. It is hard to optimize on $F_0$ directly and we consider $F_{0,m} = F_0 \cap P_m$ first. $P_m$ consists of polynomials with the highest degree no more than $m$. And we have $F_0 = \lim_{m\to \infty} F_{0,m}$.
+Our goal is to get the largest decreasing rate for $E[\sigma]$ from $E[\sigma_0]$, this is equivalent to solve an optimization problem $\min \mathrm{C}[\xi]$ constraint by $\xi \in F_0$. It is hard to optimize on $F_0$ directly and we consider $F_{0,m} = F_0 \cap P_m$ first. $P_m$ consists of polynomials with the highest degree no more than $m$. And we have $F_0 = \lim_{m\to \infty} F_{0,m}$.
 
 For $\xi \in F_{0,m}$ we have the following result:
 \begin{proposition}\label{prop:quadratic}
@@ -281,14 +282,14 @@ If
 $\xi(z) = \sum_{i=0}^m q_i z^i$,
 and $m << k$, then we have 
 \begin{align}
-\mathrm{C}[\xi] &= (1-\frac{k}{n}) p^T M p \notag\\
+\mathrm{C}[\xi] &= (1-\frac{k}{n}) p^T \mathbf{M} p \notag\\
 \textrm{where }p_i &= \frac{k^{i/2}}{n^{- 1/2 + i}}q_i \notag\\
-M_{ij} =& -\delta(i,j)(i-1)(j-1)(i+j-3)!! 
+\mathbf{M}_{ij} =& -\delta(i,j)(i-1)(j-1)(i+j-3)!! 
 \end{align}
 The constraint $\xi \in F_{0,m}$ is equivalent with
 \begin{align}
-p^T N p & = 1 \notag\\
-N_{ij}  & = \delta(i,j)(i+j-1)!!
+p^T \mathbf{N} p & = 1 \notag\\
+\mathbf{N}_{ij}  & = \delta(i,j)(i+j-1)!!
 \end{align}
 \end{proposition}
 
@@ -308,7 +309,7 @@ Let
 Then $C[\xi_m] = -(m-1) \leq C[\xi] $ for all $\xi \in F_{0, m}$.
 \end{proposition}
 Proposition \ref{prop:value} also gives the lower bound $-(m-1)$ for $C[\xi]$.
-It says the local decrease rate of $\E[\sigma]$ is linearly improved if we increase the degree of polynomials. The bound can be reached if $ m << k$ and generally $-(m-1) < C[\xi]$ if the assumption $ m << k$ fails.
+It says the local decreasing rate of $\E[\sigma]$ is linearly improved if we increase the degree of polynomials. The bound can be reached if $ m << k$ and generally $-(m-1) < C[\xi]$ if the assumption $ m << k$ fails.
 \section{Experiment Result}\label{sec:er}
 
 \subsection{Templates}
