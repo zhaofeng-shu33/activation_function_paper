@@ -182,9 +182,10 @@ To be more specific, $Y$ is approximated by $ \sigma(\sum_{i=1}^k w_i X_i)$.
 For a given problem, we have $n$ data pairs $(x_1, y_1), \dots, (x_n, y_n)$ and
 the L2 loss function is given by
 $\ell_2(\underline{y}, \bm{x}) = \norm{\underline{y} - \sigma(\sum_{i=1}^k w_i \underline{x}_i)}^2 $
-where $\underline{x}_i= (x_{i1}, \dots, x_{in})^T$ is the i-th column of the feature vector $\bm{x}$ and
+where $\underline{x}_i= (x_{1i}, \dots, x_{ni})^T$ is the i-th column of the feature vector $\bm{x}$ and
 $\underline{y} = (y_1, \dots, y_n)$ is the label vector. $\sigma$ is applied to a vector elementwise.
 The optimal weight for a given activation function $\sigma$ is the solution to $\min \ell_2(\underline{y}, \bm{x})$.
+
 \begin{figure}\label{fig:ns}
 \includegraphics[width=\linewidth]{network_structure.eps}
 \end{figure}
@@ -266,7 +267,7 @@ To justify the definition of $\mathrm{C}[\xi]$, we need to show the limit in Equ
 %which consists of polynomials with the highest degree no more than $m$.
 
 \begin{proposition}\label{prop:Esigma} 
-Let $\nabla \xi(\underline{z})  = \diag[\xi(z_1), \dots, \xi(z_n)]$, we have
+Let $\nabla \xi(\underline{z})  = \diag[\xi'(z_1), \dots, \xi'(z_n)]$, we have
 \begin{align}\notag
 \mathrm{C}[\xi]= & \E[\norm{\xi(\bm{A}\underline{Y})}^2 -
 \norm{\bm{X}^T\xi(\bm{A}\underline{Y})}^2 - \\
@@ -445,9 +446,23 @@ found in the source file (they are commented out).
 
 
 %\section*{Acknowledgment}
-\appendix{Proof of main results}
+\appendix
+\begin{proof}[Proof of Lemma \ref{lem:A} ]
+By the symmetric property we only need to show $\E[\bm{A}_{11}] = \frac{k}{n}$ and
+$\E[\bm{A}_{12}] = 0$. For the first equation, we have $n\E[\bm{A}_{11}]
+= \sum_{i=1}^n \E[\bm{A}_{ii}] = \sum_{i=1}^n \E[ \sum_{j=1}^k \bm{X}^2_{ij}] =
+\sum_{j=1}^k \E[\sum_{i=1}^n \bm{X}^2_{ij}]$. Since the norm of $\bm{X}_j$ is 1,
+the whole summation evaluates to $k$. Therefore $\E[\bm{A}_{11}] = \frac{k}{n}$.
 
-
+On the other hand, $\bm{X}$ can be treated as an $n\times k$ submatrix of an $n\times n$
+random orthogonal matrix $\bm{\bar{X}}$ with the property that $\bm{X}_{ij} = \bm{\bar{X}}_{ij}$
+for $j\leq k$. For $\bm{\bar{X}}$, the first and second row are orthogonal:
+ $\E[\sum_{j=1}^n \bm{\bar{X}}_{1j}\bm{\bar{X}}_{2j}] = 0 $ which leads to
+ $\E[\bm{X}_{1j}\bm{X}_{2j}] = 0$ for $j \leq k$. Hence $\E[\bm{A}_{12}]=
+ \E[\sum_{j=1}^k \bm{X}_{1j}\bm{X}_{2j}]=0$.
+\end{proof}
+\begin{proof}[Proof of Proposition \ref{prop:Esigma} ]
+\end{proof}
 %%%%%%
 %% To balance the columns at the last page of the paper use this
 %% command:
