@@ -173,7 +173,7 @@ $\underline{X}$ to represent random vectors;
 $\bm{X}$ to represent random matrix;
 lower case $x$ to represent a numerical value;
 $\underline{x}$ as a numerical vector;
-$\bm{x}$  or $\mathbf{M}$ as numerical matrix; $\mathbf{I}_n$ is n-dimensional identity matrix.
+$\bm{x}$  or $\mathbf{M}$ as numerical matrix; $\mathbf{I}_n$ is n-dimensional identity matrix; $[\cdot]^\T$ is the transpose operation on matrix.
 
 \section{Mathematical Model}\label{sec:mm}
 We consider one node neural networks, whose structure is shown in Figure \ref{fig:ns}.
@@ -271,8 +271,8 @@ To justify the definition of $\mathrm{C}[\xi]$, we need to show the limit in Equ
 Let $\nabla \xi(\underline{z})  = \diag[\xi'(z_1), \dots, \xi'(z_n)]$, we have
 \begin{align}\notag
 \mathrm{C}[\xi]= & \E[\norm{\xi(\bm{A}\underline{Y})}^2 -
-\norm{\bm{X}^T\xi(\bm{A}\underline{Y})}^2 - \\
-&\norm{\bm{X}^T \nabla\xi(\bm{A}\underline{Y})(Y-\bm{A}\underline{Y})}^2]
+\norm{\bm{X}^\T\xi(\bm{A}\underline{Y})}^2 \\
+&- \norm{\bm{X}^\T \nabla\xi(\bm{A}\underline{Y})(Y-\bm{A}\underline{Y})}^2]
 \end{align}
 \end{proposition}
 
@@ -389,7 +389,7 @@ for $j\leq k$. For $\bm{\bar{X}}$, the first and second row are orthogonal:
 \begin{proof}[Proof of Proposition \ref{prop:Esigma} ]
 For the problem $\min_{\underline{w}} \norm{\underline{Y} - \sigma(\bm{X} \underline{w})}$
 with $\sigma = \sigma_0 + \epsilon \xi$. We can write $\underline{w} = \underline{w}_0
-+ \epsilon \underline{\hat{w}} + o(\epsilon)$ where $\underline{w}_0$ is the minimizer for
++ \epsilon \underline{\hat{w}} + o(\epsilon)$ where $\underline{w}_0 = \bm{X}^T \underline{Y}$ is the minimizer for
 $\epsilon = 0$. That is, we assume $\underline{w}$ can be expanded near $\underline{w}_0$
 using $\epsilon$ terms. We can expand $\norm{\underline{Y} - \sigma(\bm{X} \underline{w})}$ 
 up to $o(\epsilon^2)$ as
@@ -408,7 +408,36 @@ up to $o(\epsilon^2)$ as
 2 (\bm{X} \underline{\tilde{w}}+
 \nabla \xi(\bm{X} \underline{w}_0)\bm{X}\underline{\hat{w}})^\T(\underline{Y}-\bm{X} \underline{w}_0))
 \end{align*}
+$\bm{X}\underline{w}_0 = \bm{X}\bm{X}^\T \underline{Y}$ is the projection of $\underline{Y}$ onto linear subspace spanned by
+columns of $\bm{X}$.
 
+We first show that in the expansion of $\E[\sigma]$, the coefficient of $\epsilon$ is zero.
+We use $\tilde{\underline{Y}}$ to denote the mirror of $\underline{Y}$ about this linear subspace.
+Then we have
+$\bm{X}\bm{X}^T \underline{Y} = \bm{X}\bm{X}^\T \tilde{\underline{Y}}$ and
+$(\underline{Y}- \bm{X}\bm{X}^\T\underline{Y}) = -(\tilde{\underline{Y}} - \bm{X}\bm{X}^\T \tilde{\underline{Y}})$.
+This symmetric property leads to $\E_{\underline{Y}}[\xi(\bm{X}\underline{w}_0)^\T (\underline{Y}-\bm{X}\underline{w}_0)]=0$.
+On the other hand, since $\bm{X}^\T \bm{X} = \mathbf{I}_k$. $(\bm{X}\underline{\hat{w}})^\T (\underline{Y}-\bm{X}\underline{w}_0) = \underline{\hat{w}}^\T (X^\T \underline{Y} - \underline{w}_0) = 0$.
+
+Next, we minimize the coefficient of $\epsilon^2$ by $\underline{\hat{w}}$, which simplies to 
+\begin{equation}\label{eq:st}
+\norm{\bm{X}\underline{\hat{w}} + \xi(\bm{X} \underline{w}_0)}^2-
+2 (
+\nabla \xi(\bm{X} \underline{w}_0)\bm{X}\underline{\hat{w}})^\T(\underline{Y}-\bm{X} \underline{w}_0)
+\end{equation}
+due to $(\bm{X}\underline{\tilde{w}})^\T (\underline{Y}-\bm{X}\underline{w}_0) = 0 $.
+The expression in \eqref{eq:st} is quadratic about $\underline{\hat{w}}$. The minimum value is achieved  at
+$$
+\underline{\hat{w}} =  \bm{X}^\T(\nabla\xi(\bm{X}\bm{X}^\T \underline{Y})
+(\underline{Y}-\bm{X}\bm{X}^\T \underline{Y}) - \xi(\bm{X}\bm{X}^\T \underline{Y}))
+$$
+Substituting $\underline{\hat{w}}$ in expression in \eqref{eq:st} with the above equation we can get the minimum value for the coefficient of $\epsilon^2$, which is exactly $C[\xi]$.
+\begin{align*}
+C[\xi] = & \E[\norm{\xi(\bm{X}\bm{X}^\T\underline{Y})}^2 -
+\norm{\bm{X}^\T\xi(\bm{X}\bm{X}^\T\underline{Y})}^2 \\
+& -
+\norm{\bm{X}^\T \nabla\xi(\bm{X}\bm{X}^\T\underline{Y})(\underline{Y}-\bm{X}\bm{X}^\T\underline{Y})}^2]
+\end{align*}
 \end{proof}
 %%%%%%
 %% To balance the columns at the last page of the paper use this
