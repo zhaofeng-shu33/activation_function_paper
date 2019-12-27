@@ -46,6 +46,7 @@
 \DeclarePairedDelimiter\inner{\langle}{\rangle}
 \def\P{\mathcal{P}}
 \def\E{\mathbb{E}}
+\def\T{\mathrm{T}}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
 \DeclareMathOperator*{\diag}{diag}
@@ -172,7 +173,7 @@ $\underline{X}$ to represent random vectors;
 $\bm{X}$ to represent random matrix;
 lower case $x$ to represent a numerical value;
 $\underline{x}$ as a numerical vector;
-$\bm{x}$  or $\mathbf{M}$ as numerical matrix.
+$\bm{x}$  or $\mathbf{M}$ as numerical matrix; $\mathbf{I}_n$ is n-dimensional identity matrix.
 
 \section{Mathematical Model}\label{sec:mm}
 We consider one node neural networks, whose structure is shown in Figure \ref{fig:ns}.
@@ -237,8 +238,8 @@ We defined random matrix $\bm{A}$ in Lemma \ref{lem:A} for notation convenience.
 Since $\bm{X}$ is orthogonal, $\bm{A}$ is idempotent. That is, we have $\bm{A}^2 = \bm{A}$.
 
 \begin{proof}[Proof of Proposition \ref{prop:linear}]
-When $\epsilon = 0$, the optimal $\underline{w} = \bm{X}^T\underline{Y}$. Therefore
-$\E[\norm{\underline{Y} - \sigma(\bm{X} \underline{w})}^2] = \E[\norm{\underline{Y}-\bm{X}\bm{X}^T\underline{Y}}^2]$
+When $\epsilon = 0$, the optimal $\underline{w}_0 = \bm{X}^T\underline{Y}$. Therefore
+$\E[\norm{\underline{Y} - \sigma(\bm{X} \underline{w}_0)}^2] = \E[\norm{\underline{Y}-\bm{X}\bm{X}^T\underline{Y}}^2]$
 The expectation can be taken by $\underline{Y}$ first and then by $\bm{X}$.
 Let $\underline{Z} = (I-\bm{A}) \underline{Y}$ which transforms a Gaussian random vector $\underline{Y}$.
 for given $\bm{X}$. Therefore $\E_{\underline{Y}}[\norm{\underline{Z}}^2] = \Tr[(I-A)^T\Cov[Y](I-A)]
@@ -311,6 +312,7 @@ Then $C[\xi_m] = -(m-1) \leq C[\xi] $ for all $\xi \in F_{0, m}$.
 \end{proposition}
 Proposition \ref{prop:value} also gives the lower bound $-(m-1)$ for $C[\xi]$.
 It says the local decreasing rate of $\E[\sigma]$ is linearly improved if we increase the degree of polynomials. The bound can be reached if $ m << k$ and generally $-(m-1) < C[\xi]$ if the assumption $ m << k$ fails.
+
 \section{Experiment Result}\label{sec:er}
 
 \subsection{Templates}
@@ -338,69 +340,6 @@ the same as for the \emph{IEEE Transactions on Information
 instructions on how to format your paper. So, example code for
 different numbers of authors, for figures and tables, and references
 can be found (they are commented out).
-
-%%%%%%
-%% An example of a floating figure using the graphicx package.
-%% Note that \label must occur AFTER (or within) \caption.
-%% For figures, \caption should occur after the \includegraphics.
-%%
-% \begin{figure}[htbp]
-%   \centering
-%   \includegraphics[width=0.3\textwidth]{myfigure}
-%   % where an .eps filename suffix will be assumed under latex,
-%   % and a .pdf suffix will be assumed for pdflatex
-%   \caption{Simulation results.}
-%   \label{fig:sim}
-% \end{figure}
-%%%%%%
-
-%%%%%%
-%% An example of a double column floating figure using two subfigures.
-%% (The subfigure.sty package must be loaded for this to work.)  The
-%% subfigure \label commands are set within each subfigure command,
-%% the \label for the overall figure must come after \caption.  
-%% \hfil must be used as a separator to get equal spacing
-%%
-% \begin{figure*}[htbp]
-%   \centerline{\subfigure[Case I]{\includegraphics[width=2.5in]{subfigcase1}
-%       % where an .eps filename suffix will be assumed under latex,
-%       % and a .pdf suffix will be assumed for pdflatex
-%       \label{fig:first_case}}
-%     \hfil
-%     \subfigure[Case II]{\includegraphics[width=2.5in]{subfigcase2}
-%       % where an .eps filename suffix will be assumed under latex,
-%       % and a .pdf suffix will be assumed for pdflatex
-%       \label{fig:second_case}}}
-%   \caption{Simulation results.}
-%   \label{fig:sim}
-% \end{figure*}
-%%%%%%
-
-%%%%%%
-%% An example of a floating table. 
-%% Note that, for IEEE style tables, the \caption command should come
-%% BEFORE the table. Table text will default to \footnotesize as IEEE
-%% normally uses this smaller font for tables.  The \label must come
-%% after \caption as always.
-%%
-% \begin{table}[htbp]
-%   % increase table row spacing, adjust to taste
-%   \renewcommand{\arraystretch}{1.3}
-%   \caption{An Example of a Table}
-%   \label{tab:table_example}
-%   \centering
-%   % Some packages, such as MDW tools, offer better commands for making tables
-%   % than the plain LaTeX2e tabular which is used here.
-%   \begin{tabular}{|c||c|}
-%     \hline
-%     One & Two\\
-%     \hline
-%     Three & Four\\
-%     \hline
-%   \end{tabular}
-% \end{table}
-%%%%%%
-
 
 For instructions on how to typeset math, in particular for equation
 arrays with broken equations, we refer.
@@ -431,20 +370,6 @@ balanced. Instructions for that purpose are given in the source file.
 Moreover, example code for an appendix (or appendices) can also be
 found in the source file (they are commented out).
 
-%%%%%%
-%% Appendix:
-%% If needed a single appendix is created by
-%%
-%\appendix
-%%
-%% If several appendices are needed, then the command
-%%
-% \appendices
-%%
-%% in combination with further \section-commands can be used.
-%%%%%%
-
-
 %\section*{Acknowledgment}
 \appendix
 \begin{proof}[Proof of Lemma \ref{lem:A} ]
@@ -462,6 +387,28 @@ for $j\leq k$. For $\bm{\bar{X}}$, the first and second row are orthogonal:
  \E[\sum_{j=1}^k \bm{X}_{1j}\bm{X}_{2j}]=0$.
 \end{proof}
 \begin{proof}[Proof of Proposition \ref{prop:Esigma} ]
+For the problem $\min_{\underline{w}} \norm{\underline{Y} - \sigma(\bm{X} \underline{w})}$
+with $\sigma = \sigma_0 + \epsilon \xi$. We can write $\underline{w} = \underline{w}_0
++ \epsilon \underline{\hat{w}} + o(\epsilon)$ where $\underline{w}_0$ is the minimizer for
+$\epsilon = 0$. That is, we assume $\underline{w}$ can be expanded near $\underline{w}_0$
+using $\epsilon$ terms. We can expand $\norm{\underline{Y} - \sigma(\bm{X} \underline{w})}$ 
+up to $o(\epsilon^2)$ as
+\begin{align*}
+&\norm{\underline{Y} - \bm{X} \underline{w}_0 - \epsilon \bm{X} \underline{\hat{w}} -
+\epsilon^2 \bm{X} \underline{\tilde{w}} - \epsilon \xi(\bm{X} \underline{w}_0 +
+\epsilon \bm{X} \underline{\hat{w}}) }^2 \\
+= & \norm{ \underline{Y} - \bm{X}  \underline{w}_0 -
+\epsilon (\bm{X}\underline{\hat{w}} + \xi(\bm{X} \underline{w}_0 )) \\
+&-  \epsilon^2(\bm{X}\underline{\tilde{w}} + \nabla \xi(\bm{X} \underline{w}_0 )\bm{X}\underline{\hat{w}})}^2 \\
+= & \norm{\underline{Y}-\bm{X} \underline{w}_0  }^2 -
+2 \epsilon (\bm{X} \underline{\hat{w}} +
+\xi(\bm{X} \underline{w}_0))^\T (\underline{Y} - \bm{X} \underline{w}_0) +\\
+& +  \epsilon^2(\norm{\bm{X}\underline{\hat{w}} + \xi(\bm{X} \underline{w}_0)}^2 \\
+& -
+2 (\bm{X} \underline{\tilde{w}}+
+\nabla \xi(\bm{X} \underline{w}_0)\bm{X}\underline{\hat{w}})^\T(\underline{Y}-\bm{X} \underline{w}_0))
+\end{align*}
+
 \end{proof}
 %%%%%%
 %% To balance the columns at the last page of the paper use this
@@ -499,7 +446,7 @@ for $j\leq k$. For $\bm{\bar{X}}$, the first and second row are orthogonal:
 
 %% Or you use manual references (pay attention to consistency and the
 %% formatting style!):
-\bibliographystyle{plain}
+\bibliographystyle{IEEEtran}
 \bibliography{exportlist}
 
 
