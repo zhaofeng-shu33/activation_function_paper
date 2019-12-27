@@ -215,7 +215,7 @@ is called the universally good activation function for the single node neural ne
 Definition \ref{def:ug} is a general formulation for any distribution space $G$.
 To get some analytical result we should choose some specific distribution.
 Indeed, we assume $\underline{Y}$ is Gaussian distribution with covariance matrix $\frac{1}{n} I_n$ and
-$\bm{X}$ is uniformly distributed random orthogonal matrix \cite{rm}.
+$\bm{X}$ is uniformly distributed random orthogonal matrix \cite{eaton1989group}.
 $\underline{Y}$ and $\bm{X}$ are independent.
 This defines our distribution space $G$. Such choice is natural as it leads to simple expression of the averaged error for linear function.
 
@@ -281,7 +281,7 @@ If
 $\xi(z) = \sum_{i=0}^m q_i z^i$,
 and $m << k$, then we have 
 \begin{align}
-\mathrm{C}[\sigma] &= (1-\frac{k}{n}) p^T M p \notag\\
+\mathrm{C}[\xi] &= (1-\frac{k}{n}) p^T M p \notag\\
 \textrm{where }p_i &= \frac{k^{i/2}}{n^{- 1/2 + i}}q_i \notag\\
 M_{ij} =& -\delta(i,j)(i-1)(j-1)(i+j-3)!! 
 \end{align}
@@ -292,20 +292,23 @@ N_{ij}  & = \delta(i,j)(i+j-1)!!
 \end{align}
 \end{proposition}
 
-From Proposition \ref{prop:quadratic}, we can inspect the impact of non-linear perturbation on the average error. Suppose we choose 
+Proposition \ref{prop:quadratic} gives a feasible approach to choose the optimal $\xi$ by solving a quadratic optimization problem. We make an another assumption $
+m << k$ to write $M_{ij}$ in a concise form. This assumption requires we should choose low degree polynomials as activation function and the number of node should be relatively large to represent features. Since computational cost
+is proportional to the degree of polynomials, our assumption does not lose practicality. 
 
 \section{Hermite Polynomials}\label{sec:hp}
 
-Accepted papers will be published in full. 
-A program booklet and a book of abstracts will also be
-distributed at the Symposium to serve as a guide to the sessions.
-
-The deadline for the submission of the final camera-ready paper will
-be announced in due course.  Accepted papers not submitted by that
-date will not appear in the ISIT proceedings and will not be included
-in the technical program of the ISIT.
-
-
+One of our major result is that we find Proposition \ref{prop:quadratic} leads naturally to the Hermite Polynomials solutions. Probabilists' Hermite polynomial $H_m(x) (m=1,2,\dots)$ is a serial of polynomial with the orthogonal property $ \E[H_m(X)H_n(X)] = n! \delta_{mn}$ where $X$ is standard normal random variable.
+The highest degree of $H_m(x)$ is $m$. $\xi(z) \in F_{0, m}$ which minimizes $\mathrm{C}[\xi]$ has the following relationship with Hermite polynomials:
+\begin{proposition}\label{prop:value}
+Let
+\begin{equation}
+    \xi_m(z) = \frac{1}{\sqrt{mn}} H_m(\frac{n}{k^{1/2}} x)
+\end{equation}
+Then $C[\xi_m] = -(m-1) \leq C[\xi] $ for all $\xi \in F_{0, m}$.
+\end{proposition}
+Proposition \ref{prop:value} also gives the lower bound $-(m-1)$ for $C[\xi]$.
+It says the local decrease rate of $\E[\sigma]$ is linearly improved if we increase the degree of polynomials. The bound can be reached if $ m << k$ and generally $-(m-1) < C[\xi]$ if the assumption $ m << k$ fails.
 \section{Experiment Result}\label{sec:er}
 
 \subsection{Templates}
@@ -398,7 +401,7 @@ can be found (they are commented out).
 
 
 For instructions on how to typeset math, in particular for equation
-arrays with broken equations, we refer to \cite{typesetmoser}.
+arrays with broken equations, we refer.
 
 Pages should not be numbered and there should be no footer or header
 (both will be added during the production of the proceedings). The
@@ -415,7 +418,7 @@ missing fonts. Make sure that all fonts are embedded. (In some cases,
 printing a PDF to a PostScript file, and then creating a new PDF with
 Acrobat Distiller, may do the trick.) More information (including
 suitable Acrobat Distiller Settings) is available from the IEEE
-website \cite{IEEE:pdfsettings, IEEE:AuthorToolbox}.
+website.
 
 
 \section{Conclusion}\label{sec:con}
