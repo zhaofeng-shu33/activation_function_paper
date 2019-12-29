@@ -480,6 +480,28 @@ Therefore $A(i,j) = (i+j-1)!!$ if $i + j $ is even.
 Based on our discussion on the parity of $i+j$, in general we have $A(i,j)=\delta(i,j)(i+j-1)!!$
 which proves Lemma \ref{lemma:UUN}.
 \end{proof}
+\begin{lemma}\label{lemma:UUM}
+\begin{align}
+&\delta(i, j)(i-1)(j-1)(i+j-3)!!  \notag\\
+=&\sum_{k=0}^{\min\{i, j\}}
+\delta(k, i) \delta(k, j) \frac{(1-k)i!j!}{(i-k)!!(j-k)!!k!}
+\end{align}
+\end{lemma}
+\begin{proof}
+Using results from Lemma \ref{lemma:UUN},
+\begin{align*}
+& \textrm{RHS}  = \sum_{k=0}^{\min\{i, j\}}
+\delta(k, i) \delta(k, j) \frac{i!j!}{(i-k)!!(j-k)!!k!} \\
+&- \sum_{k=1}^{\min\{i, j\}}
+\delta(k, i) \delta(k, j) \frac{i!j!}{(i-k)!!(j-k)!!(k-1)!} \\
+& = \delta(i, j)(i+j-1)!! \\
+& - ij\sum_{k=0}^{\min\{i-1, j-1\}}
+\delta(k, i) \delta(k, j) \frac{(i-1)!(j-1)!}{(i-1-k)!!(j-1-k)!!k!} \\
+& = \delta(i, j)(i+j-1)!! - \delta(i, j)ij(i+j-3)!! \\
+& = \delta(i, j)(i-1)(j-1)(i+j-3)!!
+\end{align*}
+\end{proof}
+
 \begin{proof}[Proof of Proposition \ref{prop:value} ]
 \end{proof}
 %%%%%%
