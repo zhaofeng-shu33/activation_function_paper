@@ -173,7 +173,10 @@ $\underline{X}$ to represent random vectors;
 $\bm{X}$ to represent random matrix;
 lower case $x$ to represent a numerical value;
 $\underline{x}$ as a numerical vector;
-$\bm{x}$  or $\mathbf{M}$ as numerical matrix; $\mathbf{I}_n$ is n-dimensional identity matrix; $[\cdot]^\T$ is the transpose operation on matrix.
+$\bm{x}$  or $\mathbf{M}$ as numerical matrix; $\mathbf{I}_n$ is n-dimensional identity matrix; 
+$[\cdot]^\T$ is the transpose operation on matrix; $\delta(i, j)$ is an indicator function
+which equals 1 if $ i = j$ and 0 otherwise; 
+$n!!$ is the double factorial which equals $n \times (n-2) \dots \times1$ if $n$ is odd and $n \times (n-2)\dots \times 2$ for even $n$.
 
 \section{Mathematical Model}\label{sec:mm}
 We consider one node neural networks, whose structure is shown in Figure \ref{fig:ns}.
@@ -438,6 +441,45 @@ C[\xi] = & \E[\norm{\xi(\bm{X}\bm{X}^\T\underline{Y})}^2 -
 & -
 \norm{\bm{X}^\T \nabla\xi(\bm{X}\bm{X}^\T\underline{Y})(\underline{Y}-\bm{X}\bm{X}^\T\underline{Y})}^2]
 \end{align*}
+\end{proof}
+To prove Proposition \ref{prop:value}, we rely on some lemmas:
+\begin{lemma}\label{lemma:UUN}
+\begin{equation}\label{eq:UUN}
+\delta(i, j) (i+j-1)!! = \sum_{k=0}^{\min\{i, j\}}
+\delta(k, i) \delta(k, j) \frac{i! j!}{(i-k)!!(j-k)!! k!}
+\end{equation}
+\end{lemma}
+\begin{proof}[Proof of Lemma \ref{lemma:UUN} ]
+If $ i + j $ is odd, $ \delta(i, j) = 0 $ and
+$ \delta(k, i)\delta(k, j) = 0 $. Then Equation \eqref{eq:UUN} holds.
+Therefore we only need to consider the case if $ i + j $ is even.
+First we define $A(i, j) = \sum_{k=0}^{\min\{i, j\}}
+\delta(k, i) \delta(k, j) \frac{i! j!}{(i-k)!!(j-k)!! k!}$. It is obvious $A(i,j)=A(j,i)$.
+Then we have
+\begin{align}
+& A(2i+1, 2j+1) = \sum_{k=0}^{\min\{i,j\}}
+\frac{(2i+1)!(2j+1)!}{(2i-2k)!!(2j-2k)!!(2k+1)!} \notag\\
+&= \sum_{k=0}^{\min\{i,j\}}
+\frac{(2i+1)!(2j)!\left(\frac{1}{2j-2k} + \frac{1}{2k+1}\right)}{(2i-2k)!!(2j-2k-2)!!(2k)!}
+ \notag\\
+&= (2i + 1) A(2i, 2j) + (2j) A(2i+1, 2j-1) \label{eq:Bij}
+\end{align}
+The above formula holds for $ i \leq j-1 $ because of choice of $\min\{i,j\}$.
+If $ i \geq j $, we can use the symmetric property to show it also holds.
+Similarly we have
+\begin{equation}\label{eq:Aij}
+A(2i, 2j) = (2j - 1) A(2i, 2j-2) + (2i) A(2i-3, 2j-3)
+\end{equation}
+From Equation (\ref{eq:Bij}, \ref{eq:Aij}), we can use mathematical induction to show
+\begin{align*}\label{eq:UUN_conclusion}
+A(2i, 2j) & = (2i + 2j - 1)!! \\
+A(2i+1, 2j+1) & = (2i + 2j + 1)!!
+\end{align*}
+Therefore $A(i,j) = (i+j-1)!!$ if $i + j $ is even.
+Based on our discussion on the parity of $i+j$, in general we have $A(i,j)=\delta(i,j)(i+j-1)!!$
+which proves Lemma \ref{lemma:UUN}.
+\end{proof}
+\begin{proof}[Proof of Proposition \ref{prop:value} ]
 \end{proof}
 %%%%%%
 %% To balance the columns at the last page of the paper use this
