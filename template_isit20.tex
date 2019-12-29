@@ -454,7 +454,7 @@ If $ i + j $ is odd, $ \delta(i, j) = 0 $ and
 $ \delta(k, i)\delta(k, j) = 0 $. Then Equation \eqref{eq:UUN} holds.
 Therefore we only need to consider the case if $ i + j $ is even.
 First we define $A(i, j) = \sum_{k=0}^{\min\{i, j\}}
-\delta(k, i) \delta(k, j) \frac{i! j!}{(i-k)!!(j-k)!! k!}$. It is obvious $A(i,j)=A(j,i)$.
+\delta(k, i) \delta(k, j) \frac{i! j!}{(i-k)!!(j-k)!! k!}$.
 Then we have
 \begin{align}
 & A(2i+1, 2j+1) = \sum_{k=0}^{\min\{i,j\}}
@@ -465,10 +465,11 @@ Then we have
 &= (2i + 1) A(2i, 2j) + (2j) A(2i+1, 2j-1) \label{eq:Bij}
 \end{align}
 The above formula holds for $ i \leq j-1 $ because of choice of $\min\{i,j\}$.
-If $ i \geq j $, we can use the symmetric property to show it also holds.
+We can use the symmetric property $A(i,j)=A(j,i)$
+to show Equation \eqref{eq:Bij} also holds for $ i \geq j $.
 Similarly we have
 \begin{equation}\label{eq:Aij}
-A(2i, 2j) = (2j - 1) A(2i, 2j-2) + (2i) A(2i-3, 2j-3)
+A(2i, 2j) = (2j - 1) A(2i, 2j-2) + (2i) A(2i-1, 2j-1)
 \end{equation}
 From Equation (\ref{eq:Bij}, \ref{eq:Aij}), we can use mathematical induction to show
 \begin{align*}\label{eq:UUN_conclusion}
