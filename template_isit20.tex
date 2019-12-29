@@ -186,7 +186,7 @@ To be more specific, $Y$ is approximated by $ \sigma(\sum_{i=1}^k w_i X_i)$.
 For a given problem, we have $n$ data pairs $(x_1, y_1), \dots, (x_n, y_n)$ and
 the L2 loss function is given by
 $\ell_2(\underline{y}, \bm{x}) = \norm{\underline{y} - \sigma(\sum_{i=1}^k w_i \underline{x}_i)}^2 $
-where $\underline{x}_i= (x_{1i}, \dots, x_{ni})^T$ is the i-th column of the feature vector $\bm{x}$ and
+where $\underline{x}_i= (x_{1i}, \dots, x_{ni})^\T$ is the i-th column of the feature vector $\bm{x}$ and
 $\underline{y} = (y_1, \dots, y_n)$ is the label vector. $\sigma$ is applied to a vector elementwise.
 The optimal weight for a given activation function $\sigma$ is the solution to $\min \ell_2(\underline{y}, \bm{x})$.
 
@@ -234,18 +234,18 @@ since we use $k$ degrees of freedom to estimate arbitrary vector in $n$ dimentio
 
 The proof of Proposition \ref{prop:linear} depends on the following lemma:
 \begin{lemma}\label{lem:A}
-Suppose $\bm{X}$ is uniformly distributed random orthogonal matrix, $\bm{A} = \bm{X}\bm{X}^T$.
+Suppose $\bm{X}$ is uniformly distributed random orthogonal matrix, $\bm{A} = \bm{X}\bm{X}^\T$.
 Then $\E[\bm{A}] = \frac{k}{n} \mathbf{I}_n$.
 \end{lemma}
 We defined random matrix $\bm{A}$ in Lemma \ref{lem:A} for notation convenience.
 Since $\bm{X}$ is orthogonal, $\bm{A}$ is idempotent. That is, we have $\bm{A}^2 = \bm{A}$.
 
 \begin{proof}[Proof of Proposition \ref{prop:linear}]
-When $\epsilon = 0$, the optimal $\underline{w}_0 = \bm{X}^T\underline{Y}$. Therefore
-$\E[\norm{\underline{Y} - \sigma(\bm{X} \underline{w}_0)}^2] = \E[\norm{\underline{Y}-\bm{X}\bm{X}^T\underline{Y}}^2]$
+When $\epsilon = 0$, the optimal $\underline{w}_0 = \bm{X}^\T\underline{Y}$. Therefore
+$\E[\norm{\underline{Y} - \sigma(\bm{X} \underline{w}_0)}^2] = \E[\norm{\underline{Y}-\bm{X}\bm{X}^\T\underline{Y}}^2]$
 The expectation can be taken by $\underline{Y}$ first and then by $\bm{X}$.
 Let $\underline{Z} = (I-\bm{A}) \underline{Y}$ which transforms a Gaussian random vector $\underline{Y}$.
-for given $\bm{X}$. Therefore $\E_{\underline{Y}}[\norm{\underline{Z}}^2] = \Tr[(I-A)^T\Cov[Y](I-A)]
+for given $\bm{X}$. Therefore $\E_{\underline{Y}}[\norm{\underline{Z}}^2] = \Tr[(I-A)^\T\Cov[Y](I-A)]
 = \frac{1}{n}\Tr[I - A]$. Using Lemma \ref{lem:A}. $\mathrm{E}(\sigma) = 1 - \frac{k}{n}$ follows.
 \end{proof}
 
@@ -271,7 +271,7 @@ To justify the definition of $\mathrm{C}[\xi]$, we need to show the limit in Equ
 %which consists of polynomials with the highest degree no more than $m$.
 
 \begin{proposition}\label{prop:Esigma} 
-Let $\nabla \xi(\underline{z})  = \diag[\xi'(z_1), \dots, \xi'(z_n)]$, we have
+Let $\nabla \xi(\underline{z})  = \diag[\xi'(\underline{z}_1), \dots, \xi'(\underline{z}_n)]$, we have
 \begin{align}\notag
 \mathrm{C}[\xi]= & \E[\norm{\xi(\bm{A}\underline{Y})}^2 -
 \norm{\bm{X}^\T\xi(\bm{A}\underline{Y})}^2 \\
@@ -284,16 +284,16 @@ Our goal is to get the largest decreasing rate for $E[\sigma]$ from $E[\sigma_0]
 For $\xi \in F_{0,m}$ we have the following result:
 \begin{proposition}\label{prop:quadratic}
 If
-$\xi(z) = \sum_{i=0}^m q_i z^i$,
+$\xi(z) = \sum_{i=0}^m \underline{q}_i z^i$,
 and $m << k$, then we have 
 \begin{align}
-\mathrm{C}[\xi] &= (1-\frac{k}{n}) p^T \mathbf{M} p \notag\\
-\textrm{where }p_i &= \frac{k^{i/2}}{n^{- 1/2 + i}}q_i \notag\\
+\mathrm{C}[\xi] &= (1-\frac{k}{n}) \underline{p}^\T \mathbf{M} \underline{p} \notag\\
+\textrm{where }\underline{p}_i &= \frac{k^{i/2}}{n^{- 1/2 + i}}\underline{q}_i \notag\\
 \mathbf{M}_{ij} =& -\delta(i,j)(i-1)(j-1)(i+j-3)!! 
 \end{align}
 The constraint $\xi \in F_{0,m}$ is equivalent with
 \begin{align}
-p^T \mathbf{N} p & = 1 \notag\\
+\underline{p}^\T \mathbf{N} \underline{p} & = 1 \notag\\
 \mathbf{N}_{ij}  & = \delta(i,j)(i+j-1)!!
 \end{align}
 \end{proposition}
@@ -309,7 +309,7 @@ The highest degree of $H_m(x)$ is $m$. $\xi(z) \in F_{0, m}$ which minimizes $\m
 \begin{proposition}\label{prop:value}
 Let
 \begin{equation}
-    \xi_m(z) = \frac{1}{\sqrt{mn}} H_m(\frac{n}{k^{1/2}} x)
+    \xi_m(z) = \frac{1}{\sqrt{mn}} H_m(\frac{n}{k^{1/2}} z)
 \end{equation}
 Then $C[\xi_m] = -(1-\frac{k}{n})(m-1) \leq C[\xi] $ for all $\xi \in F_{0, m}$.
 \end{proposition}
@@ -392,7 +392,7 @@ for $j\leq k$. For $\bm{\bar{X}}$, the first and second row are orthogonal:
 \begin{proof}[Proof of Proposition \ref{prop:Esigma} ]
 For the problem $\min_{\underline{w}} \norm{\underline{Y} - \sigma(\bm{X} \underline{w})}$
 with $\sigma = \sigma_0 + \epsilon \xi$. We can write $\underline{w} = \underline{w}_0
-+ \epsilon \underline{\hat{w}} + o(\epsilon)$ where $\underline{w}_0 = \bm{X}^T \underline{Y}$ is the minimizer for
++ \epsilon \underline{\hat{w}} + o(\epsilon)$ where $\underline{w}_0 = \bm{X}^\T \underline{Y}$ is the minimizer for
 $\epsilon = 0$. That is, we assume $\underline{w}$ can be expanded near $\underline{w}_0$
 using $\epsilon$ terms. We can expand $\norm{\underline{Y} - \sigma(\bm{X} \underline{w})}$ 
 up to $o(\epsilon^2)$ as
@@ -417,7 +417,7 @@ columns of $\bm{X}$.
 We first show that in the expansion of $\E[\sigma]$, the coefficient of $\epsilon$ is zero.
 We use $\tilde{\underline{Y}}$ to denote the mirror of $\underline{Y}$ about this linear subspace.
 Then we have
-$\bm{X}\bm{X}^T \underline{Y} = \bm{X}\bm{X}^\T \tilde{\underline{Y}}$ and
+$\bm{X}\bm{X}^\T \underline{Y} = \bm{X}\bm{X}^\T \tilde{\underline{Y}}$ and
 $(\underline{Y}- \bm{X}\bm{X}^\T\underline{Y}) = -(\tilde{\underline{Y}} - \bm{X}\bm{X}^\T \tilde{\underline{Y}})$.
 This symmetric property leads to $\E_{\underline{Y}}[\xi(\bm{X}\underline{w}_0)^\T (\underline{Y}-\bm{X}\underline{w}_0)]=0$.
 On the other hand, since $\bm{X}^\T \bm{X} = \mathbf{I}_k$. $(\bm{X}\underline{\hat{w}})^\T (\underline{Y}-\bm{X}\underline{w}_0) = \underline{\hat{w}}^\T (X^\T \underline{Y} - \underline{w}_0) = 0$.
@@ -501,7 +501,10 @@ Using results from Lemma \ref{lemma:UUN},
 & = \delta(i, j)(i-1)(j-1)(i+j-3)!!
 \end{align*}
 \end{proof}
-
+\begin{lemma}
+Let $\mathbf{U}$ be an $(m+1) \times (m+1)$ upper trianglar matrix defined by
+$U_{ij} = \delta(i, j) \frac{j!}{(j-i)!!\sqrt{i!}} \textrm{ for } i\leq j $. Let $p$
+\end{lemma}
 \begin{proof}[Proof of Proposition \ref{prop:value} ]
 \end{proof}
 %%%%%%
