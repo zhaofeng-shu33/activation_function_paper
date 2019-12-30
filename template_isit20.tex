@@ -501,10 +501,28 @@ Using results from Lemma \ref{lemma:UUN},
 & = \delta(i, j)(i-1)(j-1)(i+j-3)!!
 \end{align*}
 \end{proof}
-\begin{lemma}
+\begin{lemma}\label{lemma:Upem}
 Let $\mathbf{U}$ be an $(m+1) \times (m+1)$ upper trianglar matrix defined by
-$U_{ij} = \delta(i, j) \frac{j!}{(j-i)!!\sqrt{i!}} \textrm{ for } i\leq j $. Let $p$
+$U_{ij} = \delta(i, j) \frac{j!}{(j-i)!!\sqrt{i!}} \textrm{ for } 0 \leq i\leq j \leq m$, $\underline{e_m}$ is an $(m+1)$ dimensional vector whose elements are zero except that the last element is 1. $\underline{p}_i = \delta(i, m) (-1)^{(m-i)/2}\frac{m!}{i!(m-i)!! \sqrt{m!}}$.
+Then we have $ \mathbf{U} \underline{p} = \underline{e_m}$.
 \end{lemma}
+\begin{proof}[Proof of Lemma \ref{lemma:Upem} ]
+    For $ i = m, \mathbf{U}_{mm} = \sqrt{m!}$, we can show that $\mathbf{U}_{mm} \underline{p}_m = 1 $; For $ 0\leq i < m $ we
+    will show that $ \sum_{j=i}^m U_{ij} p_j = 0 $. In specific form as
+    \begin{equation}\label{eq:jimf}
+    \sum_{j=i}^m \delta(i, j) \frac{j!}{(j-i)!!\sqrt{i!}}  \frac{\delta(j, m)(-1)^{(m-j)/2}m!}{j!(m-j)!! \sqrt{m!}} = 0
+    \end{equation}
+    If $ \delta(i, m) = 0$, $\delta(i, j)\delta(j, m) = 0$ and Equation \eqref{eq:jimf} holds. Otherwise let $2m' = i + m$,    
+    Equation \eqref{eq:jimf} is equivalent to
+    \begin{align*}
+    \sum_{j=i, \delta(i,j)=1}^m (-1)^{(m-j)/2} \frac{1}{(m-j)!!(j-i)!!}  = 0 & \iff \\ 
+    \sum_{j=0, j \textrm{ is even}}^{2m'} (-1)^{(2m'-j)/2} \frac{1}{(2m'-j)!! j!!} = 0 & \iff \\
+    \sum_{j=0}^{m'} (-1)^{m'-j} \frac{1}{(2m'-2j)!! (2j)!!} = 0 & \iff \\
+    \sum_{j=0}^{m'} (-1)^{m'-j} \frac{1}{(m'-j)! j!} = 0 & \iff \\
+    \sum_{j=0}^{m'} (-1)^{m'-j} \binom{m'}{j} = 0 & \iff \\
+    (1+x)^{m'} = 0 \,(x=-1)
+    \end{align*}
+\end{proof}
 \begin{proof}[Proof of Proposition \ref{prop:value} ]
 \end{proof}
 %%%%%%
