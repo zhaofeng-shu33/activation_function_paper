@@ -515,12 +515,12 @@ Then we have $ \mathbf{U} \underline{p} = \underline{e_m}$.
     If $ \delta(i, m) = 0$, $\delta(i, j)\delta(j, m) = 0$ and Equation \eqref{eq:jimf} holds. Otherwise let $2m' = i + m$,    
     Equation \eqref{eq:jimf} is equivalent to
     \begin{align*}
-    \sum_{j=i, \delta(i,j)=1}^m (-1)^{(m-j)/2} \frac{1}{(m-j)!!(j-i)!!}  = 0 & \iff \\ 
-    \sum_{j=0, j \textrm{ is even}}^{2m'} (-1)^{(2m'-j)/2} \frac{1}{(2m'-j)!! j!!} = 0 & \iff \\
-    \sum_{j=0}^{m'} (-1)^{m'-j} \frac{1}{(2m'-2j)!! (2j)!!} = 0 & \iff \\
-    \sum_{j=0}^{m'} (-1)^{m'-j} \frac{1}{(m'-j)! j!} = 0 & \iff \\
-    \sum_{j=0}^{m'} (-1)^{m'-j} \binom{m'}{j} = 0 & \iff \\
-    (1+x)^{m'} = 0 \,(x=-1)
+    \sum_{j=i, \delta(i,j)=1}^m  \frac{(-1)^{(m-j)/2}}{(m-j)!!(j-i)!!}  &= 0  \iff  
+     \\
+    \sum_{j=0, j \textrm{ is even}}^{2m'}  \frac{(-1)^{(2m'-j)/2}}{(2m'-j)!! j!!}&= 0  \iff \\
+    \sum_{j=0}^{m'}  \frac{(-1)^{m'-j}}{(2m'-2j)!! (2j)!!} &= 0  \iff \\
+    \sum_{j=0}^{m'}  \frac{(-1)^{m'-j}}{(m'-j)! j!} = 0 & \iff \sum_{j=0}^{m'} (-1)^{m'-j} \binom{m'}{j} = 0\\
+     \iff (1+x)^{m'} &= 0 \,(x=-1)
     \end{align*}
 \end{proof}
 \begin{proof}[Proof of Proposition \ref{prop:value} ]
