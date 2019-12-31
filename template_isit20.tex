@@ -439,6 +439,22 @@ C[\xi] = & \E[\norm{\xi(\bm{X}\bm{X}^\T\underline{Y})}^2 -
 \norm{\bm{X}^\T \nabla\xi(\bm{X}\bm{X}^\T\underline{Y})(\underline{Y}-\bm{X}\bm{X}^\T\underline{Y})}^2]
 \end{align*}
 \end{proof}
+\begin{lemma}\label{lemma:A1112}
+For random matrix $\bm{A}$ we have $\E[\bm{A}_{11}^t] = \prod_{i=0}^{t-1} \frac{k+2t}{n+2t}$ and
+$\E[\bm{A}_{12}^2] = \frac{(n-k)k}{(n-1)n(n+2)}$.
+\end{lemma}
+\begin{proof}[Proof of Lemma \ref{lemma:A1112}]
+Since $\bm{A}=\bm{X}\bm{X}^\T$, from Proposition 7.2, Chapter 7 of \cite{eaton1989group} we can get $\bm{A}_{11}$ is Beta distribution with parameter $B(\frac{k}{2}, \frac{n-k}{2})$. Then the high order moment of $\bm{A}_{11}^t$ follows from . To compute $\E[\bm{A}_{12}^2]$, first we have $\E[\bm{A}_{11}^2] = k\E[\bm{X}_1^4] + k(k-1)\E[\bm{X}_1^2 \bm{X}_2^2] \Rightarrow
+\frac{k(k+2)}{n(n+2)} = \frac{3k}{n(n+2)} + (k-1) (k \E[\bm{X}_{11}^2 \bm{X}_{12}^2])$.
+Also $\E[\bm{A}_{12}^2] = \E[(\sum_{i=1}^k \bm{X}_{11} \bm{X}_{12})^2]
+= k \E[\bm{X}_1^2\bm{X}^2_2] + k(k-1)\E[\bm{X}_1\bm{X}_2\bm{X}_1\bm{X}_2]
+$.
+Since $\sum_{i=1}^n X_i Y_i = 0$, multiplying this equation by $X_2Y_2$ and taking the expectation
+we have $\E[X_1X_2Y_1Y_2] = \frac{-1}{n-1} \E[X_1^2 X_2^2]$.
+
+Therefore $\E[A^2_{12}]=(1-\frac{k-1}{n-1}) \frac{k}{n(n+2)}$.
+ 
+\end{proof}
 \begin{proof}[Proof of Proposition \ref{prop:quadratic}]
 \end{proof}
 To prove Proposition \ref{prop:value}, we rely on some lemmas:
