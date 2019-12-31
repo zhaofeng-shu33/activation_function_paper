@@ -144,8 +144,6 @@ power of neural network and can guide the choice of activation function in pract
 %% publically accessible location below.  If the paper is completely
 %% self-contained, you can remove the following line from your
 %% submission.
-\textit{A full version of this paper is accessible at:}
-\url{https://2020.ieee-isit.org/} 
 
 \section{Introduction}
 In artificial neural network, activation functions are applied to linear combinations of input features from last layer and contribute magically to the whole system.
@@ -239,15 +237,6 @@ Then $\E[\bm{A}] = \frac{k}{n} \mathbf{I}_n$.
 \end{lemma}
 We defined random matrix $\bm{A}$ in Lemma \ref{lem:A} for notation convenience.
 Since $\bm{X}$ is orthogonal, $\bm{A}$ is idempotent. That is, we have $\bm{A}^2 = \bm{A}$.
-
-\begin{proof}[Proof of Proposition \ref{prop:linear}]
-When $\epsilon = 0$, the optimal $\underline{w}_0 = \bm{X}^\T\underline{Y}$. Therefore
-$\E[\norm{\underline{Y} - \sigma(\bm{X} \underline{w}_0)}^2] = \E[\norm{\underline{Y}-\bm{X}\bm{X}^\T\underline{Y}}^2]$
-The expectation can be taken by $\underline{Y}$ first and then by $\bm{X}$.
-Let $\underline{Z} = (I-\bm{A}) \underline{Y}$ which transforms a Gaussian random vector $\underline{Y}$.
-for given $\bm{X}$. Therefore $\E_{\underline{Y}}[\norm{\underline{Z}}^2] = \Tr[(I-A)^\T\Cov[Y](I-A)]
-= \frac{1}{n}\Tr[I - A]$. Using Lemma \ref{lem:A}. $\mathrm{E}(\sigma) = 1 - \frac{k}{n}$ follows.
-\end{proof}
 
 We have analyzed the averaged error for linear function. To extend our result on general non-linear functions, we need to choose a proper function space $F$. By detailed analysis we consider a "local" regime. That is, differential functions which are "near" to linear function. The distance is quantified by a positive value $\epsilon$. Thus we consider $F_{\sigma_0}(\epsilon) =\{ \sigma \,|\, \norm{\sigma - \sigma_0} \leq \epsilon\}$. Then all differential functions can be treated as $\cup_{\epsilon>0} F(\epsilon)$. The norm is actually the expectation w.r.t. the distribution space $G$. That is $\E[\norm{(\sigma - \sigma_0)(\bm{A}\underline{Y})}^2] \leq \epsilon^2$.
 
@@ -388,6 +377,14 @@ for $j\leq k$. For $\bm{\bar{X}}$, the first and second row are orthogonal:
  $\E[\sum_{j=1}^n \bm{\bar{X}}_{1j}\bm{\bar{X}}_{2j}] = 0 $ which leads to
  $\E[\bm{X}_{1j}\bm{X}_{2j}] = 0$ for $j \leq k$. Hence $\E[\bm{A}_{12}]=
  \E[\sum_{j=1}^k \bm{X}_{1j}\bm{X}_{2j}]=0$.
+\end{proof}
+\begin{proof}[Proof of Proposition \ref{prop:linear}]
+    When $\epsilon = 0$, the optimal $\underline{w}_0 = \bm{X}^\T\underline{Y}$. Therefore
+    $\E[\norm{\underline{Y} - \sigma(\bm{X} \underline{w}_0)}^2] = \E[\norm{\underline{Y}-\bm{X}\bm{X}^\T\underline{Y}}^2]$
+    The expectation can be taken by $\underline{Y}$ first and then by $\bm{X}$.
+    Let $\underline{Z} = (I-\bm{A}) \underline{Y}$ which transforms a Gaussian random vector $\underline{Y}$.
+    for given $\bm{X}$. Therefore $\E_{\underline{Y}}[\norm{\underline{Z}}^2] = \Tr[(I-A)^\T\Cov[Y](I-A)]
+    = \frac{1}{n}\Tr[I - A]$. Using Lemma \ref{lem:A}. $\mathrm{E}(\sigma) = 1 - \frac{k}{n}$ follows.
 \end{proof}
 \begin{proof}[Proof of Proposition \ref{prop:Esigma} ]
 For the problem $\min_{\underline{w}} \norm{\underline{Y} - \sigma(\bm{X} \underline{w})}$
