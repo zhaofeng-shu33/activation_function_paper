@@ -456,6 +456,59 @@ Therefore $\E[\bm{A}^2_{12}]=(1-\frac{k-1}{n-1}) \frac{k}{n(n+2)}$.
  
 \end{proof}
 \begin{proof}[Proof of Proposition \ref{prop:quadratic}]
+Let $\underline{Z} = \bm{A}\underline{Y}, \underline{Z'} = (\mathbf{I} - \bm{A})\underline{Y}$. Given $\bm{X}$, $\underline{Z}$ is Gaussian vector with covariance matrix $\bm{A} \Cov[\underline{Y}] \bm{A}^\T = \frac{\bm{A}}{n}$. Similarly, $\Cov[\underline{Z'}] = \frac{\mathbf{I} - \bm{A}}{n}$. Using $\bm{A}^2 = \bm{A}$ we have $\E[\underline{Z'}\underline{Z}^\T] = 0$. That is, $\underline{Z'}$ and $\underline{Z}$ are independent. The expectation of $\E[f(\underline{Z}_i)g(\underline{Z'}_j)] = \E[f(\underline{Z}_i)]\E[g(\underline{Z'}_j)]$ for arbitrary function.
+    
+Let $\mathbf{C}_1 = \E_{\underline{Y}} [\norm{\xi(\bm{A}\underline{Y})}^2]$, $\mathbf{C}_2 
+= \E_{\underline{Y}}
+[\norm{\bm{X}^\T\xi(\bm{A}\underline{Y})}^2]$, $\mathbf{C}_3 
+= \E_{\underline{Y}}
+[\norm{\bm{X}^\T \nabla\xi(\bm{A}\underline{Y})(Y-\bm{A}\underline{Y})}^2]$,
+$\mathrm{C}[\bm{X}, \xi] :=  \mathrm{C}_1 - \mathrm{C}_2 - \mathrm{C}_3$, Then $\mathrm{C}[\xi] = \E_{\bm{X}}[\mathrm{C}[\bm{X}, \xi]$.
+We then have
+\begin{align*}
+    \mathrm{C}_1 &=\E[\norm{\xi(\underline{Z})}^2] = \sum_{i=1}^n \E_{Z|X}[\xi^2(\underline{Z}_i)] \\
+    \mathrm{C}_2 &= \sum_{i,j=1, i \neq j}^n \bm{\bm{A}}_{ij}\E[\xi(\underline{Z}_i)\xi(\underline{Z}_j)] +
+    \sum_{i=1}^n \bm{\bm{A}}_{ii}  \E[\xi^2(\underline{Z}_i)] \\
+    \mathrm{C}_3 & = \sum_{i,j=1, i \neq j}^n \bm{A}_{ij}\bm{\Sigma}_{ij} +
+    \sum_{i=1}^n \bm{A}_{ii}\bm{\Sigma}_{ii}    \\
+    \bm{\Sigma}_{ii} &=  \E[ [\underline{Z'}_i]^2 [\xi'(\underline{Z}_i)]^2] = \frac{1-\bm{A}_{ii}}{n}[\xi'(\underline{Z}_i)]^2   \\
+    \bm{\Sigma}_{ij} &=  \E[\underline{Z'}_i \underline{Z'}_j \xi'(\underline{Z}_i)
+    \xi'(\underline{Z}_j)]
+     = - \frac{\bm{A}_{ij}}{n} \E[ \xi'(\underline{Z}_i)
+    \xi'(\underline{Z}_j)]
+\end{align*}
+The expression for $\Sigma_{ij}$ holds for $i \neq j$ above. Combining the above equations we have
+\begin{align*}
+   &  \mathrm{C}[\bm{X}, \xi] = \sum_{i=1}^n (1-\bm{A}_{ii})(\E[\xi^2(\underline{Z}_i)] -
+    \frac{ \bm{A}_{ii}}{n} \E[ \xi'^2(\underline{Z}_i)]) \\
+    &- \sum_{i,j=1, i \neq j}^n \bm{A}_{ij} (\E[\xi(\underline{Z}_i)\xi(\underline{Z}_j)] -
+    \frac{\bm{A}_{ij}}{n}\E[\xi'(\underline{Z}_i) \xi'(\underline{Z}_j)])
+\end{align*}
+By symmetric property, we can simplify the above equation as:
+\begin{align*}
+    &  \mathrm{C}[\bm{X}, \xi] =n(1-\bm{A}_{11})(\E[\xi^2(\underline{Z}_1)] -
+    \frac{\bm{A}_{11}}{n}  \E[ \xi'^2(\underline{Z}_1)]) \\
+    &- n(n-1)\bm{A}_{12}(\E[\xi(\underline{Z}_1)\xi(\underline{Z}_2)] -
+    \frac{\bm{A}_{12}}{n}\E[\xi'(\underline{Z}_1)
+   \xi'(\underline{Z}_2)])\nonumber
+\end{align*}
+
+Since 
+$\xi(z) = \sum_{i=0}^m \underline{q}_i z^i $,
+there will be an $(m+1) \times (m+1) $ random matrix $\bm{M}$ and
+we can write $\mathrm{C}[\bm{X}, \xi]$
+as the quadratic form $ \underline{q}^T \bm{M} \underline{q} $.
+The element $\bm{M}_{ij}$ is the coefficient of $a_ia_j$.
+
+Using Equation \ref{formularC123}, we have
+\begin{align*}
+    \bm{M}_{ij} &= n(1-\bm{A}_{11}) (\E[Z_1^{i+j}] -
+    ij \frac{1}{n}\bm{A}_{11} \E[Z_1^{i+j-2}])  \\
+    &-n(n-1)\bm{A}_{12}(\E[Z_1^i Z_2^j] - ij \frac{1}{n}\bm{A}_{12}\E[Z_1^{i-1}Z_2^{j-1}])
+\end{align*}
+We can approximate $\E[Z_1^{2t}]$ where
+$Z=\bm{A}Y$ assuming $Y$ is a Gaussian vector with variance $\frac{1}{n}$.
+Then $\E[Z_1^{2t}] = \frac{1}{n^t}\bm{A}_{11}^t (2t-1)!!$.
 \end{proof}
 To prove Proposition \ref{prop:value}, we rely on some lemmas:
 \begin{lemma}\label{lemma:UUN}
