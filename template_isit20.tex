@@ -451,7 +451,7 @@ C[\xi] = & \E[\norm{\xi(\bm{X}\bm{X}^\T\underline{Y})}^2 -
 \end{lemma}
 \begin{proof}
 Using Isserlis' theorem \cite{isserlis1918formula} we obtain
-$  \E[X^i Y^j] = \sum_{k=0}^{\min\{i,j\}} C_k \Sigma_{12}^k \Sigma_{11}^{(i-k)/2}\Sigma_{22}^{(j-k)/2}$. Since the power of $\Sigma_{11}$ should be an integer, $C_k = 0$ if $\delta(k, i) = 0$. We choose $k$ items of $X$ and $Y$ to form $\Sigma_{12} = \E[XY]$, which has $\binom{i}{k}\binom{j}{k}$ choices. For the remaining $(i-k)$ number of $X$, we should pair them, which has $\prod_{i=1}^{(i-k)/2} \binom{2i}{2} = \frac{(i-k)!}{2^{(i-k)/2}}$;
+$  \E[X^i Y^j] = \sum_{k=0}^{\min\{i,j\}} C_k \Sigma_{12}^k \Sigma_{11}^{(i-k)/2}\Sigma_{22}^{(j-k)/2}$. Since the power of $\Sigma_{11}$ should be an integer, $C_k = 0$ if $\delta(k, i) = 0$. If $\delta(k, i) = 1$, we choose $k$ items of $X$ and $Y$ to form $\Sigma_{12} = \E[XY]$, which has $\binom{i}{k}\binom{j}{k}$ choices. For the remaining $(i-k)$ number of $X$, we should pair them, which has $\frac{1}{(\frac{i-k}{2})!}\prod_{i=1}^{(i-k)/2} \binom{2i}{2} = \frac{(i-k)!}{(i-k)!!}$ number of choices; For $(j-k)$ number of $Y$, it is $\frac{(j-k)!}{(j-k)!!}$; Finally, for $k$ pairs of $XY$, we have $k!$ number of choices. The product $\binom{i}{k}\binom{j}{k}\frac{(i-k)!}{(i-k)!!}\frac{(j-k)!}{(j-k)!!}k!$ is the coefficient $C_k$.
 \end{proof}
 \begin{lemma}\label{lemma:A1112}
 For random matrix $\bm{A}$ we have $\E[\bm{A}_{11}^t] = \prod_{i=0}^{t-1} \frac{k+2t}{n+2t}$ and
