@@ -477,7 +477,7 @@ Let $\mathbf{C}_1 = \E_{\underline{Y}} [\norm{\xi(\bm{A}\underline{Y})}^2]$, $\m
 [\norm{\bm{X}^\T\xi(\bm{A}\underline{Y})}^2]$, $\mathbf{C}_3 
 = \E_{\underline{Y}}
 [\norm{\bm{X}^\T \nabla\xi(\bm{A}\underline{Y})(Y-\bm{A}\underline{Y})}^2]$,
-$\mathrm{C}[\bm{X}, \xi] :=  \mathrm{C}_1 - \mathrm{C}_2 - \mathrm{C}_3$, Then $\mathrm{C}[\xi] = \E_{\bm{X}}[\mathrm{C}[\bm{X}, \xi]$.
+$\mathrm{C}[\bm{X}, \xi] :=  \mathrm{C}_1 - \mathrm{C}_2 - \mathrm{C}_3$, Then $\mathrm{C}[\xi] = \E_{\bm{X}}[\mathrm{C}[\bm{X}, \xi]]$.
 We then have
 \begin{align*}
     \mathrm{C}_1 &=\E[\norm{\xi(\underline{Z})}^2] = \sum_{i=1}^n \E_{Z|X}[\xi^2(\underline{Z}_i)] \\
@@ -518,7 +518,25 @@ The element $\bm{M}_{ij}$ is the coefficient of $a_ia_j$:
     ij \frac{1}{n}\bm{A}_{11} \E[\underline{Z}_1^{i+j-2}])  \\
     &-n(n-1)\bm{A}_{12}(\E[\underline{Z}_1^i \underline{Z}_2^j] - ij \frac{1}{n}\bm{A}_{12}\E[\underline{Z}_1^{i-1}\underline{Z}_2^{j-1}])
 \end{align*}
-Since $\bm{Z}_1$ is Gaussian, $\E[Z_1^{2t}] = \frac{1}{n^t}\bm{A}_{11}^t (2t-1)!!$.
+Since $\bm{Z}_1$ is Gaussian, $\E[Z_1^{2t}] = \frac{1}{n^t}\bm{A}_{11}^t (2t-1)!!$. If $\delta(i, j) = 0, \bm{M}_{ij}=0$. Otherwise,
+let $ 2t = i + j $, from Lemma \ref{lemma:Isserlis2}, $\E[\underline{Z}_1^i \underline{Z}_2^j]$ can be expanded and we have:
+\begin{align*}
+    &\bm{M}_{ij} = -n(1-\bm{A}_{11}) \frac{\bm{A}_{11}^t}{n^t}(i-1)(j-1)(2t-3)!! \\
+    &-\frac{n(n-1)\bm{A}_{12}}{n^t}\sum_{s=0}^{\min\{i,j\}}
+    \frac{\delta(s,i)(1-s)i!j!}{s!(i-s)!!(j-s)!!}
+    \bm{A}_{12}^s \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}
+\end{align*}
+$C[\xi] = \E_{\bm{X}}[\mathrm{C}[\bm{X}, \xi]] =  \underline{q}^T \mathbf{M} \underline{q}$ where $\mathbf{M}_{ij} = \E_{\bm{X}} [\bm{M}_{ij}] = -M_1 - M_2$
+where 
+\begin{align*}
+    M_1 & =   \frac{\E[\bm{A}_{11}^t]-\E[\bm{A}_{11}^{t+1}]}{n^{t-1}}(i-1)(j-1)(2t-3)!! \\
+    M_2 & = \frac{n-1}{n^{t-1}}\sum_{s=0}^{\min\{i,j\}}
+    \frac{\delta(s,i)(1-s)i!j!}{s!(i-s)!!(j-s)!!}
+    \E[\bm{A}_{12}^{s+1} \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}]
+\end{align*}
+We estimate the order of positive number $M_1, M_2$ under the condition $ m << k$, which implies $k, n \to +\infty$ while $m$ is fixed. Let $ r= \frac{k}{n}$
+From Lemma \ref{lemma:A1112},
+$\E[\bm{A}_{11}^t]-\E[\bm{A}_{11}^{t+1}] = (1-r)\prod_{s=0}^{t-1} \frac{2s+k}{2s+n+2} \sim (1-r)r^t$. Therefore $M_1 \sim \frac{(1-r)r^t}{n^{t-1}}(i-1)(j-1)(2t-3)!!$. For $M_2$ we estimate its upper bound
 \end{proof}
 To prove Proposition \ref{prop:value}, we rely on some lemmas:
 \begin{lemma}\label{lemma:UUN}
