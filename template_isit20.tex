@@ -307,34 +307,13 @@ It says the local decreasing rate of $\E[\sigma]$ is linearly improved if we inc
 
 \section{Experiment Result}\label{sec:er}
 
-\subsection{Formatting}
+To further investigate how the index of averaged estimation error $C[\xi]$ changes as we increase the maximal degree of polynomials $m$, we conduct a simple experiment. We choose $n=180, k=120$ and use $\xi_m(z)$ from Proposition
+\ref{prop:value}, normalized polynomials with only highest degree $\frac{(nz/\sqrt{k})^m}{\sqrt{(2m-1)!!n}}$ as activation function. Using the Monte Carlo method to compute $\mathrm{C}[\xi]$ from Proposition \ref{prop:Esigma}, the result is shown in Figure \ref{fig:fixednk}. As can be seen, the Hermite polynomial results coincide with the theoretical lower bound in Proposition \ref{prop:value}; For other polynomials, it cannot achieve the minimum value but we can still see that the nearly linear relationship between $C[\xi]$ and degree $m$.
 
-The style of references, equations, figures, tables, etc., should be
-the same as for the \emph{IEEE Transactions on Information
-  Theory}. The source file of this template paper contains many more
-instructions on how to format your paper. So, example code for
-different numbers of authors, for figures and tables, and references
-can be found (they are commented out).
-
-For instructions on how to typeset math, in particular for equation
-arrays with broken equations, we refer.
-
-Pages should not be numbered and there should be no footer or header
-(both will be added during the production of the proceedings). The
-affiliation shown for authors should constitute a sufficient mailing
-address for persons who wish to write for more details about the
-paper.
-
-
-\subsection{PDF Requirements}
-
-Only electronic submissions in form of a PDF file will be
-accepted. The PDF file has to be PDF/A compliant. A common problem is
-missing fonts. Make sure that all fonts are embedded. (In some cases,
-printing a PDF to a PostScript file, and then creating a new PDF with
-Acrobat Distiller, may do the trick.) More information (including
-suitable Acrobat Distiller Settings) is available from the IEEE
-website.
+\begin{figure}
+    \includegraphics[width=\linewidth]{fixed_nk.eps}
+    \caption{a}\label{fig:fixednk}
+\end{figure}
 
 
 \section{Conclusion}\label{sec:con}
@@ -620,7 +599,7 @@ Then we have $ \mathbf{U} \underline{p} = \underline{e_m}$.
 %% If the balancing should occur in the middle of the references, use
 %% the following trigger:
 %%
-\IEEEtriggeratref{3}
+%% \IEEEtriggeratref{3}
 %%
 %% which triggers a \newpage (i.e., new column) just before the given
 %% reference number. Note that you need to adapt this if you modify
