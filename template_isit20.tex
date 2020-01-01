@@ -147,7 +147,7 @@ power of neural network and can guide the choice of activation function in pract
 
 \section{Introduction}
 In artificial neural network, activation functions are applied to linear combinations of input features from last layer and contribute magically to the whole system.
-There are many choices for activation function \cite{laudani2015training} and none of them performs best for all problems.
+There are many choices for activation function \cite{laudani2015training} and none of them performs best for all problems. There are also empirical works which optimize over parameterized activation function together with network weight \cite{ramachandran2017searching}.
 Previous study of activation function focuses mostly on the training efficiency and cost when choosing activation function.
 However, theoretical property is also important as a guarantee to the functionality of activation function in neural network.
 In this paper, we study how the activation function influences the network loss
@@ -219,8 +219,8 @@ is called the universally good activation function for the single node neural ne
 Definition \ref{def:ug} is a general formulation for any distribution space $G$.
 To get some analytical result we should choose some specific distribution.
 Indeed, we assume $\underline{Y}$ is Gaussian distribution with covariance matrix $\frac{1}{n} \mathbf{I}_n$ and
-$\bm{X}$ is uniformly distributed random orthogonal matrix \cite{eaton1989group}.
-$\underline{Y}$ and $\bm{X}$ are independent.
+we choose $\bm{X}$ as uniformly distributed random orthogonal matrix \cite{eaton1989group}. The choice of $\bm{X}$ is based on the following observations: If each element of $\bm{X}'$ is iid N(0,1) random variables and $\sigma(\bm{X}'\underline{w}')$ is considered, we can make the transformation $\bm{X} = \bm{X}'(\bm{X}'^\T\bm{X})^{-1/2}, \underline{w} = (\bm{X}'^\T\bm{X})^{1/2}\underline{w}'$. We see that $\bm{X}'\underline{w}' = \bm{X}\underline{w}$. From \cite[Proposition 7.1]{eaton1989group} $\bm{X}$ is random orthogonal matrix.
+Further we assume $\underline{Y}$ and $\bm{X}$ are independent.
 This defines our distribution space $G$. Such choice is natural as it leads to simple expression of the averaged error for linear function.
 
 \begin{proposition}\label{prop:linear}
@@ -306,23 +306,6 @@ Proposition \ref{prop:value} also gives the lower bound for $C[\xi]$.
 It says the local decreasing rate of $\E[\sigma]$ is linearly improved if we increase the degree of polynomials. The bound can be reached if $ m << k$ and generally $-(1-\frac{k}{n})(m-1) < C[\xi]$ if the assumption $ m << k$ fails.
 
 \section{Experiment Result}\label{sec:er}
-
-\subsection{Templates}
-
-The paper (A4 or letter size, double-column format, not exceeding
-5~pages) should be formatted as shown in this sample \LaTeX{} file.
-
-The use of Microsoft Word instead of \LaTeX{} is strongly
-discouraged. However, acceptable formatting may be achieved by using
-the template that can be downloaded from the ISIT 2020 website:
-\begin{center}
-  \url{https://2020.ieee-isit.org/}
-\end{center}
-
-Users of other text processing systems should attempt to duplicate the
-style of this example, in particular the sizes and type of font, as
-closely as possible.
-
 
 \subsection{Formatting}
 
