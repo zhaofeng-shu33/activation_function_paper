@@ -174,7 +174,7 @@ $\underline{x}$ as a numerical vector;
 $\bm{x}$  or $\mathbf{M}$ as numerical matrix; $\mathbf{I}_n$ is n-dimensional identity matrix; 
 $[\cdot]^\T$ is the transpose operation on matrix; $\delta(i, j)$ is an indicator function
 which equals 1 if $ i = j$ and 0 otherwise; 
-$n!!$ is the double factorial which equals $n \times (n-2) \dots \times1$ if $n$ is odd and $n \times (n-2)\dots \times 2$ for even $n$.
+$n!!$ is the double factorial which equals $n \times (n-2) \dots \times1$ if $n$ is odd and $n \times (n-2)\dots \times 2$ for even $n$. $(-1)!!=1,(-3)!!=-1$.
 
 \section{Mathematical Model}\label{sec:mm}
 We consider one node neural networks, whose structure is shown in Figure \ref{fig:ns}.
@@ -539,7 +539,9 @@ From Lemma \ref{lemma:A1112},
 $\E[\bm{A}_{11}^t]-\E[\bm{A}_{11}^{t+1}] = (1-r)\prod_{s=0}^{t-1} \frac{2s+k}{2s+n+2} \sim (1-r)r^t$. Therefore $M_1 \sim \frac{(1-r)r^t}{n^{t-1}}(i-1)(j-1)(2t-3)!!$.
 We consider $s+1$ is even, $\E[\bm{A}_{12}^{s+1} \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}] \leq \sqrt{\E[\bm{A}_{12}^{s+1}\bm{A}_{11}^{i-s}]\E[\bm{A}_{12}^{s+1}\bm{A}_{22}^{j-s}]}$. When $k, n$ are sufficiently large, we can treat $\bm{A}_{11}, \bm{A}_{12}$ as joint Gaussian. From Lemma \ref{lemma:A1112}: $\bm{A}_{12} \sim N(0, \frac{r(1-r)}{n}), \bm{A}_{11} \sim N(r, \frac{2r(1-r)}{n})$.
 Therefore $\E[\bm{A}_{12}^{s+1}\bm{A}_{11}^{i-s}] \sim \E[\bm{A}_{12}^{s+1}]r^{i-s} \sim s!! r^{i-s}(\frac{r(1-r)}{n})^{(s+1)/2}$. Similarly $\E[\bm{A}_{12}^{s+1}\bm{A}_{22}^{j-s}] \sim s!! r^{j-s}(\frac{r(1-r)}{n})^{(s+1)/2}$. It implies that $\E[\bm{A}_{12}^{s+1} \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}] \leq (s!!) r^{t-s}(\frac{r(1-r)}{n})^{(s+1)/2} \leq r(1-r)$. We can get an upper bound of $M_2$ using Lemma \ref{lemma:UUM}: $M_2 \leq \frac{1}{n^{t-2}} (i-1)(j-1)(2t-3)!!\E[\bm{A}_{12}^{4} \bm{A}_{11}^{\frac{i - 3}{2}}\bm{A}_{22}^{\frac{j - 3}{2}}] \leq \frac{(1-r)^2 r^{t-1}}{n^t}3(i-1)(j-1)(2t-3)!!= \frac{3(1-r)}{k} M_1$.
-When $k \to \infty$, we see that $M_2$ can be ignored and $\mathbf{M}'_{ij} = -\delta(i,j)\frac{(1-r)r^t}{n^{t-1}}(i-1)(j-1)(2t-3)!!$. By changing of variables by Equation \ref{eq:pqt} we can get the correspondence $\mathbf{M}_{ij} = \frac{n^{-1+2t}}{k^t} \mathbf{M}'_{ij} = -\delta(i,j)(1-r)(i-1)(j-1)(2t-3)!!$.
+When $k \to \infty$, we see that $M_2$ can be ignored and $\mathbf{M}'_{ij} = -\delta(i,j)\frac{(1-r)r^t}{n^{t-1}}(i-1)(j-1)(2t-3)!!$. By changing of variables by Equation \ref{eq:pqt} we can get the correspondence $\mathbf{M}_{ij} = \frac{n^{-1+2t}}{k^t} \mathbf{M}'_{ij} = -\delta(i,j)(1-r)(i-1)(j-1)(2t-3)!!$. 
+
+To get the constraint on $\underline{q}$, we should choose $\norm{\xi} = 1$, which is equivalent to $\E_{\bm{X}}[\mathrm{C}_1] = 1$. By some computation we can get the expression of $\mathrm{N}$ when $ m << k$.
 
 \end{proof}
 \begin{lemma}\label{lemma:UUN}
