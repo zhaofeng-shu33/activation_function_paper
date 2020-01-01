@@ -526,7 +526,7 @@ let $ 2t = i + j $, from Lemma \ref{lemma:Isserlis2}, $\E[\underline{Z}_1^i \und
     \frac{\delta(s,i)(1-s)i!j!}{s!(i-s)!!(j-s)!!}
     \bm{A}_{12}^s \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}
 \end{align*}
-$C[\xi] = \E_{\bm{X}}[\mathrm{C}[\bm{X}, \xi]] =  \underline{q}^T \mathbf{M} \underline{q}$ where $\mathbf{M}_{ij} = \E_{\bm{X}} [\bm{M}_{ij}] = -M_1 - M_2$
+$C[\xi] = \E_{\bm{X}}[\mathrm{C}[\bm{X}, \xi]] =  \underline{q}^T \mathbf{M}' \underline{q}$ where $\mathbf{M}'_{ij} = \E_{\bm{X}} [\bm{M}_{ij}] = -M_1 - M_2$
 where 
 \begin{align*}
     M_1 & =   \frac{\E[\bm{A}_{11}^t]-\E[\bm{A}_{11}^{t+1}]}{n^{t-1}}(i-1)(j-1)(2t-3)!! \\
@@ -536,9 +536,12 @@ where
 \end{align*}
 We estimate the order of positive number $M_1, M_2$ under the condition $ m << k$, which implies $k, n \to +\infty$ while $m$ is fixed. Let $ r= \frac{k}{n}$
 From Lemma \ref{lemma:A1112},
-$\E[\bm{A}_{11}^t]-\E[\bm{A}_{11}^{t+1}] = (1-r)\prod_{s=0}^{t-1} \frac{2s+k}{2s+n+2} \sim (1-r)r^t$. Therefore $M_1 \sim \frac{(1-r)r^t}{n^{t-1}}(i-1)(j-1)(2t-3)!!$. For $M_2$ we estimate its upper bound
+$\E[\bm{A}_{11}^t]-\E[\bm{A}_{11}^{t+1}] = (1-r)\prod_{s=0}^{t-1} \frac{2s+k}{2s+n+2} \sim (1-r)r^t$. Therefore $M_1 \sim \frac{(1-r)r^t}{n^{t-1}}(i-1)(j-1)(2t-3)!!$.
+We consider $s+1$ is even, $\E[\bm{A}_{12}^{s+1} \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}] \leq \sqrt{\E[\bm{A}_{12}^{s+1}\bm{A}_{11}^{i-s}]\E[\bm{A}_{12}^{s+1}\bm{A}_{22}^{j-s}]}$. When $k, n$ are sufficiently large, we can treat $\bm{A}_{11}, \bm{A}_{12}$ as joint Gaussian. From Lemma \ref{lemma:A1112}: $\bm{A}_{12} \sim N(0, \frac{r(1-r)}{n}), \bm{A}_{11} \sim N(r, \frac{2r(1-r)}{n})$.
+Therefore $\E[\bm{A}_{12}^{s+1}\bm{A}_{11}^{i-s}] \sim \E[\bm{A}_{12}^{s+1}]r^{i-s} \sim s!! r^{i-s}(\frac{r(1-r)}{n})^{(s+1)/2}$. Similarly $\E[\bm{A}_{12}^{s+1}\bm{A}_{22}^{j-s}] \sim s!! r^{j-s}(\frac{r(1-r)}{n})^{(s+1)/2}$. It implies that $\E[\bm{A}_{12}^{s+1} \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}] \leq (s!!) r^{t-s}(\frac{r(1-r)}{n})^{(s+1)/2} \leq r(1-r)$. We can get an upper bound of $M_2$ using Lemma \ref{lemma:UUM}: $M_2 \leq \frac{1}{n^{t-2}} (i-1)(j-1)(2t-3)!!\E[\bm{A}_{12}^{4} \bm{A}_{11}^{\frac{i - 3}{2}}\bm{A}_{22}^{\frac{j - 3}{2}}] \leq \frac{(1-r)^2 r^{t-1}}{n^t}3(i-1)(j-1)(2t-3)!!= \frac{3(1-r)}{k} M_1$.
+When $k \to \infty$, we see that $M_2$ can be ignored and $\mathbf{M}'_{ij} = -\delta(i,j)\frac{(1-r)r^t}{n^{t-1}}(i-1)(j-1)(2t-3)!!$. By changing of variables by Equation \ref{eq:pqt} we can get the correspondence $\mathbf{M}_{ij} = \frac{n^{-1+2t}}{k^t} \mathbf{M}'_{ij} = -\delta(i,j)(1-r)(i-1)(j-1)(2t-3)!!$.
+
 \end{proof}
-To prove Proposition \ref{prop:value}, we rely on some lemmas:
 \begin{lemma}\label{lemma:UUN}
 \begin{equation}\label{eq:UUN}
 \delta(i, j) (i+j-1)!! = \sum_{k=0}^{\min\{i, j\}}
