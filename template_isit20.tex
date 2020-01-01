@@ -469,6 +469,64 @@ we have $\E[\bm{X}_{11}\bm{X}_{12}\bm{X}_{21}\bm{X}_{22}] = \frac{-1}{n-1} \E[\b
 Therefore $\E[\bm{A}^2_{12}]=(1-\frac{k-1}{n-1}) \frac{k}{n(n+2)}$.
  
 \end{proof}
+\begin{lemma}\label{lemma:UUN}
+    \begin{equation}\label{eq:UUN}
+        \delta(i, j) (i+j-1)!! = \sum_{k=0}^{\min\{i, j\}}
+        \delta(k, i) \delta(k, j) \frac{i! j!}{(i-k)!!(j-k)!! k!}
+    \end{equation}
+\end{lemma}
+\begin{proof}[Proof of Lemma \ref{lemma:UUN} ]
+    If $ i + j $ is odd, $ \delta(i, j) = 0 $ and
+    $ \delta(k, i)\delta(k, j) = 0 $. Then Equation \eqref{eq:UUN} holds.
+    Therefore we only need to consider the case if $ i + j $ is even.
+    First we define $A(i, j) = \sum_{k=0}^{\min\{i, j\}}
+    \delta(k, i) \delta(k, j) \frac{i! j!}{(i-k)!!(j-k)!! k!}$.
+    Then we have
+    \begin{align}
+        & A(2i+1, 2j+1) = \sum_{k=0}^{\min\{i,j\}}
+        \frac{(2i+1)!(2j+1)!}{(2i-2k)!!(2j-2k)!!(2k+1)!} \notag\\
+        &= \sum_{k=0}^{\min\{i,j\}}
+        \frac{(2i+1)!(2j)!\left(\frac{1}{2j-2k} + \frac{1}{2k+1}\right)}{(2i-2k)!!(2j-2k-2)!!(2k)!}
+        \notag\\
+        &= (2i + 1) A(2i, 2j) + (2j) A(2i+1, 2j-1) \label{eq:Bij}
+    \end{align}
+    The above formula holds for $ i \leq j-1 $ because of choice of $\min\{i,j\}$.
+    We can use the symmetric property $A(i,j)=A(j,i)$
+    to show Equation \eqref{eq:Bij} also holds for $ i \geq j $.
+    Similarly we have
+    \begin{equation}\label{eq:Aij}
+        A(2i, 2j) = (2j - 1) A(2i, 2j-2) + (2i) A(2i-1, 2j-1)
+    \end{equation}
+    From Equation (\ref{eq:Bij}, \ref{eq:Aij}), we can use mathematical induction to show
+    \begin{align*}\label{eq:UUN_conclusion}
+        A(2i, 2j) & = (2i + 2j - 1)!! \\
+        A(2i+1, 2j+1) & = (2i + 2j + 1)!!
+    \end{align*}
+    Therefore $A(i,j) = (i+j-1)!!$ if $i + j $ is even.
+    Based on our discussion on the parity of $i+j$, in general we have $A(i,j)=\delta(i,j)(i+j-1)!!$
+    which proves Lemma \ref{lemma:UUN}.
+\end{proof}
+\begin{lemma}\label{lemma:UUM}
+    \begin{align}
+        &\delta(i, j)(i-1)(j-1)(i+j-3)!!  \notag\\
+        =&\sum_{k=0}^{\min\{i, j\}}
+        \delta(k, i) \delta(k, j) \frac{(1-k)i!j!}{(i-k)!!(j-k)!!k!}
+    \end{align}
+\end{lemma}
+\begin{proof}
+    Using results from Lemma \ref{lemma:UUN},
+    \begin{align*}
+        & \textrm{RHS}  = \sum_{k=0}^{\min\{i, j\}}
+        \delta(k, i) \delta(k, j) \frac{i!j!}{(i-k)!!(j-k)!!k!} \\
+        &- \sum_{k=1}^{\min\{i, j\}}
+        \delta(k, i) \delta(k, j) \frac{i!j!}{(i-k)!!(j-k)!!(k-1)!} \\
+        & = \delta(i, j)(i+j-1)!! \\
+        & - ij\sum_{k=0}^{\min\{i-1, j-1\}}
+        \delta(k, i) \delta(k, j) \frac{(i-1)!(j-1)!}{(i-1-k)!!(j-1-k)!!k!} \\
+        & = \delta(i, j)(i+j-1)!! - \delta(i, j)ij(i+j-3)!! \\
+        & = \delta(i, j)(i-1)(j-1)(i+j-3)!!
+    \end{align*}
+\end{proof}
 \begin{proof}[Proof of Proposition \ref{prop:quadratic}]
 Let $\underline{Z} = \bm{A}\underline{Y}, \underline{Z'} = (\mathbf{I} - \bm{A})\underline{Y}$. Given $\bm{X}$, $\underline{Z}$ is Gaussian vector with covariance matrix $\bm{A} \Cov[\underline{Y}] \bm{A}^\T = \frac{\bm{A}}{n}$. Similarly, $\Cov[\underline{Z'}] = \frac{\mathbf{I} - \bm{A}}{n}$. Using $\bm{A}^2 = \bm{A}$ we have $\E[\underline{Z'}\underline{Z}^\T] = 0$. That is, $\underline{Z'}$ and $\underline{Z}$ are independent. The expectation of $\E[f(\underline{Z}_i)g(\underline{Z'}_j)] = \E[f(\underline{Z}_i)]\E[g(\underline{Z'}_j)]$ for arbitrary function.
     
@@ -544,64 +602,7 @@ When $k \to \infty$, we see that $M_2$ can be ignored and $\mathbf{M}'_{ij} = -\
 To get the constraint on $\underline{q}$, we should choose $\norm{\xi} = 1$, which is equivalent to $\E_{\bm{X}}[\mathrm{C}_1] = 1$. By some computation we can get the expression of $\mathrm{N}$ when $ m << k$.
 
 \end{proof}
-\begin{lemma}\label{lemma:UUN}
-\begin{equation}\label{eq:UUN}
-\delta(i, j) (i+j-1)!! = \sum_{k=0}^{\min\{i, j\}}
-\delta(k, i) \delta(k, j) \frac{i! j!}{(i-k)!!(j-k)!! k!}
-\end{equation}
-\end{lemma}
-\begin{proof}[Proof of Lemma \ref{lemma:UUN} ]
-If $ i + j $ is odd, $ \delta(i, j) = 0 $ and
-$ \delta(k, i)\delta(k, j) = 0 $. Then Equation \eqref{eq:UUN} holds.
-Therefore we only need to consider the case if $ i + j $ is even.
-First we define $A(i, j) = \sum_{k=0}^{\min\{i, j\}}
-\delta(k, i) \delta(k, j) \frac{i! j!}{(i-k)!!(j-k)!! k!}$.
-Then we have
-\begin{align}
-& A(2i+1, 2j+1) = \sum_{k=0}^{\min\{i,j\}}
-\frac{(2i+1)!(2j+1)!}{(2i-2k)!!(2j-2k)!!(2k+1)!} \notag\\
-&= \sum_{k=0}^{\min\{i,j\}}
-\frac{(2i+1)!(2j)!\left(\frac{1}{2j-2k} + \frac{1}{2k+1}\right)}{(2i-2k)!!(2j-2k-2)!!(2k)!}
- \notag\\
-&= (2i + 1) A(2i, 2j) + (2j) A(2i+1, 2j-1) \label{eq:Bij}
-\end{align}
-The above formula holds for $ i \leq j-1 $ because of choice of $\min\{i,j\}$.
-We can use the symmetric property $A(i,j)=A(j,i)$
-to show Equation \eqref{eq:Bij} also holds for $ i \geq j $.
-Similarly we have
-\begin{equation}\label{eq:Aij}
-A(2i, 2j) = (2j - 1) A(2i, 2j-2) + (2i) A(2i-1, 2j-1)
-\end{equation}
-From Equation (\ref{eq:Bij}, \ref{eq:Aij}), we can use mathematical induction to show
-\begin{align*}\label{eq:UUN_conclusion}
-A(2i, 2j) & = (2i + 2j - 1)!! \\
-A(2i+1, 2j+1) & = (2i + 2j + 1)!!
-\end{align*}
-Therefore $A(i,j) = (i+j-1)!!$ if $i + j $ is even.
-Based on our discussion on the parity of $i+j$, in general we have $A(i,j)=\delta(i,j)(i+j-1)!!$
-which proves Lemma \ref{lemma:UUN}.
-\end{proof}
-\begin{lemma}\label{lemma:UUM}
-\begin{align}
-&\delta(i, j)(i-1)(j-1)(i+j-3)!!  \notag\\
-=&\sum_{k=0}^{\min\{i, j\}}
-\delta(k, i) \delta(k, j) \frac{(1-k)i!j!}{(i-k)!!(j-k)!!k!}
-\end{align}
-\end{lemma}
-\begin{proof}
-Using results from Lemma \ref{lemma:UUN},
-\begin{align*}
-& \textrm{RHS}  = \sum_{k=0}^{\min\{i, j\}}
-\delta(k, i) \delta(k, j) \frac{i!j!}{(i-k)!!(j-k)!!k!} \\
-&- \sum_{k=1}^{\min\{i, j\}}
-\delta(k, i) \delta(k, j) \frac{i!j!}{(i-k)!!(j-k)!!(k-1)!} \\
-& = \delta(i, j)(i+j-1)!! \\
-& - ij\sum_{k=0}^{\min\{i-1, j-1\}}
-\delta(k, i) \delta(k, j) \frac{(i-1)!(j-1)!}{(i-1-k)!!(j-1-k)!!k!} \\
-& = \delta(i, j)(i+j-1)!! - \delta(i, j)ij(i+j-3)!! \\
-& = \delta(i, j)(i-1)(j-1)(i+j-3)!!
-\end{align*}
-\end{proof}
+
 \begin{lemma}\label{lemma:Upem}
 Let $\mathbf{U}$ be an $(m+1) \times (m+1)$ upper triangular matrix defined by
 $U_{ij} = \delta(i, j) \frac{j!}{(j-i)!!\sqrt{i!}} \textrm{ for } 0 \leq i\leq j \leq m$, $\underline{e_m}$ is an $(m+1)$ dimensional vector whose elements are zero except that the last element is 1. $\underline{p}_i = \delta(i, m) (-1)^{(m-i)/2}\frac{\sqrt{m!}}{i!(m-i)!!}$.
