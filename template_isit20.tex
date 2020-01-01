@@ -166,7 +166,7 @@ In Section \ref{sec:hp}, the Hermite polynomial solution for our problem is brie
 In Section \ref{sec:er}, numerical experiments are conducted to verify our results.
 In Section \ref{sec:con}, conclusion is given.
 
-Throught this paper, we use $X$ to represent random variables;
+Through this paper, we use $X$ to represent random variables;
 $\underline{X}$ to represent random vectors;
 $\bm{X}$ to represent random matrix;
 lower case $x$ to represent a numerical value;
@@ -185,7 +185,7 @@ For a given problem, we have $n$ data pairs $(x_1, y_1), \dots, (x_n, y_n)$ and
 the L2 loss function is given by
 $\ell_2(\underline{y}, \bm{x}) = \norm{\underline{y} - \sigma(\sum_{i=1}^k w_i \underline{x}_i)}^2 $
 where $\underline{x}_i= (x_{1i}, \dots, x_{ni})^\T$ is the i-th column of the feature vector $\bm{x}$ and
-$\underline{y} = (y_1, \dots, y_n)$ is the label vector. $\sigma$ is applied to a vector elementwise.
+$\underline{y} = (y_1, \dots, y_n)$ is the label vector. $\sigma$ is applied to a vector element-wise.
 The optimal weight for a given activation function $\sigma$ is the solution to $\min \ell_2(\underline{y}, \bm{x})$.
 
 \begin{figure}\label{fig:ns}
@@ -195,9 +195,9 @@ The optimal weight for a given activation function $\sigma$ is the solution to $
 
 For different problems, we suppose $\underline{y}, \bm{x}$ are drawing from some distribution $G$.
 That is, we treat them as random vectors and rewrite them as $\underline{Y}, \bm{X}$ and
-we are insterested to find a function $\sigma$ which minimizes
+we are interested to find a function $\sigma$ which minimizes
 $\E[ \min \ell_2(\underline{Y}, \bm{X})]$.
-Our contraint on the activation function $\sigma$ is that
+Our constraint on the activation function $\sigma$ is that
 $\sigma(z) = z + \epsilon \xi(z)$.
 $\epsilon$ is a small constant.
 $\E[\xi(\bm{X}\underline{w})]=1$ where
@@ -229,7 +229,7 @@ Let $\sigma_0$ be the identity function. That is $\sigma_0(z) = z$. Then $\mathr
 
 Proposition \ref{prop:linear} says the averaged estimation error $\mathrm{E}$ for linear function is equal to $1-\frac{k}{n}$.
 This result is consistent with our intuition
-since we use $k$ degrees of freedom to estimate arbitrary vector in $n$ dimentional space.
+since we use $k$ degrees of freedom to estimate arbitrary vector in $n$ dimensional space.
 
 The proof of Proposition \ref{prop:linear} depends on the following lemma:
 \begin{lemma}\label{lem:A}
@@ -330,7 +330,7 @@ $\E[\bm{A}_{12}] = 0$. For the first equation, we have $n\E[\bm{A}_{11}]
 \sum_{j=1}^k \E[\sum_{i=1}^n \bm{X}^2_{ij}]$. Since the norm of $\bm{X}_j$ is 1,
 the whole summation evaluates to $k$. Therefore $\E[\bm{A}_{11}] = \frac{k}{n}$.
 
-On the other hand, $\bm{X}$ can be treated as an $n\times k$ submatrix of an $n\times n$
+On the other hand, $\bm{X}$ can be treated as an $n\times k$ subblock of an $n\times n$
 random orthogonal matrix $\bm{\bar{X}}$ with the property that $\bm{X}_{ij} = \bm{\bar{X}}_{ij}$
 for $j\leq k$. For $\bm{\bar{X}}$, the first and second row are orthogonal:
  $\E[\sum_{j=1}^n \bm{\bar{X}}_{1j}\bm{\bar{X}}_{2j}] = 0 $ which leads to
