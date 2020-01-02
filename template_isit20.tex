@@ -145,19 +145,18 @@ can achieve the best result on average. The non-linear gain increases linearly a
 %% submission.
 
 \section{Introduction}
-In artificial neural network, activation functions are applied to linear combinations of input features from last layer and contribute magically to the whole system.
-There are many choices for activation function \cite{laudani2015training} and none of them performs best for all problems. There are also empirical works which optimize over parameterized activation function together with network weight \cite{ramachandran2017searching}.
-Previous study of activation function focuses mostly on the training efficiency and cost when choosing activation function.
-However, theoretical property is also important as a guarantee to the functionality of activation function in neural network.
-In this paper, we study how the activation function influences the network loss
-when the activation term is constrained to a small perturbation of linear function.
+In artificial neural networks, activation functions are applied to linear combinations of input features and contribute magically to the whole system.
+There are many choices for activation function and none of them performs best for all problems. There have been empirical works which propose methods  to optimize over parameterized activation function together with network weight \cite{ramachandran2017searching}.
+However, to balance the training efficiency and effect the activation function family can not be too complex\cite{laudani2015training}.
+Besides empirical study, there are also theoretical investigation on the expressive power of neural networks, which mainly focuses on the influence of the number of layers and hidden units while choosing some well-known activation function \cite{AroraBMM18}. But we still know little about the theoretical property of activity function, which also contributes to the expressive power of neural network. Our study fills this gap to some extent: we focus on how the activation function influences the network loss.
 
-Besides local perturbation assumption, we consider the simplest neural network with one output node and several input node.
-We also require the input features are orthogonal to each other.
-This can be simply achieved by commonly used techniques such as PCA.
+To be more specific, we fix the network structure and choose activation function from some function space.
+Our activation function is chosen from a function space, which contains non-linear functions "near" the linear one.
+This is our local perturbation assumption. Besides this, we consider the simplest neural network with one output node and several input node.
+And without loss of generality, we assume input features are orthogonal to each other since orthogonality can be simply achieved by commonly used techniques such as PCA.
 Our measure of activation function is not restricted to one specific problem but is averaged over many different problems.
 We find that the averaged loss function is minimized when the perturbation term is Hermite orthogonal polynomial.
-Hermite polynomial as activation function has been argued beneficial previously \cite{ma2005constructive} and our result confirms this fact to some extent.
+Hermite polynomial as activation function has been argued beneficial in previous work \cite{ma2005constructive} and our result confirms this fact to some extent.
 
 The paper is organized as follows: In Section \ref{sec:mm}, the universally good activation function problem
 is formulated mathematically.
