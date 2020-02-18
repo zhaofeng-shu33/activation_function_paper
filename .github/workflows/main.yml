@@ -11,5 +11,5 @@ jobs:
     - uses: actions/checkout@v2
     - name: Run a one-line script
       uses: docker://zhaofengshu33/mini-latex:latest
-    - name: build
-      run: make
+      with:
+        entrypoint: make
