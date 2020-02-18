@@ -14,7 +14,7 @@ jobs:
       with:
         entrypoint: make
     - name: Archive paper pdf
-        uses: actions/upload-artifact@v1
-        with:
-          name: paper
-          path: build/af_main.pdf
+      uses: actions/upload-artifact@v1
+      with:
+        name: paper
+        path: build/af_main.pdf
