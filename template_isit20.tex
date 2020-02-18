@@ -174,32 +174,34 @@ $[\cdot]^\T$ is the transpose operation on matrix; $\delta(i, j)$ is an indicato
 which equals 1 if $ i = j$ and 0 otherwise; 
 $n!!$ is the double factorial which equals $n \times (n-2) \dots \times1$ if $n$ is odd and $n \times (n-2)\dots \times 2$ for even $n$. Furthermore, $(-1)!!=1,(-3)!!=-1$.
 
+\begin{figure}\label{fig:ns}
+\includegraphics[width=\linewidth]{network_structure.eps}
+\caption{The structure of one node neural network}
+\end{figure}
+
 \section{Mathematical Model}\label{sec:mm}
 We consider one node neural networks, whose structure is shown in Figure \ref{fig:ns}.
 Given a k dimensional random vector $\underline{X}=(X_1, \dots, X_k)$ and a random variable $Y$.
 Our goal is to predict $Y$ using the neural network with $\underline{X}$ as input.
 To be more specific, $Y$ is approximated by $ \sigma(\sum_{i=1}^k w_i X_i)$.
 For a given problem, we have $n$ data pairs $(x_1, y_1), \dots, (x_n, y_n)$ and
-the L2 loss function is given by
+the $\ell_2$ loss function is given by
 $\ell_2(\underline{y}, \bm{x}) = \norm{\underline{y} - \sigma(\sum_{i=1}^k w_i \underline{x}_i)}^2 $
 where $\underline{x}_i= (x_{1i}, \dots, x_{ni})^\T$ is the i-th column of the feature vector $\bm{x}$ and
 $\underline{y} = (y_1, \dots, y_n)$ is the label vector. $\sigma$ is applied to a vector element-wise.
 The optimal weight for a given activation function $\sigma$ is the solution to $\min \ell_2(\underline{y}, \bm{x})$.
 
-\begin{figure}\label{fig:ns}
-\includegraphics[width=\linewidth]{network_structure.eps}
-\caption{The structure of one node neural network}
-\end{figure}
+
 
 For different problems, we suppose $\underline{y}, \bm{x}$ are drawing from some distribution $G$.
-That is, we treat them as random vectors and rewrite them as $\underline{Y}, \bm{X}$ and
-we are interested to find a function $\sigma$ which minimizes
+That is, we treat them as random vectors and rewrite them as $\underline{Y}, \bm{X}$.
+We are interested to find a function $\sigma$ which minimizes
 $\E[ \min \ell_2(\underline{Y}, \bm{X})]$.
 Our constraint on the activation function $\sigma$ is that
-$\sigma(z) = z + \epsilon \xi(z)$.
+$\sigma(z) = z + \epsilon \xi(z)$ where
 $\epsilon$ is a small constant.
 $\E[\xi(\bm{X}\underline{w})]=1$ where
-$\bm{X}\underline{w} = \sum_{i=1}^k w_i \underline{X}_i$ and  $\underline{w}=(w_1, \dots, w_k)$.
+$\bm{X}\underline{w} = \sum_{i=1}^k w_i \underline{X}_i$ is the matrix product with  $\underline{w}=(w_1, \dots, w_k)$.
 
 We formulate universally good activation function $\sigma$ as follows:
 \begin{definition}\label{def:ug}
@@ -218,9 +220,9 @@ is called the universally good activation function for the single node neural ne
 Definition \ref{def:ug} is a general formulation for any distribution space $G$.
 To get some analytical result we should choose some specific distribution.
 Indeed, we assume $\underline{Y}$ is Gaussian distribution with covariance matrix $\frac{1}{n} \mathbf{I}_n$ and
-we choose $\bm{X}$ as uniformly distributed random orthogonal matrix \cite{eaton1989group}. The choice of $\bm{X}$ is based on the following observations: If each element of $\bm{X}'$ is iid N(0,1) random variables and $\sigma(\bm{X}'\underline{w}')$ is considered, we can make the transformation $\bm{X} = \bm{X}'(\bm{X}'^\T\bm{X})^{-1/2}, \underline{w} = (\bm{X}'^\T\bm{X})^{1/2}\underline{w}'$. We see that $\bm{X}'\underline{w}' = \bm{X}\underline{w}$. From \cite[Proposition 7.1]{eaton1989group} $\bm{X}$ is random orthogonal matrix.
+we choose $\bm{X}$ as uniformly distributed random orthogonal matrix \cite{eaton1989group}. The choice of $\bm{X}$ is based on the following observations: If each element of $\bm{X}'$ is iid N(0,1) random variables and $\sigma(\bm{X}'\underline{w}')$ is considered, we can make the transformation $\bm{X} = \bm{X}'(\bm{X}'^\T\bm{X}')^{-1/2}, \underline{w} = (\bm{X}'^\T\bm{X}')^{1/2}\underline{w}'$. We see that $\bm{X}'\underline{w}' = \bm{X}\underline{w}$. From \cite[Proposition 7.1]{eaton1989group} $\bm{X}$ is random orthogonal matrix.
 Further we assume $\underline{Y}$ and $\bm{X}$ are independent.
-This defines our distribution space $G$. Such choice is natural as it leads to simple expression of the averaged error for linear function.
+This defines our distribution space $G$. Such choice is natural and it leads to simple expression of the averaged error for linear function.
 
 \begin{proposition}\label{prop:linear}
 Let $\sigma_0$ be the identity function. That is $\sigma_0(z) = z$. Then $\mathrm{E}(\sigma_0) = 1 - \frac{k}{n}$.\end{proposition}
@@ -239,7 +241,7 @@ Since $\bm{X}$ is orthogonal, $\bm{A}$ is idempotent. That is, we have $\bm{A}^2
 
 We have analyzed the averaged error for linear function. To extend our result on general non-linear functions, we need to choose a proper function space $F$. By detailed analysis we consider a "local" regime. That is, differential functions which are "near" to linear function. The distance is quantified by a positive value $\epsilon$. Thus we consider $F_{\sigma_0}(\epsilon) =\{ \sigma \,|\, \norm{\sigma - \sigma_0} \leq \epsilon\}$. Then all differential functions can be treated as $\cup_{\epsilon>0} F(\epsilon)$. The norm is actually the expectation w.r.t. the distribution space $G$. That is $\E[\norm{(\sigma - \sigma_0)(\bm{A}\underline{Y})}^2] \leq \epsilon^2$.
 
-We are particularly interested how the averaged error changes when $\sigma$ is contracted to $\sigma_0$ along a certain path in $F(\sigma)$. That is, given a function $\xi$ we can construct $\sigma = \sigma_0 + \epsilon \xi$ where $\xi \in F_0 = \{\xi | \norm{\xi} \leq 1 \}$. $\sigma \to \sigma_0$ is equivalent to $\epsilon \to 0$.
+We are particularly interested in how the averaged error changes when $\sigma$ is contracted to $\sigma_0$ along a certain path in $F(\sigma)$. That is, given a function $\xi$ we can construct $\sigma = \sigma_0 + \epsilon \xi$ where $\xi \in F_0 = \{\xi | \norm{\xi} \leq 1 \}$. $\sigma \to \sigma_0$ is equivalent to $\epsilon \to 0$.
 
 To measure the change rate of $E[\sigma]$ in local regime of linear function we introduce the concept of the index of averaged estimation error as follows:
 \begin{definition}
@@ -249,10 +251,10 @@ Let $\xi \in F_0$, the index of averaged estimation error for $\xi$ is
 \end{equation}
 \end{definition}
 
-$\mathrm{C}[\xi]$ can represent the change rate of perturbation from linear function. We can choose certain $\epsilon'$ such that $E[\sigma_0 + \epsilon \xi] \leq E[\sigma_0] + \frac{1}{2}\mathrm{C}[\xi]\epsilon^2$ holds for all $0\leq \epsilon < \epsilon'$. If $\mathrm{C}[\xi]$ it means that the perturbation along $\xi$ can decrease $\mathrm{E}[\sigma]$ in the rate of $\abs{\mathrm{C}[\xi]}$.
+$\mathrm{C}[\xi]$ can represent the change rate of perturbation from linear function. If $\mathrm{C}[\xi]$ is negative for a given $\xi$, we can decrease $\mathrm{E}[\sigma]$ in the rate of $\abs{\mathrm{C}[\xi]}$ along  the perturbation path of $\xi$.
 The definition of $\mathcal{C}[\xi]$ in Equation \eqref{eq:Cxi} can also be rewritten in another way as
 $\mathrm{E}[\sigma] = \mathrm{E}[\sigma_0] +
-\mathrm{C}[\xi]\epsilon^2 + o(\epsilon^2)$. We can see more clearly that $\mathrm{C}[\xi]$ is the coefficient of second order term of $\mathrm{E}[\sigma]$.
+\mathrm{C}[\xi]\epsilon^2 + o(\epsilon^2)$. In this form, we can see more clearly that $\mathrm{C}[\xi]$ is the coefficient of second order term of $\mathrm{E}[\sigma]$.
 
 To justify the definition of $\mathrm{C}[\xi]$, we need to show the limit in Equation \eqref{eq:Cxi} exists, which is guaranteed by the following proposition:
 %For functional space $F$, we choose $P_m(z)$,
@@ -286,8 +288,8 @@ The constraint $\xi \in F_{0,m}$ is equivalent with
 \end{align}
 \end{proposition}
 
-Proposition \ref{prop:quadratic} gives a feasible approach to choose the optimal $\xi$ by solving a quadratic optimization problem. We make an another assumption $
-m << k$ to write $M_{ij}$ in a concise form. This assumption requires we should choose low degree polynomials as activation function and the number of node should be relatively large to represent features. Since computational cost
+Proposition \ref{prop:quadratic} gives a feasible approach to choose the optimal $\xi$ by solving a quadratic optimization problem. We make the assumption $
+m << k$ to write $M_{ij}$ in a concise form. This assumption requires that we should choose low degree polynomials as activation function and the number of node $k$ should be relatively large to represent features. Since computational cost
 is proportional to the degree of polynomials, our assumption does not lose practicality. 
 
 \section{Hermite Polynomials}\label{sec:hp}
@@ -299,14 +301,14 @@ Let
 \begin{equation}\label{eq:ximopt}
     \xi_m(z) = \frac{1}{\sqrt{m!n}} H_m(\frac{n}{k^{1/2}} z)
 \end{equation}
-Then $C[\xi_m] = -(1-\frac{k}{n})(m-1) \leq C[\xi] $ for all $\xi \in F_{0, m}$.
+Then $\mathrm{C}[\xi_m] = -(1-\frac{k}{n})(m-1) \leq \mathrm{C}[\xi] $ for all $\xi \in F_{0, m}$.
 \end{proposition}
-Proposition \ref{prop:value} also gives the lower bound for $C[\xi]$.
-It says the local decreasing rate of $\E[\sigma]$ is linearly improved if we increase the degree of polynomials. The bound can be reached if $ m << k$ and generally $-(1-\frac{k}{n})(m-1) < C[\xi]$ if the assumption $ m << k$ fails.
+Proposition \ref{prop:value} also gives the lower bound for $\mathrm{C}[\xi]$.
+It says the local decreasing rate of $\mathrm{E}[\sigma]$ is strictly linearly improved if we increase the degree of Hermite polynomials. This result is made under the assumption $ m << k$ and in general case when $ m << k$ does not hold, we find by experiments that $-(1-\frac{k}{n})(m-1) < \mathrm{C}[\xi]$ while $\mathrm{C}[\xi]$ decreases in linear way.
 
 \section{Experiment Result}\label{sec:er}
 
-To further investigate how the index of averaged estimation error $C[\xi]$ changes as we increase the maximal degree of polynomials $m$, we conduct a simple experiment. We choose $n=180, k=120$ and use $\xi_m(z)$ from Proposition
+To verify the change rate of the index of averaged estimation error $C[\xi]$ as we increase the maximal degree of polynomials $m$, we conduct a simple experiment. We choose $n=180, k=120$ and use $\xi_m(z)$ from Proposition
 \ref{prop:value}, normalized polynomials with only highest degree $\frac{(nz/\sqrt{k})^m}{\sqrt{(2m-1)!!n}}$ as activation function. Using the Monte Carlo method to compute $\mathrm{C}[\xi]$ from Proposition \ref{prop:Esigma}, the result is shown in Figure \ref{fig:fixednk}. As can be seen, the Hermite polynomial results coincide with the theoretical lower bound in Proposition \ref{prop:value}; For other polynomials, it cannot achieve the minimum value but we can still see that the nearly linear relationship between $C[\xi]$ and degree $m$.
 
 \begin{figure}
