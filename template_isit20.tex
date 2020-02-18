@@ -151,18 +151,18 @@ However, to balance the training efficiency and effect the activation function f
 Besides empirical study, there are also theoretical investigation on the expressive power of neural networks, which mainly focuses on the influence of the number of layers and hidden units while choosing some well-known activation function \cite{AroraBMM18}. But we still know little about the theoretical property of activity function, which also contributes to the expressive power of neural network. Our study fills this gap to some extent: we focus on how the activation function influences the network loss.
 
 To be more specific, we fix the network structure and choose activation function from some function space.
-Our activation function is chosen from a function space, which contains non-linear functions "near" the linear one.
+In our study, the activation function is chosen from the function space, which contains non-linear functions "near" the linear space.
 This is our local perturbation assumption. Besides this, we consider the simplest neural network with one output node and several input node.
 And without loss of generality, we assume input features are orthogonal to each other since orthogonality can be simply achieved by commonly used techniques such as PCA.
 Our measure of activation function is not restricted to one specific problem but is averaged over many different problems.
 We find that the averaged loss function is minimized when the perturbation term is Hermite orthogonal polynomial.
-Hermite polynomial as activation function has been argued beneficial in previous work \cite{ma2005constructive} and our result confirms this fact to some extent.
+Hermite polynomial as activation function has been argued to be beneficial in previous work \cite{ma2005constructive} and our result confirms this fact to some extent.
 
 The paper is organized as follows: In Section \ref{sec:mm}, the universally good activation function problem
 is formulated mathematically.
 In Section \ref{sec:hp}, the Hermite polynomial solution for our problem is briefly deduced.
 In Section \ref{sec:er}, numerical experiments are conducted to verify our results.
-In Section \ref{sec:con}, conclusion is given.
+In Section \ref{sec:con}, the conclusion is given.
 
 Through this paper, we use $X$ to represent random variables;
 $\underline{X}$ to represent random vectors;
@@ -172,7 +172,7 @@ $\underline{x}$ as a numerical vector;
 $\bm{x}$  or $\mathbf{M}$ as numerical matrix; $\mathbf{I}_n$ is n-dimensional identity matrix; 
 $[\cdot]^\T$ is the transpose operation on matrix; $\delta(i, j)$ is an indicator function
 which equals 1 if $ i = j$ and 0 otherwise; 
-$n!!$ is the double factorial which equals $n \times (n-2) \dots \times1$ if $n$ is odd and $n \times (n-2)\dots \times 2$ for even $n$. $(-1)!!=1,(-3)!!=-1$.
+$n!!$ is the double factorial which equals $n \times (n-2) \dots \times1$ if $n$ is odd and $n \times (n-2)\dots \times 2$ for even $n$. Furthermore, $(-1)!!=1,(-3)!!=-1$.
 
 \section{Mathematical Model}\label{sec:mm}
 We consider one node neural networks, whose structure is shown in Figure \ref{fig:ns}.
