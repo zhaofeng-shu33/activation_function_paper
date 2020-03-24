@@ -469,20 +469,20 @@ Therefore $\E[\bm{A}^2_{12}]=(1-\frac{k-1}{n-1}) \frac{k}{n(n+2)}$.
     \begin{align}
         &\delta(i, j)(i-1)(j-1)(i+j-3)!!  \notag\\
         =&\sum_{k=0}^{\min\{i, j\}}
-        \delta(k, i) \delta(k, j) \frac{(1-k)i!j!}{(i-k)!!(j-k)!!k!}
+        \delta(k, i) \delta(k, j) \frac{(k-1)i!j!}{(i-k)!!(j-k)!!k!}
     \end{align}
 \end{lemma}
 \begin{proof}
     Using results from Lemma \ref{lemma:UUN},
     \begin{align*}
-        & \textrm{RHS}  = \sum_{k=0}^{\min\{i, j\}}
-        \delta(k, i) \delta(k, j) \frac{i!j!}{(i-k)!!(j-k)!!k!} \\
-        &- \sum_{k=1}^{\min\{i, j\}}
-        \delta(k, i) \delta(k, j) \frac{i!j!}{(i-k)!!(j-k)!!(k-1)!} \\
-        & = \delta(i, j)(i+j-1)!! \\
-        & - ij\sum_{k=0}^{\min\{i-1, j-1\}}
+        & \textrm{RHS}  = \sum_{k=1}^{\min\{i, j\}}
+        \delta(k, i) \delta(k, j) \frac{i!j!}{(i-k)!!(j-k)!!(k-1)!}\\
+        & -\sum_{k=0}^{\min\{i, j\}}
+        \delta(k, i) \delta(k, j) \frac{i!j!}{(i-k)!!(j-k)!!k!}  \\
+        & =  ij\sum_{k=0}^{\min\{i-1, j-1\}}
         \delta(k, i) \delta(k, j) \frac{(i-1)!(j-1)!}{(i-1-k)!!(j-1-k)!!k!} \\
-        & = \delta(i, j)(i+j-1)!! - \delta(i, j)ij(i+j-3)!! \\
+        & -\delta(i, j)(i+j-1)!! \\
+        & = \delta(i, j)ij(i+j-3)!! - \delta(i, j)(i+j-1)!! \\
         & = \delta(i, j)(i-1)(j-1)(i+j-3)!!
     \end{align*}
 \end{proof}
@@ -543,12 +543,12 @@ let $ 2t = i + j $, from Lemma \ref{lemma:Isserlis2}, $\E[\underline{Z}_1^i \und
     \frac{\delta(s,i)(1-s)i!j!}{s!(i-s)!!(j-s)!!}
     \bm{A}_{12}^s \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}
 \end{align*}
-$C[\xi] = \E_{\bm{X}}[\mathrm{C}[\bm{X}, \xi]] =  \underline{q}^T \mathbf{M}' \underline{q}$ where $\mathbf{M}'_{ij} = \E_{\bm{X}} [\bm{M}_{ij}] = -M_1 - M_2$
+$C[\xi] = \E_{\bm{X}}[\mathrm{C}[\bm{X}, \xi]] =  \underline{q}^T \mathbf{M}' \underline{q}$ where $\mathbf{M}'_{ij} = \E_{\bm{X}} [\bm{M}_{ij}] = -M_1 + M_2$
 where 
 \begin{align*}
     M_1 & =   \frac{\E[\bm{A}_{11}^t]-\E[\bm{A}_{11}^{t+1}]}{n^{t-1}}(i-1)(j-1)(2t-3)!! \\
     M_2 & = \frac{n-1}{n^{t-1}}\sum_{s=0}^{\min\{i,j\}}
-    \frac{\delta(s,i)(1-s)i!j!}{s!(i-s)!!(j-s)!!}
+    \frac{\delta(s,i)(s-1)i!j!}{s!(i-s)!!(j-s)!!}
     \E[\bm{A}_{12}^{s+1} \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}]
 \end{align*}
 We estimate the order of positive number $M_1, M_2$ under the condition $ m << k$. Since $k$ is large, we assume $k, n \to +\infty$ while $m$ is finite. Let $ r= \frac{k}{n}$
