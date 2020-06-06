@@ -51,7 +51,16 @@ $$
 \begin{frame}
 \frametitle{Our conclusions}
 \begin{proposition}
-Suppose $\xi(z)$ is a polynomial no more than $m$ order and $m\ll k$, then the optimal $\xi$ is $\xi_m(z) = \frac{1}{\sqrt{m! n}}H_m(\frac{n}{\sqrt{k}} z)$
+Suppose $\xi(z)$ is a polynomial no more than $m$-order and $m\ll k$, then the optimal $\xi$ is $\xi_m(z) = \frac{1}{\sqrt{m! n}}H_m(\frac{n}{\sqrt{k}} z)$ and the optimal value is
+$$
+E(\sigma) = 1-\frac{k}{n}  - (1-\frac{k}{n})(m-1)  \epsilon^2 + o(\epsilon^2)
+$$
 \end{proposition}
+\begin{block}{Further Discussion}
+\begin{enumerate}
+\item Non-linearity decreases the average approximation error
+\item The decrasing rate is linear with polynomial order asymptotically
+\end{enumerate}
+\end{block}
 \end{frame}
 \end{document}
