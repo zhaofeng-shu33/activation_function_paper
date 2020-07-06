@@ -1,21 +1,6 @@
-%% LaTeX Template for ISIT 2020
-%%
-%% by Stefan M. Moser, October 2017
-%% 
-%% derived from bare_conf.tex, V1.4a, 2014/09/17, by Michael Shell
-%% for use with IEEEtran.cls version 1.8b or later
-%%
-%% Support sites for IEEEtran.cls:
-%%
-%% http://www.michaelshell.org/tex/ieeetran/
-%% http://moser-isi.ethz.ch/manuals.html#eqlatex
-%% http://www.ctan.org/tex-archive/macros/latex/contrib/IEEEtran/
-%%
-
-\documentclass[conference,letterpaper]{IEEEtran}
+\documentclass[conference]{IEEEtran}
 
 %% depending on your installation, you may wish to adjust the top margin:
-\addtolength{\topmargin}{9mm}
 
 %%%%%%
 %% Packages:
@@ -26,8 +11,6 @@
 % *** Do not adjust lengths that control margins, column widths, etc. ***
 % *** Do not use packages that alter fonts (such as pslatex).         ***
 %
-\usepackage[utf8]{inputenc} 
-\usepackage[T1]{fontenc}
 \usepackage{url}
 \usepackage{ifthen}
 \usepackage{cite}
@@ -176,12 +159,15 @@ $n!!$ is the double factorial which equals $n \times (n-2) \dots \times1$ if $n$
 
 \begin{figure}\label{fig:ns}
 \includegraphics[width=\linewidth]{network_structure.eps}
-\caption{The structure of one node neural network}
+\caption{The structure of one node neural network. The activation function $\sigma$ takes the form $\sigma(z)=z + \epsilon \xi(z)$}
 \end{figure}
 
 \section{Mathematical Model}\label{sec:mm}
 We consider one node neural networks, whose structure is shown in Figure \ref{fig:ns}.
-Given a k dimensional random vector $\underline{X}=(X_1, \dots, X_k)$ and a random variable $Y$.
+This type of network arises naturally from function approximation problems, where a target function $g$
+is estimated by $\sigma(\sum_{i=1}^k w_i f_i)$ and the domain of definition for $f_i, g$ is a finite set.
+
+To formulate the problem using neural networks, we consider a k dimensional random vector $\underline{X}=(X_1, \dots, X_k)$ and a random variable $Y$.
 Our goal is to predict $Y$ using the neural network with $\underline{X}$ as input.
 To be more specific, $Y$ is approximated by $ \sigma(\sum_{i=1}^k w_i X_i)$.
 For a given problem, we have $n$ data pairs $(x_1, y_1), \dots, (x_n, y_n)$ and
@@ -306,15 +292,15 @@ Then $\mathrm{C}[\xi_m] = -(1-\frac{k}{n})(m-1) \leq \mathrm{C}[\xi] $ for all $
 Proposition \ref{prop:value} also gives the lower bound for $\mathrm{C}[\xi]$.
 It says the local decreasing rate of $\mathrm{E}[\sigma]$ is strictly linearly improved if we increase the degree of Hermite polynomials. This result is made under the assumption $ m << k$ and in general case when $ m << k$ does not hold, we find by experiments that $-(1-\frac{k}{n})(m-1) < \mathrm{C}[\xi]$ while $\mathrm{C}[\xi]$ decreases in linear way.
 
-\section{Experiment Result}\label{sec:er}
+%\section{Experiment Result}\label{sec:er}
 
-To verify the change rate of the index of averaged estimation error $C[\xi]$ as we increase the maximal degree of polynomials $m$, we conduct a simple experiment. We choose $n=180, k=120$ and use $\xi_m(z)$ from Proposition
-\ref{prop:value}, normalized polynomials with only highest degree $\frac{(nz/\sqrt{k})^m}{\sqrt{(2m-1)!!n}}$ as activation function. Using the Monte Carlo method to compute $\mathrm{C}[\xi]$ from Proposition \ref{prop:Esigma}, the result is shown in Figure \ref{fig:fixednk}. As can be seen, the Hermite polynomial results coincide with the theoretical lower bound in Proposition \ref{prop:value}; For other polynomials, it cannot achieve the minimum value but we can still see that the nearly linear relationship between $C[\xi]$ and degree $m$.
+%To verify the change rate of the index of averaged estimation error $C[\xi]$ as we increase the maximal degree of polynomials $m$, we conduct a simple %experiment. We choose $n=180, k=120$ and use $\xi_m(z)$ from Proposition
+%\ref{prop:value}, normalized polynomials with only highest degree $\frac{(nz/\sqrt{k})^m}{\sqrt{(2m-1)!!n}}$ as activation function. Using the Monte Carlo method to compute $\mathrm{C}[\xi]$ from Proposition \ref{prop:Esigma}, the result is shown in Figure \ref{fig:fixednk}. As can be seen, the Hermite polynomial results coincide with the theoretical lower bound in Proposition \ref{prop:value}; For other polynomials, it cannot achieve the minimum value but we can still see that the nearly linear relationship between $C[\xi]$ and degree $m$.
 
-\begin{figure}
-    \includegraphics[width=\linewidth]{fixed_nk.eps}
-    \caption{Illustration of the linear decreasing property of $C[\xi]$}\label{fig:fixednk}
-\end{figure}
+%\begin{figure}
+%    \includegraphics[width=\linewidth]{fixed_nk.eps}
+%    \caption{Illustration of the linear decreasing property of $C[\xi]$}\label{fig:fixednk}
+%\end{figure}
 
 
 \section{Conclusion}\label{sec:con}
