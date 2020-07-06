@@ -442,10 +442,10 @@ $  \E[X^i Y^j] = \sum_{k=0}^{\min\{i,j\}} C_k \Sigma_{12}^k \Sigma_{11}^{(i-k)/2
         A(2i, 2j) = (2j - 1) A(2i, 2j-2) + (2i) A(2i-1, 2j-1)
     \end{equation}
     From Equation (\ref{eq:Bij}, \ref{eq:Aij}), we can use mathematical induction to show
-    \begin{align*}\label{eq:UUN_conclusion}
-        A(2i, 2j) & = (2i + 2j - 1)!! \\
-        A(2i+1, 2j+1) & = (2i + 2j + 1)!!
-    \end{align*}
+  \begin{align*}
+       A(2i, 2j)  &= (2i + 2j - 1)!! \\
+     A(2i+1, 2j+1) &= (2i + 2j + 1)!!
+  \end{align*}
     Therefore $A(i,j) = (i+j-1)!!$ if $i + j $ is even.
     Based on our discussion on the parity of $i+j$, in general we have $A(i,j)=\delta(i,j)(i+j-1)!!$
     which proves Lemma \ref{lemma:UUN}.
@@ -559,14 +559,11 @@ Then we have $ \mathbf{U} \underline{p} = \underline{e_m}$.
     \end{equation}
     If $ \delta(i, m) = 0$, $\delta(i, j)\delta(j, m) = 0$ and Equation \eqref{eq:jimf} holds. Otherwise let $2m' = m - i$,    
     Equation \eqref{eq:jimf} is equivalent to
-    \begin{align*}
-    \sum_{j=i, \delta(i,j)=1}^m  \frac{(-1)^{(m-j)/2}}{(m-j)!!(j-i)!!}  &= 0  \iff  
-     \\
-    \sum_{j=0, j \textrm{ is even}}^{2m'}  \frac{(-1)^{(2m'-j)/2}}{(2m'-j)!! j!!}&= 0  \iff \\
-    \sum_{j=0}^{m'}  \frac{(-1)^{m'-j}}{(2m'-2j)!! (2j)!!} &= 0  \iff \\
-    \sum_{j=0}^{m'}  \frac{(-1)^{m'-j}}{(m'-j)! j!} = 0 & \iff \sum_{j=0}^{m'} (-1)^{m'-j} \binom{m'}{j} = 0\\
-     \iff (1+x)^{m'} &= 0 \,(x=-1)
-    \end{align*}
+    $ \displaystyle\sum_{j=i, \delta(i,j)=1}^m  \frac{(-1)^{(m-j)/2}}{(m-j)!!(j-i)!!}  = 0  \iff  $
+    $\displaystyle\sum_{j=0, j \textrm{ is even}}^{2m'}  \frac{(-1)^{(2m'-j)/2}}{(2m'-j)!! j!!}= 0  \iff $
+    $\displaystyle\sum_{j=0}^{m'}  \frac{(-1)^{m'-j}}{(2m'-2j)!! (2j)!!} = 0  \iff $
+    $\displaystyle\sum_{j=0}^{m'}  \frac{(-1)^{m'-j}}{(m'-j)! j!} = 0  \iff \displaystyle\sum_{j=0}^{m'} (-1)^{m'-j} \binom{m'}{j} = 0$
+    $ \iff (1+x)^{m'} = 0 \,(x=-1)$
 \end{proof}
 \begin{proof}[Proof of Proposition \ref{prop:value} ]
     Let $\mathbf{U}$ be the same matrix defined in Lemma \ref{lemma:Upem}. From Lemma \ref{lemma:UUN} we have $\mathbf{N}_{ij} = \sum_{k=0}^m \mathbf{U}_{ki}\mathbf{U}_{kj}$. Therefore $\mathbf{N} = \mathbf{U}^\T\mathbf{U}$. Let $\Lambda = \diag[1, 0, -1, \dots, 1-m]$, from Lemma \ref{lemma:UUM} we have $\mathbf{M}_{ij} = \sum_{k=0}^m \mathbf{U}_{ki}\Lambda_{kk}\mathbf{U}_{kj}$. Therefore $\mathbf{M} = \mathbf{U}^\T\Lambda\mathbf{U}$. Then the problem $\min_{\underline{p}^\T N \underline{p} = 1} \underline{p}^\T \mathbf{M}\underline{p} = \min_{\underline{\tilde{p}}^\T\underline{\tilde{p}} = 1} \sum_{k=0}^m (1-k)\underline{\tilde{p}}_k^2 = 1-m$. We have made the invertible transformations $\underline{\tilde{p}} = \mathbf{U}\underline{p}$. Since the minimum value is achieved at $\underline{\tilde{p}} = \underline{e_m}$, from Lemma \ref{lemma:Upem} we have $\underline{p}_i = \delta(i, m) (-1)^{(m-i)/2}\frac{\sqrt{m!}}{i!(m-i)!!}$. Equation \eqref{eq:ximopt} follows by Transforming $\underline{p}$ back to $\underline{q}$ using Equation \eqref{eq:pqt} and comparing the expression of $\underline{q}$ with the explicit formula of probabilists' Hermite polynomials \cite[Eq. 18.5.13]{NIST:DLMF}.
