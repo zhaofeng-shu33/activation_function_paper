@@ -398,22 +398,21 @@ C[\xi] = & \E[\norm{\xi(\bm{X}\bm{X}^\T\underline{Y})}^2 -
 Using Isserlis' theorem \cite{isserlis1918formula} we obtain
 $  \E[X^i Y^j] = \sum_{k=0}^{\min\{i,j\}} C_k \Sigma_{12}^k \Sigma_{11}^{(i-k)/2}\Sigma_{22}^{(j-k)/2}$. Since the power of $\Sigma_{11}$ should be an integer, $C_k = 0$ if $\delta(k, i) = 0$. If $\delta(k, i) = 1$, we choose $k$ items of $X$ and $Y$ to form $\Sigma_{12} = \E[XY]$, which has $\binom{i}{k}\binom{j}{k}$ choices. For the remaining $(i-k)$ number of $X$, we should pair them, which has $\frac{1}{(\frac{i-k}{2})!}\prod_{i=1}^{(i-k)/2} \binom{2i}{2} = \frac{(i-k)!}{(i-k)!!}$ number of choices; For $(j-k)$ number of $Y$, it is $\frac{(j-k)!}{(j-k)!!}$; Finally, for $k$ pairs of $XY$, we have $k!$ number of choices. The product $\binom{i}{k}\binom{j}{k}\frac{(i-k)!}{(i-k)!!}\frac{(j-k)!}{(j-k)!!}k!$ is the coefficient $C_k$.
 \end{proof}
-\begin{lemma}\label{lemma:A1112}
-For random matrix $\bm{A}$ we have $\E[\bm{A}_{11}^t] = \prod_{i=0}^{t-1} \frac{k+2t}{n+2t}$ and
-$\E[\bm{A}_{12}^2] = \frac{(n-k)k}{(n-1)n(n+2)}$.
-\end{lemma}
-\begin{proof}[Proof of Lemma \ref{lemma:A1112}]
-Since $\bm{A}=\bm{X}\bm{X}^\T$, from Proposition 7.2, Chapter 7 of \cite{eaton1989group} we can get $\bm{A}_{11}$ is Beta distribution with parameter $B(\frac{k}{2}, \frac{n-k}{2})$. Then the high order moment of $\bm{A}_{11}^t$ follows from \cite[Eq. 8]{weisstein}. To compute $\E[\bm{A}_{12}^2]$, using the symmetric property first we have $\E[\bm{A}_{11}^2] = k\E[\bm{X}_{11}^4] + k(k-1)\E[\bm{X}_{11}^2 \bm{X}_{12}^2] \Rightarrow
-\frac{k(k+2)}{n(n+2)} = \frac{3k}{n(n+2)} + (k-1) (k \E[\bm{X}_{11}^2 \bm{X}_{12}^2])$.
-Also $\E[\bm{A}_{12}^2] = \E[(\sum_{i=1}^k \bm{X}_{11} \bm{X}_{12})^2]
-= k \E[\bm{X}_{11}^2\bm{X}_{12}^2] + k(k-1)\E[\bm{X}_{11}\bm{X}_{12}\bm{X}_{21}\bm{X}_{22}]
-$.
-Since $\sum_{i=1}^n \bm{X}_{1i} \bm{X}_{2i} = 0$, multiplying this equation by $\bm{X}_{12}\bm{X}_{22}$ and taking the expectation
-we have $\E[\bm{X}_{11}\bm{X}_{12}\bm{X}_{21}\bm{X}_{22}] = \frac{-1}{n-1} \E[\bm{X}^2_{11}\bm{X}^2_{12}]$.
+%\begin{lemma}\label{lemma:A1112}
+%For random matrix $\bm{A}$ we have $\E[\bm{A}_{11}^t] = \prod_{i=0}^{t-1} \frac{k+2t}{n+2t}$ and
+%$\E[\bm{A}_{12}^2] = \frac{(n-k)k}{(n-1)n(n+2)}$.
+%\end{lemma}
+%\begin{proof}[Proof of Lemma \ref{lemma:A1112}]
+%Then the high order moment of $\bm{A}_{11}^t$ follows from \cite[Eq. 8]{weisstein}. To compute $\E[\bm{A}_{12}^2]$, using the symmetric property first we %have $\E[\bm{A}_{11}^2] = k\E[\bm{X}_{11}^4] + k(k-1)\E[\bm{X}_{11}^2 \bm{X}_{12}^2] \Rightarrow
+%\frac{k(k+2)}{n(n+2)} = \frac{3k}{n(n+2)} + (k-1) (k \E[\bm{X}_{11}^2 \bm{X}_{12}^2])$.
+%Also $\E[\bm{A}_{12}^2] = \E[(\sum_{i=1}^k \bm{X}_{11} \bm{X}_{12})^2]
+%= k \E[\bm{X}_{11}^2\bm{X}_{12}^2] + k(k-1)\E[\bm{X}_{11}\bm{X}_{12}\bm{X}_{21}\bm{X}_{22}]
+%$.
+%Since $\sum_{i=1}^n \bm{X}_{1i} \bm{X}_{2i} = 0$, multiplying this equation by $\bm{X}_{12}\bm{X}_{22}$ and taking the expectation
+%we have $\E[\bm{X}_{11}\bm{X}_{12}\bm{X}_{21}\bm{X}_{22}] = \frac{-1}{n-1} \E[\bm{X}^2_{11}\bm{X}^2_{12}]$.
 
-Therefore $\E[\bm{A}^2_{12}]=(1-\frac{k-1}{n-1}) \frac{k}{n(n+2)}$.
- 
-\end{proof}
+%Therefore $\E[\bm{A}^2_{12}]=(1-\frac{k-1}{n-1}) \frac{k}{n(n+2)}$.
+%\end{proof}
 \begin{lemma}\label{lemma:UUN}
     \begin{equation}\label{eq:UUN}
         \delta(i, j) (i+j-1)!! = \sum_{k=0}^{\min\{i, j\}}
@@ -537,11 +536,10 @@ where
     \frac{\delta(s,i)(s-1)i!j!}{s!(i-s)!!(j-s)!!}
     \E[\bm{A}_{12}^{s+1} \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}]
 \end{align*}
-We estimate the order of positive number $M_1, M_2$ under the condition $ m << k$. Since $k$ is large, we assume $k, n \to +\infty$ while $m$ is finite. Let $ r= \frac{k}{n}$
-From Lemma \ref{lemma:A1112},
+We estimate the order of positive number $M_1, M_2$ under the condition $ m << k$. Since $k$ is large, we assume $k, n \to +\infty$ while $m$ is finite. Let $ r= \frac{k}{n}$. Since $\bm{A}=\bm{X}\bm{X}^\T$, from Proposition 7.2, Chapter 7 of \cite{eaton1989group} we can get $\bm{A}_{11}$ is Beta distribution with parameter $B(\frac{k}{2}, \frac{n-k}{2})$.
+From Theorem 1 of \cite{multivariateBeta},
 $\E[\bm{A}_{11}^t]-\E[\bm{A}_{11}^{t+1}] = (1-r)\prod_{s=0}^{t-1} \frac{2s+k}{2s+n+2} \sim (1-r)r^t$. Therefore $M_1 \sim \frac{(1-r)r^t}{n^{t-1}}(i-1)(j-1)(2t-3)!!$.
-We consider $s+1$ is even, $\E[\bm{A}_{12}^{s+1} \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}] \leq \sqrt{\E[\bm{A}_{12}^{s+1}\bm{A}_{11}^{i-s}]\E[\bm{A}_{12}^{s+1}\bm{A}_{22}^{j-s}]}$. When $k, n$ are sufficiently large, we can treat $\bm{A}_{11}, \bm{A}_{12}$ as joint Gaussian. From Lemma \ref{lemma:A1112}: $\bm{A}_{12} \sim N(0, \frac{r(1-r)}{n}), \bm{A}_{11} \sim N(r, \frac{2r(1-r)}{n})$.
-Therefore $\E[\bm{A}_{12}^{s+1}\bm{A}_{11}^{i-s}] \sim \E[\bm{A}_{12}^{s+1}]r^{i-s} \sim s!! r^{i-s}(\frac{r(1-r)}{n})^{(s+1)/2}$. Similarly $\E[\bm{A}_{12}^{s+1}\bm{A}_{22}^{j-s}] \sim s!! r^{j-s}(\frac{r(1-r)}{n})^{(s+1)/2}$. It implies that $\E[\bm{A}_{12}^{s+1} \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}] \leq (s!!) r^{t-s}(\frac{r(1-r)}{n})^{(s+1)/2} \leq r(1-r)$. We can get an upper bound of $M_2$ using Lemma \ref{lemma:UUM}: $M_2 \leq \frac{1}{n^{t-2}} (i-1)(j-1)(2t-3)!!\E[\bm{A}_{12}^{4} \bm{A}_{11}^{\frac{i - 3}{2}}\bm{A}_{22}^{\frac{j - 3}{2}}] \leq \frac{(1-r)^2 r^{t-1}}{n^t}3(i-1)(j-1)(2t-3)!!= \frac{3(1-r)}{k} M_1$.
+We consider $s+1$ is even, $\E[\bm{A}_{12}^{s+1} \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}] \leq \sqrt{\E[\bm{A}_{12}^{s+1}\bm{A}_{11}^{i-s}]\E[\bm{A}_{12}^{s+1}\bm{A}_{22}^{j-s}]}$. When $k, n$ are sufficiently large, we can treat $\bm{A}_{11}, \bm{A}_{12}$ as joint Gaussian. From Theorem 2 of \cite{multivariateBeta}: $\E[\bm{A}_{12}^{s+1}\bm{A}_{11}^{i-s}] \sim s!! r^{i-s}(\frac{r(1-r)}{n})^{(s+1)/2}$. Similarly $\E[\bm{A}_{12}^{s+1}\bm{A}_{22}^{j-s}] \sim s!! r^{j-s}(\frac{r(1-r)}{n})^{(s+1)/2}$. It implies that $\E[\bm{A}_{12}^{s+1} \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}] \leq (s!!) r^{t-s}(\frac{r(1-r)}{n})^{(s+1)/2} \leq r(1-r)$. We can get an upper bound of $M_2$ using Lemma \ref{lemma:UUM}: $M_2 \leq \frac{1}{n^{t-2}} (i-1)(j-1)(2t-3)!!\E[\bm{A}_{12}^{4} \bm{A}_{11}^{\frac{i - 3}{2}}\bm{A}_{22}^{\frac{j - 3}{2}}] \leq \frac{(1-r)^2 r^{t-1}}{n^t}3(i-1)(j-1)(2t-3)!!= \frac{3(1-r)}{k} M_1$.
 When $k \to \infty$, we see that $M_2$ can be ignored and $\mathbf{M}'_{ij} = -\delta(i,j)\frac{(1-r)r^t}{n^{t-1}}(i-1)(j-1)(2t-3)!!$. By changing of variables by Equation \ref{eq:pqt} we can get the correspondence $\mathbf{M}_{ij} = \frac{n^{-1+2t}}{k^t} \mathbf{M}'_{ij} = -\delta(i,j)(1-r)(i-1)(j-1)(2t-3)!!$. 
 
 To get the constraint on $\underline{q}$, we should choose $\norm{\xi} = 1$, which is equivalent to $\E_{\bm{X}}[\mathrm{C}_1] = 1$. By some computation we can get the expression of $\mathrm{N}$ when $ m << k$.
