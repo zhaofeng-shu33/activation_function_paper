@@ -377,12 +377,12 @@ $$
 (\underline{Y}-\bm{X}\bm{X}^\T \underline{Y}) - \xi(\bm{X}\bm{X}^\T \underline{Y}))
 $$
 Substituting $\underline{\hat{w}}$ in expression in \eqref{eq:st} with the above equation we can get the minimum value for the coefficient of $\epsilon^2$, which is exactly $C[\xi]$.
-\begin{align*}
-C[\xi] = & \E[\norm{\xi(\bm{X}\bm{X}^\T\underline{Y})}^2 -
-\norm{\bm{X}^\T\xi(\bm{X}\bm{X}^\T\underline{Y})}^2 \\
-& -
-\norm{\bm{X}^\T \nabla\xi(\bm{X}\bm{X}^\T\underline{Y})(\underline{Y}-\bm{X}\bm{X}^\T\underline{Y})}^2]
-\end{align*}
+%\begin{align*}
+%C[\xi] = & \E[\norm{\xi(\bm{X}\bm{X}^\T\underline{Y})}^2 -
+%\norm{\bm{X}^\T\xi(\bm{X}\bm{X}^\T\underline{Y})}^2 \\
+%& -
+%\norm{\bm{X}^\T \nabla\xi(\bm{X}\bm{X}^\T\underline{Y})(\underline{Y}-\bm{X}\bm{X}^\T\underline{Y})}^2]
+%\end{align*}
 \end{proof}
 \begin{lemma}\label{lemma:Isserlis2}
      Suppose $(X,Y)$ is two-dimensional Gaussian vector,
@@ -442,8 +442,10 @@ $  \E[X^i Y^j] = \sum_{k=0}^{\min\{i,j\}} C_k \Sigma_{12}^k \Sigma_{11}^{(i-k)/2
         A(2i, 2j) = (2j - 1) A(2i, 2j-2) + (2i) A(2i-1, 2j-1)
     \end{equation}
     From Equation (\ref{eq:Bij}, \ref{eq:Aij}), we can use mathematical induction to show
-       $A(2i, 2j)  = (2i + 2j - 1)!!$ and
-     $A(2i+1, 2j+1) = (2i + 2j + 1)!!$.
+     \begin{align*}
+     A(2i, 2j)  &= (2i + 2j - 1)!!
+     A(2i+1, 2j+1) &= (2i + 2j + 1)!!
+     \end{align*}
     Therefore $A(i,j) = (i+j-1)!!$ if $i + j $ is even.
     Based on our discussion on the parity of $i+j$, in general we have $A(i,j)=\delta(i,j)(i+j-1)!!$
     which proves Lemma \ref{lemma:UUN}.
