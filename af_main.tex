@@ -115,9 +115,9 @@
 %% to remove this comment!
 %%
 \begin{abstract}
-Non-linear activation function plays vital role in artificial neural network.
+Non-linear activation function plays a vital role in artificial neural network.
 In this paper, we show that under certain conditions using Hermite orthogonal polynomial as activation function
-can achieve the best result on average. The non-linear gain increases linearly as we increase the maximal degree of Hermite polynomials. Our study shares insight on the mechanism of non-linearity in neural networks.
+can achieve the minimal error on average. The non-linear gain increases linearly as we increase the maximal degree of Hermite polynomials. Our study shares insight on the mechanism of non-linearity in neural networks.
 \end{abstract}
 
 
@@ -130,27 +130,27 @@ can achieve the best result on average. The non-linear gain increases linearly a
 \section{Introduction}
 In artificial neural networks, activation functions are applied to linear combinations of input features and contribute magically to the whole system.
 There are many choices for activation function and none of them performs best for all problems. There have been empirical works which propose methods  to optimize over parameterized activation function together with network weight \cite{ramachandran2017searching}.
-However, to balance the training efficiency and effect the activation function family can not be too complex\cite{laudani2015training}.
-Besides empirical study, there are also theoretical investigation on the expressive power of neural networks, which mainly focuses on the influence of the number of layers and hidden units while choosing some well-known activation function \cite{AroraBMM18}. But we still know little about the theoretical property of activity function, which also contributes to the expressive power of neural network. Our study fills this gap to some extent: we focus on how the activation function influences the network loss.
+However, to balance the training efficiency and network performance the activation function family can not be too complex\cite{laudani2015training}.
+Besides empirical study, there are also theoretical investigation on the expressive power of neural networks, which mainly focuses on the power of the number of layers and hidden units while the activation function is fixed to some commonly used one\cite{AroraBMM18}. But we still know little about the theoretical property of activity function, which also contributes to the expressive power of neural network. Our study fills this gap to some extent: we focus on how the activation function influences the network loss.
 
 To be more specific, we fix the network structure and choose activation function from some function space.
 In our study, the activation function is chosen from the function space, which contains non-linear functions "near" the linear space.
-This is our local perturbation assumption. Besides this, we consider the simplest neural network with one output node and several input node.
-And without loss of generality, we assume input features are orthogonal to each other since orthogonality can be simply achieved by commonly used techniques such as PCA.
-Our measure of activation function is not restricted to one specific problem but is averaged over many different problems.
+This is our local perturbation assumption. By doing so we can investigate how the non-linear gain looks like compared with linear network.
+To simply the analysis, we consider the simplest neural network with only one output node and several input node.
+And without loss of generality, we assume input features are orthogonal to each other since orthogonality can be simply achieved by Principal Canonical Analysis.
+Our measure of activation function is not restricted to one specific network input and output but is averaged over many different such pairs.
 We find that the averaged loss function is minimized when the perturbation term is Hermite orthogonal polynomial.
 Hermite polynomial as activation function has been argued to be beneficial in previous work \cite{ma2005constructive} and our result confirms this fact to some extent.
 
 The paper is organized as follows: In Section \ref{sec:mm}, the universally good activation function problem
 is formulated mathematically.
-In Section \ref{sec:hp}, the Hermite polynomial solution for our problem is briefly deduced.
-In Section \ref{sec:er}, numerical experiments are conducted to verify our results.
+In Section \ref{sec:hp}, we derive the Hermite polynomial solution and the linear dependency of average error on polynomial order.
 In Section \ref{sec:con}, the conclusion is given.
 
-Through this paper, we use $X$ to represent random variables;
+Throughout this paper, we use $X$ to represent random variables;
 $\underline{X}$ to represent random vectors;
-$\bm{X}$ to represent random matrix;
-lower case $x$ to represent a numerical value;
+$\bm{X}$ to denote random matrix;
+ $x$ to represent a numerical value;
 $\underline{x}$ as a numerical vector;
 $\bm{x}$  or $\mathbf{M}$ as numerical matrix; $\mathbf{I}_n$ is n-dimensional identity matrix; 
 $[\cdot]^\T$ is the transpose operation on matrix; $\delta(i, j)$ is an indicator function
@@ -559,10 +559,10 @@ Then we have $ \mathbf{U} \underline{p} = \underline{e_m}$.
     \end{equation}
     If $ \delta(i, m) = 0$, $\delta(i, j)\delta(j, m) = 0$ and Equation \eqref{eq:jimf} holds. Otherwise let $2m' = m - i$,    
     Equation \eqref{eq:jimf} is equivalent to
-    $ \displaystyle\sum_{j=i, \delta(i,j)=1}^m  \frac{(-1)^{(m-j)/2}}{(m-j)!!(j-i)!!}  = 0  \iff  $
-    $\displaystyle\sum_{j=0, j \textrm{ is even}}^{2m'}  \frac{(-1)^{(2m'-j)/2}}{(2m'-j)!! j!!}= 0  \iff $
-    $\displaystyle\sum_{j=0}^{m'}  \frac{(-1)^{m'-j}}{(2m'-2j)!! (2j)!!} = 0  \iff $
-    $\displaystyle\sum_{j=0}^{m'}  \frac{(-1)^{m'-j}}{(m'-j)! j!} = 0  \iff \displaystyle\sum_{j=0}^{m'} (-1)^{m'-j} \binom{m'}{j} = 0$
+    $ \sum_{j=i, \delta(i,j)=1}^m  \frac{(-1)^{(m-j)/2}}{(m-j)!!(j-i)!!}  = 0  \iff  $
+    $\sum_{j=0, j \textrm{ is even}}^{2m'}  \frac{(-1)^{(2m'-j)/2}}{(2m'-j)!! j!!}= 0  \iff $
+    $\sum_{j=0}^{m'}  \frac{(-1)^{m'-j}}{(2m'-2j)!! (2j)!!} = 0  \iff $
+    $\sum_{j=0}^{m'}  \frac{(-1)^{m'-j}}{(m'-j)! j!} = 0  \iff \sum_{j=0}^{m'} (-1)^{m'-j} \binom{m'}{j} = 0$
     $ \iff (1+x)^{m'} = 0 \,(x=-1)$
 \end{proof}
 \begin{proof}[Proof of Proposition \ref{prop:value} ]
