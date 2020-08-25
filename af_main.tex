@@ -37,6 +37,7 @@
 \DeclareMathOperator*{\Cov}{cov}
 \DeclareMathOperator*{\argmin}{argmin}
 \DeclareMathOperator*{\id}{id}
+\newcommand{\ide}[2]{ \gamma(#1,#2) }
 %% Please note that the amsthm package must not be loaded with
 %% IEEEtran.cls because IEEEtran provides its own versions of
 %% theorems. Also note that IEEEXplore does not accepts submissions
@@ -154,7 +155,7 @@ $\bm{X}$ to denote random matrix;
  $x$ to represent a numerical value;
 $\underline{x}$ as a numerical vector;
 $\bm{x}$  or $\mathbf{M}$ as numerical matrix; $\mathbf{I}_n$ is n-dimensional identity matrix; 
-$[\cdot]^\T$ is the transpose operation on matrix; $\delta(i, j)$ is an indicator function
+$[\cdot]^\T$ is the transpose operation on matrix; $\ide{i}{j} = (i+j)\, \mathrm{mod} \, 2$
 which equals 1 if $ i + j$ is even and 0 otherwise; 
 $n!!$ is the double factorial which equals $n \times (n-2) \dots \times1$ if $n$ is odd and $n \times (n-2)\dots \times 2$ for even $n$. Furthermore, $(-1)!!=1,(-3)!!=-1$.
 
@@ -226,7 +227,7 @@ Then $\E[\bm{A}] = \frac{k}{n} \mathbf{I}_n$.
 We defined random matrix $\bm{A}$ in Lemma \ref{lem:A} for notation convenience.
 Since $\bm{X}$ is orthogonal, $\bm{A}$ is idempotent. That is, we have $\bm{A}^2 = \bm{A}$.
 
-We have analyzed the averaged error for linear function. To extend our result on general non-linear functions, we need to choose a proper function space $F$. By detailed analysis we consider a "local" regime. That is, differential functions which are "near" to linear function. The distance is quantified by a positive value $\epsilon$. Thus we consider $F_{\sigma_0}(\epsilon) =\{ \sigma \,|\, \norm{\sigma - \sigma_0} \leq \epsilon\}$. Then all differential functions can be treated as $\cup_{\epsilon>0} F(\epsilon)$. The norm is actually the expectation w.r.t. the distribution space $G$. That is $\E[\norm{(\sigma - \sigma_0)(\bm{A}\underline{Y})}^2] \leq \epsilon^2$.
+We have analyzed the averaged error for linear function. To extend our result on general non-linear functions, we need to choose a proper function space $F$. By detailed analysis we consider a local regime. That is, differential functions which are near to linear function. The distance is quantified by a positive value $\epsilon$. Thus we consider $F_{\sigma_0}(\epsilon) =\{ \sigma \,|\, \norm{\sigma - \sigma_0} \leq \epsilon\}$. Then all differential functions can be treated as $\cup_{\epsilon>0} F(\epsilon)$. The norm is actually the expectation w.r.t. the distribution space $G$. That is $\E[\norm{(\sigma - \sigma_0)(\bm{A}\underline{Y})}^2] \leq \epsilon^2$.
 
 We are particularly interested in how the averaged error changes when $\sigma$ is contracted to $\sigma_0$ along a certain path in $F(\sigma)$. That is, given a function $\xi$ we can construct $\sigma = \sigma_0 + \epsilon \xi$ where $\xi \in F_0 = \{\xi | \norm{\xi} \leq 1 \}$. $\sigma \to \sigma_0$ is equivalent to $\epsilon \to 0$.
 
@@ -256,7 +257,7 @@ Let $\nabla \xi(\underline{z})  = \diag[\xi'(\underline{z}_1), \dots, \xi'(\unde
 \end{align}
 \end{proposition}
 
-Our goal is to get the largest decreasing rate for $E[\sigma]$ from $E[\sigma_0]$, this is equivalent to solve an optimization problem $\min \mathrm{C}[\xi]$ constraint by $\xi \in F_0$. It is hard to optimize on $F_0$ directly and we consider $F_{0,m} = F_0 \cap P_m$ first. $P_m$ consists of polynomials with the highest degree no more than $m$. And we have $F_0 = \lim_{m\to \infty} F_{0,m}$.
+Our goal is to get the largest decreasing rate for $E[\sigma]$ from $E[\sigma_0]$, this is equivalent to solve an optimization problem $\min \mathrm{C}[\xi]$ constraint by $\xi \in F_0$. It is hard to optimize on $F_0$ directly, and we consider $F_{0,m} = F_0 \cap P_m$ first. $P_m$ consists of polynomials with the highest degree no more than $m$. And we have $F_0 = \lim_{m\to \infty} F_{0,m}$.
 
 For $\xi \in F_{0,m}$ we have the following result:
 \begin{proposition}\label{prop:quadratic}
@@ -266,12 +267,12 @@ and $m \ll k$, then we have
 \begin{align}
 \mathrm{C}[\xi] &= (1-\frac{k}{n}) \underline{p}^\T \mathbf{M} \underline{p} \notag\\
 \textrm{where }\underline{p}_i &= \frac{k^{i/2}}{n^{- 1/2 + i}}\underline{q}_i\label{eq:pqt} \\
-\mathbf{M}_{ij} =& -\delta(i,j)(i-1)(j-1)(i+j-3)!! \notag
+\mathbf{M}_{ij} =& -\ide{i}{j}(i-1)(j-1)(i+j-3)!! \notag
 \end{align}
 The constraint $\xi \in F_{0,m}$ is equivalent with
 \begin{align}
 \underline{p}^\T \mathbf{N} \underline{p} & = 1 \notag\\
-\mathbf{N}_{ij}  & = \delta(i,j)(i+j-1)!!
+\mathbf{N}_{ij}  & = \ide{i}{j}(i+j-1)!!
 \end{align}
 \end{proposition}
 
@@ -368,7 +369,7 @@ $(\underline{Y}- \bm{X}\bm{X}^\T\underline{Y}) = -(\tilde{\underline{Y}} - \bm{X
 This symmetric property leads to $\E_{\underline{Y}}[\xi(\bm{X}\underline{w}_0)^\T (\underline{Y}-\bm{X}\underline{w}_0)]=0$.
 On the other hand, since $\bm{X}^\T \bm{X} = \mathbf{I}_k$. $(\bm{X}\underline{\hat{w}})^\T (\underline{Y}-\bm{X}\underline{w}_0) = \underline{\hat{w}}^\T (X^\T \underline{Y} - \underline{w}_0) = 0$.
 
-Next, we minimize the coefficient of $\epsilon^2$ by $\underline{\hat{w}}$, which simplifies to 
+Next, we minimize the coefficient of $\epsilon^2$ by $\underline{\hat{w}}$, which is simplified to 
 \begin{equation}\label{eq:st}
 \norm{\bm{X}\underline{\hat{w}} + \xi(\bm{X} \underline{w}_0)}^2-
 2 (
@@ -394,13 +395,13 @@ Substituting $\underline{\hat{w}}$ in expression in \eqref{eq:st} with the above
 \begin{equation*}
     \E[X^i Y^j] =
     \sum_{k=0}^{\min\{i,j\}}
-    \frac{\delta(k, i) i! j!}{k! (i-k)!!(j-k)!!}
+    \frac{\ide{k}{i} i! j!}{k! (i-k)!!(j-k)!!}
     \Sigma_{12}^k \Sigma_{11}^{(i-k)/2}\Sigma_{22}^{(j-k)/2}
 \end{equation*}
 \end{lemma}
 \begin{proof}
 Using Isserlis' theorem \cite{isserlis1918formula} we obtain
-$  \E[X^i Y^j] = \sum_{k=0}^{\min\{i,j\}} C_k \Sigma_{12}^k \Sigma_{11}^{(i-k)/2}\Sigma_{22}^{(j-k)/2}$. Since the power of $\Sigma_{11}$ should be an integer, $C_k = 0$ if $\delta(k, i) = 0$. If $\delta(k, i) = 1$, we choose $k$ items of $X$ and $Y$ to form $\Sigma_{12} = \E[XY]$, which has $\binom{i}{k}\binom{j}{k}$ choices. For the remaining $(i-k)$ number of $X$, we should pair them, which has $\frac{1}{(\frac{i-k}{2})!}\prod_{i=1}^{(i-k)/2} \binom{2i}{2} = \frac{(i-k)!}{(i-k)!!}$ number of choices; For $(j-k)$ number of $Y$, it is $\frac{(j-k)!}{(j-k)!!}$; Finally, for $k$ pairs of $XY$, we have $k!$ number of choices. The product $\binom{i}{k}\binom{j}{k}\frac{(i-k)!}{(i-k)!!}\frac{(j-k)!}{(j-k)!!}k!$ is the coefficient $C_k$.
+$  \E[X^i Y^j] = \sum_{k=0}^{\min\{i,j\}} C_k \Sigma_{12}^k \Sigma_{11}^{(i-k)/2}\Sigma_{22}^{(j-k)/2}$. Since the power of $\Sigma_{11}$ should be an integer, $C_k = 0$ if $\ide{k}{i} = 0$. If $\ide{k}{i} = 1$, we choose $k$ items of $X$ and $Y$ to form $\Sigma_{12} = \E[XY]$, which has $\binom{i}{k}\binom{j}{k}$ choices. For the remaining $(i-k)$ number of $X$, we should pair them, which has $\frac{1}{(\frac{i-k}{2})!}\prod_{i=1}^{(i-k)/2} \binom{2i}{2} = \frac{(i-k)!}{(i-k)!!}$ number of choices; For $(j-k)$ number of $Y$, it is $\frac{(j-k)!}{(j-k)!!}$; Finally, for $k$ pairs of $XY$, we have $k!$ number of choices. The product $\binom{i}{k}\binom{j}{k}\frac{(i-k)!}{(i-k)!!}\frac{(j-k)!}{(j-k)!!}k!$ is the coefficient $C_k$.
 \end{proof}
 %\begin{lemma}\label{lemma:A1112}
 %For random matrix $\bm{A}$ we have $\E[\bm{A}_{11}^t] = \prod_{i=0}^{t-1} \frac{k+2t}{n+2t}$ and
@@ -419,26 +420,26 @@ $  \E[X^i Y^j] = \sum_{k=0}^{\min\{i,j\}} C_k \Sigma_{12}^k \Sigma_{11}^{(i-k)/2
 %\end{proof}
 \begin{lemma}\label{lemma:UUN}
     \begin{align}
-        &\delta(i, j) (i+j-1)!! = \sum_{k=0}^{\min\{i, j\}}
-        \delta(k, i) \delta(k, j) \frac{i! j!}{(i-k)!!(j-k)!! k!} \label{eq:UUN} \\
-             &   \delta(i, j)(i-1)(j-1)(i+j-3)!!  \notag\\
+        &\ide{i}{j} (i+j-1)!! = \sum_{k=0}^{\min\{i, j\}}
+        \ide{k}{i} \ide{k}{j} \frac{i! j!}{(i-k)!!(j-k)!! k!} \label{eq:UUN} \\
+             &   \ide{i}{j}(i-1)(j-1)(i+j-3)!!  \notag\\
         &=\sum_{k=0}^{\min\{i, j\}}
-        \delta(k, i) \delta(k, j) \frac{(k-1)i!j!}{(i-k)!!(j-k)!!k!} \label{eq:UUM}
+        \ide{k}{i} \ide{k}{j} \frac{(k-1)i!j!}{(i-k)!!(j-k)!!k!} \label{eq:UUM}
     \end{align}
 \end{lemma}
 \begin{proof}[Proof of Lemma \ref{lemma:UUN} ]
-	If $ i + j $ is odd, $ \delta(i, j) = 0 $ and
-	$ \delta(k, i)\delta(k, j) = 0 $. Then Equation \eqref{eq:UUN} holds.
+	If $ i + j $ is odd, $ \ide{i}{j} = 0 $ and
+	$ \ide{k}{i}\ide{k}{j} = 0 $. Then Equation \eqref{eq:UUN} holds.
 	Therefore we only need to consider the case if $ i + j $ is even.
 	First we define $A(i, j) = \sum_{k=0}^{\min\{i, j\}}
-	\delta(k, i) \delta(k, j) \frac{i! j!}{(i-k)!!(j-k)!! k!}$.
+	\ide{k}{i} \ide{k}{j} \frac{i! j!}{(i-k)!!(j-k)!! k!}$.
 	Then we can show that
 	\begin{align*}
 	& A(2i+1, 2j+1) = (2i + 1) A(2i, 2j) + (2j) A(2i+1, 2j-1)\\
 	& A(2i, 2j)= (2j - 1) A(2i, 2j-2) + (2i) A(2i-1, 2j-1) 
 	\end{align*}
 	Then using mathematical induction we have $A(i,j) = (i+j-1)!!$ if $i + j $ is even.
-	Based on our discussion on the parity of $i+j$, in general we have $A(i,j)=\delta(i,j)(i+j-1)!!$.
+	Based on our discussion on the parity of $i+j$, in general we have $A(i,j)=\ide{i}{j}(i+j-1)!!$.
 Equation \eqref{eq:UUM} follows by applying \eqref{eq:UUN}.
 \end{proof}
 
@@ -491,12 +492,12 @@ The element $\bm{M}_{ij}$ is the coefficient of $a_ia_j$:
     ij \frac{1}{n}\bm{A}_{11} \E[\underline{Z}_1^{i+j-2}])  \\
     &-n(n-1)\bm{A}_{12}(\E[\underline{Z}_1^i \underline{Z}_2^j] - ij \frac{1}{n}\bm{A}_{12}\E[\underline{Z}_1^{i-1}\underline{Z}_2^{j-1}])
 \end{align*}
-Since $\bm{Z}_1$ is Gaussian, $\E[Z_1^{2t}] = \frac{1}{n^t}\bm{A}_{11}^t (2t-1)!!$. If $\delta(i, j) = 0, \bm{M}_{ij}=0$. Otherwise,
+Since $\bm{Z}_1$ is Gaussian, $\E[Z_1^{2t}] = \frac{1}{n^t}\bm{A}_{11}^t (2t-1)!!$. If $\ide{i}{j} = 0, \bm{M}_{ij}=0$. Otherwise,
 let $ 2t = i + j $, from Lemma \ref{lemma:Isserlis2}, $\E[\underline{Z}_1^i \underline{Z}_2^j]$ can be expanded and we have:
 \begin{align*}
     &\bm{M}_{ij} = -n(1-\bm{A}_{11}) \frac{\bm{A}_{11}^t}{n^t}(i-1)(j-1)(2t-3)!! \\
     &-\frac{n(n-1)\bm{A}_{12}}{n^t}\sum_{s=0}^{\min\{i,j\}}
-    \frac{\delta(s,i)(1-s)i!j!}{s!(i-s)!!(j-s)!!}
+    \frac{\ide{s}{i}(1-s)i!j!}{s!(i-s)!!(j-s)!!}
     \bm{A}_{12}^s \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}
 \end{align*}
 $C[\xi] = \E_{\bm{X}}[\mathrm{C}[\bm{X}, \xi]] =  \underline{q}^T \mathbf{M}' \underline{q}$ where $\mathbf{M}'_{ij} = \E_{\bm{X}} [\bm{M}_{ij}] = -M_1 + M_2$
@@ -504,14 +505,14 @@ where
 \begin{align*}
     M_1 & =   \frac{\E[\bm{A}_{11}^t]-\E[\bm{A}_{11}^{t+1}]}{n^{t-1}}(i-1)(j-1)(2t-3)!! \\
     M_2 & = \frac{n-1}{n^{t-1}}\sum_{s=0}^{\min\{i,j\}}
-    \frac{\delta(s,i)(s-1)i!j!}{s!(i-s)!!(j-s)!!}
+    \frac{\ide{s}{i}(s-1)i!j!}{s!(i-s)!!(j-s)!!}
     \E[\bm{A}_{12}^{s+1} \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}]
 \end{align*}
 We estimate the order of positive number $M_1, M_2$ under the condition $ m \ll k$. Since $k$ is large, we assume $k, n \to +\infty$ while $m$ is finite. Let $ r= \frac{k}{n}$. Since $\bm{A}=\bm{X}\bm{X}^\T$, from Proposition 7.2, Chapter 7 of \cite{eaton1989group} we can get $\bm{A}_{11}$ is Beta distribution with parameter $B(\frac{k}{2}, \frac{n-k}{2})$.
 From Theorem 1 of \cite{multivariateBeta},
 $\E[\bm{A}_{11}^t]-\E[\bm{A}_{11}^{t+1}] = (1-r)\prod_{s=0}^{t-1} \frac{2s+k}{2s+n+2} \sim (1-r)r^t$. Therefore $M_1 \sim \frac{(1-r)r^t}{n^{t-1}}(i-1)(j-1)(2t-3)!!$.
 We consider $s+1$ is even, $\E[\bm{A}_{12}^{s+1} \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}] \leq \sqrt{\E[\bm{A}_{12}^{s+1}\bm{A}_{11}^{i-s}]\E[\bm{A}_{12}^{s+1}\bm{A}_{22}^{j-s}]}$. When $k, n$ are sufficiently large, we can treat $\bm{A}_{11}, \bm{A}_{12}$ as joint Gaussian. From Theorem 2 of \cite{multivariateBeta}: $\E[\bm{A}_{12}^{s+1}\bm{A}_{11}^{i-s}] \sim s!! r^{i-s}(\frac{r(1-r)}{n})^{(s+1)/2}$. Similarly $\E[\bm{A}_{12}^{s+1}\bm{A}_{22}^{j-s}] \sim s!! r^{j-s}(\frac{r(1-r)}{n})^{(s+1)/2}$. It implies that $\E[\bm{A}_{12}^{s+1} \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}] \leq (s!!) r^{t-s}(\frac{r(1-r)}{n})^{(s+1)/2}$. We can get an upper bound of $M_2$ using Equation \ref{eq:UUM}: $M_2 \leq \frac{1}{n^{t-2}} (i-1)(j-1)(2t-3)!!\E[\bm{A}_{12}^{4} \bm{A}_{11}^{\frac{i - 3}{2}}\bm{A}_{22}^{\frac{j - 3}{2}}] \leq \frac{(1-r)^2 r^{t-1}}{n^t}3(i-1)(j-1)(2t-3)!!= \frac{3(1-r)}{k} M_1$.
-When $k \to \infty$, we see that $M_2$ can be ignored and $\mathbf{M}'_{ij} = -\delta(i,j)\frac{(1-r)r^t}{n^{t-1}}(i-1)(j-1)(2t-3)!!$. By changing of variables by Equation \ref{eq:pqt} we can get the correspondence $\mathbf{M}_{ij} = \frac{n^{-1+2t}}{k^t} \mathbf{M}'_{ij} = -\delta(i,j)(1-r)(i-1)(j-1)(2t-3)!!$. 
+When $k \to \infty$, we see that $M_2$ can be ignored and $\mathbf{M}'_{ij} = -\ide{i}{j}\frac{(1-r)r^t}{n^{t-1}}(i-1)(j-1)(2t-3)!!$. By changing of variables by Equation \ref{eq:pqt} we can get the correspondence $\mathbf{M}_{ij} = \frac{n^{-1+2t}}{k^t} \mathbf{M}'_{ij} = -\ide{i}{j}(1-r)(i-1)(j-1)(2t-3)!!$. 
 
 To get the constraint on $\underline{q}$, we should choose $\norm{\xi} = 1$, which is equivalent to $\E_{\bm{X}}[\mathrm{C}_1] = 1$. By some computation we can get the expression of $\mathrm{N}$ when $ m \ll k$.
 
@@ -519,25 +520,25 @@ To get the constraint on $\underline{q}$, we should choose $\norm{\xi} = 1$, whi
 
 \begin{lemma}\label{lemma:Upem}
 Let $\mathbf{U}$ be an $(m+1) \times (m+1)$ upper triangular matrix defined by
-$U_{ij} = \delta(i, j) \frac{j!}{(j-i)!!\sqrt{i!}} \textrm{ for } 0 \leq i\leq j \leq m$, $\underline{e_m}$ is an $(m+1)$ dimensional vector whose elements are zero except that the last element is 1. $\underline{p}_i = \delta(i, m) (-1)^{(m-i)/2}\frac{\sqrt{m!}}{i!(m-i)!!}$.
+$U_{ij} = \ide{i}{j} \frac{j!}{(j-i)!!\sqrt{i!}} \textrm{ for } 0 \leq i\leq j \leq m$, $\underline{e_m}$ is an $(m+1)$ dimensional vector whose elements are zero except that the last element is 1. $\underline{p}_i = \ide{i}{m} (-1)^{(m-i)/2}\frac{\sqrt{m!}}{i!(m-i)!!}$.
 Then we have $ \mathbf{U} \underline{p} = \underline{e_m}$.
 \end{lemma}
 \begin{proof}[Proof of Lemma \ref{lemma:Upem} ]
     For $ i = m, \mathbf{U}_{mm} = \sqrt{m!}$, we can show that $\mathbf{U}_{mm} \underline{p}_m = 1 $; For $ 0\leq i < m $ we
     will show that $ \sum_{j=i}^m \mathbf{U}_{ij} \underline{p}_j = 0 $. In specific form as
     \begin{equation}\label{eq:jimf}
-    \sum_{j=i}^m \delta(i, j) \frac{j!}{(j-i)!!\sqrt{i!}}  \frac{\delta(j, m)(-1)^{(m-j)/2}\sqrt{m!}}{j!(m-j)!!} = 0
+    \sum_{j=i}^m \ide{i}{j} \frac{j!}{(j-i)!!\sqrt{i!}}  \frac{\ide{j}{m}(-1)^{(m-j)/2}\sqrt{m!}}{j!(m-j)!!} = 0
     \end{equation}
-    If $ \delta(i, m) = 0$, $\delta(i, j)\delta(j, m) = 0$ and Equation \eqref{eq:jimf} holds. Otherwise let $2m' = m - i$,    
+    If $ \ide{i}{m} = 0$, $\ide{i}{j}\ide{j}{m} = 0$ and Equation \eqref{eq:jimf} holds. Otherwise let $2m' = m - i$,    
     Equation \eqref{eq:jimf} is equivalent to
-    $ \sum_{j=i, \delta(i,j)=1}^m  \frac{(-1)^{(m-j)/2}}{(m-j)!!(j-i)!!}  = 0  \iff  $
+    $ \sum_{j=i, \ide{i}{j}=1}^m  \frac{(-1)^{(m-j)/2}}{(m-j)!!(j-i)!!}  = 0  \iff  $
     $\sum_{j=0, j \textrm{ is even}}^{2m'}  \frac{(-1)^{(2m'-j)/2}}{(2m'-j)!! j!!}= 0  \iff $
     $\sum_{j=0}^{m'}  \frac{(-1)^{m'-j}}{(2m'-2j)!! (2j)!!} = 0  \iff $
     $\sum_{j=0}^{m'}  \frac{(-1)^{m'-j}}{(m'-j)! j!} = 0  \iff \sum_{j=0}^{m'} (-1)^{m'-j} \binom{m'}{j} = 0$
     $ \iff (1+x)^{m'} = 0 \,(x=-1)$
 \end{proof}
 \begin{proof}[Proof of Proposition \ref{prop:value} ]
-    Let $\mathbf{U}$ be the same matrix defined in Lemma \ref{lemma:Upem}. From Lemma \ref{lemma:UUN} we have $\mathbf{N}_{ij} = \sum_{k=0}^m \mathbf{U}_{ki}\mathbf{U}_{kj}$. Therefore $\mathbf{N} = \mathbf{U}^\T\mathbf{U}$. Let $\Lambda = \diag[1, 0, -1, \dots, 1-m]$, from Equation \ref{eq:UUM} we have $\mathbf{M}_{ij} = \sum_{k=0}^m \mathbf{U}_{ki}\Lambda_{kk}\mathbf{U}_{kj}$. Therefore $\mathbf{M} = \mathbf{U}^\T\Lambda\mathbf{U}$. Then the problem $\min_{\underline{p}^\T N \underline{p} = 1} \underline{p}^\T \mathbf{M}\underline{p} = \min_{\underline{\tilde{p}}^\T\underline{\tilde{p}} = 1} \sum_{k=0}^m (1-k)\underline{\tilde{p}}_k^2 = 1-m$. We have made the invertible transformations $\underline{\tilde{p}} = \mathbf{U}\underline{p}$. Since the minimum value is achieved at $\underline{\tilde{p}} = \underline{e_m}$, from Lemma \ref{lemma:Upem} we have $\underline{p}_i = \delta(i, m) (-1)^{(m-i)/2}\frac{\sqrt{m!}}{i!(m-i)!!}$. Equation \eqref{eq:ximopt} follows by Transforming $\underline{p}$ back to $\underline{q}$ using Equation \eqref{eq:pqt} and comparing the expression of $\underline{q}$ with the explicit formula of probabilists' Hermite polynomials \cite[Eq. 18.5.13]{NIST:DLMF}.
+    Let $\mathbf{U}$ be the same matrix defined in Lemma \ref{lemma:Upem}. From Lemma \ref{lemma:UUN} we have $\mathbf{N}_{ij} = \sum_{k=0}^m \mathbf{U}_{ki}\mathbf{U}_{kj}$. Therefore $\mathbf{N} = \mathbf{U}^\T\mathbf{U}$. Let $\Lambda = \diag[1, 0, -1, \dots, 1-m]$, from Equation \ref{eq:UUM} we have $\mathbf{M}_{ij} = \sum_{k=0}^m \mathbf{U}_{ki}\Lambda_{kk}\mathbf{U}_{kj}$. Therefore $\mathbf{M} = \mathbf{U}^\T\Lambda\mathbf{U}$. Then the problem $\min_{\underline{p}^\T N \underline{p} = 1} \underline{p}^\T \mathbf{M}\underline{p} = \min_{\underline{\tilde{p}}^\T\underline{\tilde{p}} = 1} \sum_{k=0}^m (1-k)\underline{\tilde{p}}_k^2 = 1-m$. We have made the invertible transformations $\underline{\tilde{p}} = \mathbf{U}\underline{p}$. Since the minimum value is achieved at $\underline{\tilde{p}} = \underline{e_m}$, from Lemma \ref{lemma:Upem} we have $\underline{p}_i = \ide{i}{m} (-1)^{(m-i)/2}\frac{\sqrt{m!}}{i!(m-i)!!}$. Equation \eqref{eq:ximopt} follows by Transforming $\underline{p}$ back to $\underline{q}$ using Equation \eqref{eq:pqt} and comparing the expression of $\underline{q}$ with the explicit formula of probabilists' Hermite polynomials \cite[Eq. 18.5.13]{NIST:DLMF}.
 \end{proof}
 %%%%%%
 %% To balance the columns at the last page of the paper use this
