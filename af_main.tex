@@ -190,7 +190,7 @@ $\epsilon$ is a small constant.
 $\E[\xi(\bm{X}\underline{w})]=1$ where
 $\bm{X}\underline{w} = \sum_{i=1}^k w_i \underline{X}_i$ is the matrix product with  $\underline{w}=(w_1, \dots, w_k)$.
 
-We formulate universally good activation function $\sigma$ as follows:
+We formulate the universally good activation function $\sigma$ as follows:
 \begin{definition}\label{def:ug}
 Suppose $G$ is a distribution space for $(\bm{X}, \underline{Y})$,
 $F$ is a function space for $\xi(z)$.
@@ -230,9 +230,9 @@ We have analyzed the averaged error for linear function. To extend our result on
 
 We are particularly interested in how the averaged error changes when $\sigma$ is contracted to $\sigma_0$ along a certain path in $F(\sigma)$. That is, given a function $\xi$ we can construct $\sigma = \sigma_0 + \epsilon \xi$ where $\xi \in F_0 = \{\xi | \norm{\xi} \leq 1 \}$. $\sigma \to \sigma_0$ is equivalent to $\epsilon \to 0$.
 
-To measure the change rate of $E[\sigma]$ in local regime of linear function we introduce the concept of the index of averaged estimation error as follows:
+To measure the change rate of $E[\sigma]$ in local regime of linear function we introduce the concept of the index of the averaged estimation error as follows:
 \begin{definition}
-Let $\xi \in F_0$, the index of averaged estimation error for $\xi$ is
+Let $\xi \in F_0$, the index of the averaged estimation error for $\xi$ is
 \begin{equation}\label{eq:Cxi}
 \mathrm{C}[\xi] = \lim_{\substack{\epsilon \to 0 \\ \sigma = \sigma_0 + \epsilon \xi}} \frac{E[\sigma] - E[\sigma_0]}{\epsilon^2}
 \end{equation}
@@ -291,13 +291,13 @@ Let
 Then $\mathrm{C}[\xi_m] = -(1-\frac{k}{n})(m-1) \leq \mathrm{C}[\xi] $ for all $\xi \in F_{0, m}$.
 \end{proposition}
 Proposition \ref{prop:value} also gives the lower bound for $\mathrm{C}[\xi]$.
-It says the local decreasing rate of $\mathrm{E}[\sigma]$ is strictly linearly improved if we increase the degree of Hermite polynomials. This result is made under the assumption $ m << k$ and in general case when $ m << k$ does not hold, we find by experiments that $-(1-\frac{k}{n})(m-1) < \mathrm{C}[\xi]$ while $\mathrm{C}[\xi]$ decreases in linear way.
+It says the local decreasing rate of $\mathrm{E}[\sigma]$ is strictly linearly improved if we increase the degree of Hermite polynomials. This result is made under the assumption $ m \ll k$ and in general case when $ m \ll k$ does not hold, we find by experiments that $-(1-\frac{k}{n})(m-1) < \mathrm{C}[\xi]$ while $\mathrm{C}[\xi]$ decreases in linear way.
 
 \section{Experiment Result}\label{sec:er}
 
-To verify the change rate of the index of averaged estimation error $C[\xi]$ as we increase the maximal degree of polynomials $m$,
+To verify the change rate of $C[\xi]$ as we increase the maximal degree of polynomials $m$,
 we conduct a simple experiment. We choose $n=180, k=120$ and use $\xi_m(z)$ from Proposition
-\ref{prop:value} and normalized polynomials with only highest degree $\tilde{\xi}_m(z) = \frac{(nz/\sqrt{k})^m}{\sqrt{(2m-1)!!n}}$ as activation function. Using the Monte Carlo method to compute $\mathrm{C}[\xi]$ from Proposition \ref{prop:Esigma}, the result is shown in Figure \ref{fig:fixednk}. As can be seen, the Hermite polynomial results coincide with the theoretical lower bound in Proposition \ref{prop:value}; For other polynomials, it cannot achieve the minimum value but we can still see that the nearly linear relationship between $C[\xi]$ and degree $m$. From Equation \eqref{eq:pqt}, we also notice that for $\tilde{\xi}_m$, the highest degree term contributes about $-(1-\frac{k}{n})\frac{(m-1)^2}{2m-1}$ to $C[\xi]$, which is approximately $\frac{1}{2} C[\xi_m]$. This phenomenon tells us that the contribution of each degree of the polynomial to $C[\xi]$ is not evenly distributed and
+\ref{prop:value} and normalized polynomials with only highest degree $\tilde{\xi}_m(z) = \frac{(nz/\sqrt{k})^m}{\sqrt{(2m-1)!!n}}$ as activation function. Using the Monte Carlo method to compute $\mathrm{C}[\xi]$ from Proposition \ref{prop:Esigma}, the result is shown in Figure \ref{fig:fixednk}. As can be seen, the Hermite polynomial results coincide with the theoretical lower bound in Proposition \ref{prop:value}; For other polynomials, it cannot achieve the minimum value but we can still see that the nearly linear relationship between $C[\xi]$ and degree $m$. From Equation \eqref{eq:pqt}, we also notice that for $\tilde{\xi}_m$, the highest degree term contributes $-(1-\frac{k}{n})\frac{(m-1)^2}{2m-1}$ to $C[\xi]$, which is approximately $\frac{1}{2} C[\xi_m]$. This phenomenon tells us that the contribution of each degree of the polynomial to $C[\xi]$ is not evenly distributed and
 the higher order term contributes more.  
 
 
@@ -309,7 +309,7 @@ the higher order term contributes more.
 
 \section{Conclusion}\label{sec:con}
 
-In this paper, we investigate the mechanism of non-linearity in one node neural network. It can decrease the loss linearly as we increase the maximal degree if we consider a small polynomial perturbation of linear activation function. How non-linearity works in more complex neural networks will be considered in our future work. 
+In this paper, we have investigated the mechanism of non-linearity in one node neural network. If we allow polynomial perturbation of linear activation function, the loss is linearly decreased as the maximal degree of polynomial is increased. How non-linearity works in more complex neural networks will be considered in the future. 
 
 %\section*{Acknowledgment}
 \appendix
@@ -418,63 +418,30 @@ $  \E[X^i Y^j] = \sum_{k=0}^{\min\{i,j\}} C_k \Sigma_{12}^k \Sigma_{11}^{(i-k)/2
 %Therefore $\E[\bm{A}^2_{12}]=(1-\frac{k-1}{n-1}) \frac{k}{n(n+2)}$.
 %\end{proof}
 \begin{lemma}\label{lemma:UUN}
-    \begin{equation}\label{eq:UUN}
-        \delta(i, j) (i+j-1)!! = \sum_{k=0}^{\min\{i, j\}}
-        \delta(k, i) \delta(k, j) \frac{i! j!}{(i-k)!!(j-k)!! k!}
-    \end{equation}
+    \begin{align}
+        &\delta(i, j) (i+j-1)!! = \sum_{k=0}^{\min\{i, j\}}
+        \delta(k, i) \delta(k, j) \frac{i! j!}{(i-k)!!(j-k)!! k!} \label{eq:UUN} \\
+             &   \delta(i, j)(i-1)(j-1)(i+j-3)!!  \notag\\
+        &=\sum_{k=0}^{\min\{i, j\}}
+        \delta(k, i) \delta(k, j) \frac{(k-1)i!j!}{(i-k)!!(j-k)!!k!} \label{eq:UUM}
+    \end{align}
 \end{lemma}
 \begin{proof}[Proof of Lemma \ref{lemma:UUN} ]
-    If $ i + j $ is odd, $ \delta(i, j) = 0 $ and
-    $ \delta(k, i)\delta(k, j) = 0 $. Then Equation \eqref{eq:UUN} holds.
-    Therefore we only need to consider the case if $ i + j $ is even.
-    First we define $A(i, j) = \sum_{k=0}^{\min\{i, j\}}
-    \delta(k, i) \delta(k, j) \frac{i! j!}{(i-k)!!(j-k)!! k!}$.
-    Then we have
-    \begin{align}
-        & A(2i+1, 2j+1) = \sum_{k=0}^{\min\{i,j\}}
-        \frac{(2i+1)!(2j+1)!}{(2i-2k)!!(2j-2k)!!(2k+1)!} \notag\\
-        &= \sum_{k=0}^{\min\{i,j\}}
-        \frac{(2i+1)!(2j)!\left(\frac{1}{2j-2k} + \frac{1}{2k+1}\right)}{(2i-2k)!!(2j-2k-2)!!(2k)!}
-        \notag\\
-        &= (2i + 1) A(2i, 2j) + (2j) A(2i+1, 2j-1) \label{eq:Bij}
-    \end{align}
-    The above formula holds for $ i \leq j-1 $ because of choice of $\min\{i,j\}$.
-    We can use the symmetric property $A(i,j)=A(j,i)$
-    to show Equation \eqref{eq:Bij} also holds for $ i \geq j $.
-    Similarly we have
-    \begin{equation}\label{eq:Aij}
-        A(2i, 2j) = (2j - 1) A(2i, 2j-2) + (2i) A(2i-1, 2j-1)
-    \end{equation}
-    From Equation (\ref{eq:Bij}, \ref{eq:Aij}), we can use mathematical induction to show
-     \begin{align*}
-     A(2i, 2j)  &= (2i + 2j - 1)!!
-     A(2i+1, 2j+1) &= (2i + 2j + 1)!!
-     \end{align*}
-    Therefore $A(i,j) = (i+j-1)!!$ if $i + j $ is even.
-    Based on our discussion on the parity of $i+j$, in general we have $A(i,j)=\delta(i,j)(i+j-1)!!$
-    which proves Lemma \ref{lemma:UUN}.
+	If $ i + j $ is odd, $ \delta(i, j) = 0 $ and
+	$ \delta(k, i)\delta(k, j) = 0 $. Then Equation \eqref{eq:UUN} holds.
+	Therefore we only need to consider the case if $ i + j $ is even.
+	First we define $A(i, j) = \sum_{k=0}^{\min\{i, j\}}
+	\delta(k, i) \delta(k, j) \frac{i! j!}{(i-k)!!(j-k)!! k!}$.
+	Then we can show that
+	\begin{align*}
+	& A(2i+1, 2j+1) = (2i + 1) A(2i, 2j) + (2j) A(2i+1, 2j-1)\\
+	& A(2i, 2j)= (2j - 1) A(2i, 2j-2) + (2i) A(2i-1, 2j-1) 
+	\end{align*}
+	Then using mathematical induction we have $A(i,j) = (i+j-1)!!$ if $i + j $ is even.
+	Based on our discussion on the parity of $i+j$, in general we have $A(i,j)=\delta(i,j)(i+j-1)!!$.
+Equation \eqref{eq:UUM} follows by applying \eqref{eq:UUN}.
 \end{proof}
-\begin{lemma}\label{lemma:UUM}
-    \begin{align}
-        &\delta(i, j)(i-1)(j-1)(i+j-3)!!  \notag\\
-        =&\sum_{k=0}^{\min\{i, j\}}
-        \delta(k, i) \delta(k, j) \frac{(k-1)i!j!}{(i-k)!!(j-k)!!k!}
-    \end{align}
-\end{lemma}
-\begin{proof}
-    Using results from Lemma \ref{lemma:UUN},
-    \begin{align*}
-        & \textrm{RHS}  = \sum_{k=1}^{\min\{i, j\}}
-        \delta(k, i) \delta(k, j) \frac{i!j!}{(i-k)!!(j-k)!!(k-1)!}\\
-        & -\sum_{k=0}^{\min\{i, j\}}
-        \delta(k, i) \delta(k, j) \frac{i!j!}{(i-k)!!(j-k)!!k!}  \\
-        & =  ij\sum_{k=0}^{\min\{i-1, j-1\}}
-        \delta(k, i) \delta(k, j) \frac{(i-1)!(j-1)!}{(i-1-k)!!(j-1-k)!!k!} \\
-        & -\delta(i, j)(i+j-1)!! \\
-        & = \delta(i, j)ij(i+j-3)!! - \delta(i, j)(i+j-1)!! \\
-        & = \delta(i, j)(i-1)(j-1)(i+j-3)!!
-    \end{align*}
-\end{proof}
+
 \begin{proof}[Proof of Proposition \ref{prop:quadratic}]
 Let $\underline{Z} = \bm{A}\underline{Y}, \underline{Z'} = (\mathbf{I} - \bm{A})\underline{Y}$. Given $\bm{X}$, $\underline{Z}$ is Gaussian vector with covariance matrix $\bm{A} \Cov[\underline{Y}] \bm{A}^\T = \frac{\bm{A}}{n}$. Similarly, $\Cov[\underline{Z'}] = \frac{\mathbf{I} - \bm{A}}{n}$. Using $\bm{A}^2 = \bm{A}$ we have $\E[\underline{Z'}\underline{Z}^\T] = 0$. That is, $\underline{Z'}$ and $\underline{Z}$ are independent. The expectation of $\E[f(\underline{Z}_i)g(\underline{Z'}_j)] = \E[f(\underline{Z}_i)]\E[g(\underline{Z'}_j)]$ for arbitrary function.
     
@@ -540,13 +507,13 @@ where
     \frac{\delta(s,i)(s-1)i!j!}{s!(i-s)!!(j-s)!!}
     \E[\bm{A}_{12}^{s+1} \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}]
 \end{align*}
-We estimate the order of positive number $M_1, M_2$ under the condition $ m << k$. Since $k$ is large, we assume $k, n \to +\infty$ while $m$ is finite. Let $ r= \frac{k}{n}$. Since $\bm{A}=\bm{X}\bm{X}^\T$, from Proposition 7.2, Chapter 7 of \cite{eaton1989group} we can get $\bm{A}_{11}$ is Beta distribution with parameter $B(\frac{k}{2}, \frac{n-k}{2})$.
+We estimate the order of positive number $M_1, M_2$ under the condition $ m \ll k$. Since $k$ is large, we assume $k, n \to +\infty$ while $m$ is finite. Let $ r= \frac{k}{n}$. Since $\bm{A}=\bm{X}\bm{X}^\T$, from Proposition 7.2, Chapter 7 of \cite{eaton1989group} we can get $\bm{A}_{11}$ is Beta distribution with parameter $B(\frac{k}{2}, \frac{n-k}{2})$.
 From Theorem 1 of \cite{multivariateBeta},
 $\E[\bm{A}_{11}^t]-\E[\bm{A}_{11}^{t+1}] = (1-r)\prod_{s=0}^{t-1} \frac{2s+k}{2s+n+2} \sim (1-r)r^t$. Therefore $M_1 \sim \frac{(1-r)r^t}{n^{t-1}}(i-1)(j-1)(2t-3)!!$.
-We consider $s+1$ is even, $\E[\bm{A}_{12}^{s+1} \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}] \leq \sqrt{\E[\bm{A}_{12}^{s+1}\bm{A}_{11}^{i-s}]\E[\bm{A}_{12}^{s+1}\bm{A}_{22}^{j-s}]}$. When $k, n$ are sufficiently large, we can treat $\bm{A}_{11}, \bm{A}_{12}$ as joint Gaussian. From Theorem 2 of \cite{multivariateBeta}: $\E[\bm{A}_{12}^{s+1}\bm{A}_{11}^{i-s}] \sim s!! r^{i-s}(\frac{r(1-r)}{n})^{(s+1)/2}$. Similarly $\E[\bm{A}_{12}^{s+1}\bm{A}_{22}^{j-s}] \sim s!! r^{j-s}(\frac{r(1-r)}{n})^{(s+1)/2}$. It implies that $\E[\bm{A}_{12}^{s+1} \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}] \leq (s!!) r^{t-s}(\frac{r(1-r)}{n})^{(s+1)/2}$. We can get an upper bound of $M_2$ using Lemma \ref{lemma:UUM}: $M_2 \leq \frac{1}{n^{t-2}} (i-1)(j-1)(2t-3)!!\E[\bm{A}_{12}^{4} \bm{A}_{11}^{\frac{i - 3}{2}}\bm{A}_{22}^{\frac{j - 3}{2}}] \leq \frac{(1-r)^2 r^{t-1}}{n^t}3(i-1)(j-1)(2t-3)!!= \frac{3(1-r)}{k} M_1$.
+We consider $s+1$ is even, $\E[\bm{A}_{12}^{s+1} \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}] \leq \sqrt{\E[\bm{A}_{12}^{s+1}\bm{A}_{11}^{i-s}]\E[\bm{A}_{12}^{s+1}\bm{A}_{22}^{j-s}]}$. When $k, n$ are sufficiently large, we can treat $\bm{A}_{11}, \bm{A}_{12}$ as joint Gaussian. From Theorem 2 of \cite{multivariateBeta}: $\E[\bm{A}_{12}^{s+1}\bm{A}_{11}^{i-s}] \sim s!! r^{i-s}(\frac{r(1-r)}{n})^{(s+1)/2}$. Similarly $\E[\bm{A}_{12}^{s+1}\bm{A}_{22}^{j-s}] \sim s!! r^{j-s}(\frac{r(1-r)}{n})^{(s+1)/2}$. It implies that $\E[\bm{A}_{12}^{s+1} \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}] \leq (s!!) r^{t-s}(\frac{r(1-r)}{n})^{(s+1)/2}$. We can get an upper bound of $M_2$ using Equation \ref{eq:UUM}: $M_2 \leq \frac{1}{n^{t-2}} (i-1)(j-1)(2t-3)!!\E[\bm{A}_{12}^{4} \bm{A}_{11}^{\frac{i - 3}{2}}\bm{A}_{22}^{\frac{j - 3}{2}}] \leq \frac{(1-r)^2 r^{t-1}}{n^t}3(i-1)(j-1)(2t-3)!!= \frac{3(1-r)}{k} M_1$.
 When $k \to \infty$, we see that $M_2$ can be ignored and $\mathbf{M}'_{ij} = -\delta(i,j)\frac{(1-r)r^t}{n^{t-1}}(i-1)(j-1)(2t-3)!!$. By changing of variables by Equation \ref{eq:pqt} we can get the correspondence $\mathbf{M}_{ij} = \frac{n^{-1+2t}}{k^t} \mathbf{M}'_{ij} = -\delta(i,j)(1-r)(i-1)(j-1)(2t-3)!!$. 
 
-To get the constraint on $\underline{q}$, we should choose $\norm{\xi} = 1$, which is equivalent to $\E_{\bm{X}}[\mathrm{C}_1] = 1$. By some computation we can get the expression of $\mathrm{N}$ when $ m << k$.
+To get the constraint on $\underline{q}$, we should choose $\norm{\xi} = 1$, which is equivalent to $\E_{\bm{X}}[\mathrm{C}_1] = 1$. By some computation we can get the expression of $\mathrm{N}$ when $ m \ll k$.
 
 \end{proof}
 
@@ -570,7 +537,7 @@ Then we have $ \mathbf{U} \underline{p} = \underline{e_m}$.
     $ \iff (1+x)^{m'} = 0 \,(x=-1)$
 \end{proof}
 \begin{proof}[Proof of Proposition \ref{prop:value} ]
-    Let $\mathbf{U}$ be the same matrix defined in Lemma \ref{lemma:Upem}. From Lemma \ref{lemma:UUN} we have $\mathbf{N}_{ij} = \sum_{k=0}^m \mathbf{U}_{ki}\mathbf{U}_{kj}$. Therefore $\mathbf{N} = \mathbf{U}^\T\mathbf{U}$. Let $\Lambda = \diag[1, 0, -1, \dots, 1-m]$, from Lemma \ref{lemma:UUM} we have $\mathbf{M}_{ij} = \sum_{k=0}^m \mathbf{U}_{ki}\Lambda_{kk}\mathbf{U}_{kj}$. Therefore $\mathbf{M} = \mathbf{U}^\T\Lambda\mathbf{U}$. Then the problem $\min_{\underline{p}^\T N \underline{p} = 1} \underline{p}^\T \mathbf{M}\underline{p} = \min_{\underline{\tilde{p}}^\T\underline{\tilde{p}} = 1} \sum_{k=0}^m (1-k)\underline{\tilde{p}}_k^2 = 1-m$. We have made the invertible transformations $\underline{\tilde{p}} = \mathbf{U}\underline{p}$. Since the minimum value is achieved at $\underline{\tilde{p}} = \underline{e_m}$, from Lemma \ref{lemma:Upem} we have $\underline{p}_i = \delta(i, m) (-1)^{(m-i)/2}\frac{\sqrt{m!}}{i!(m-i)!!}$. Equation \eqref{eq:ximopt} follows by Transforming $\underline{p}$ back to $\underline{q}$ using Equation \eqref{eq:pqt} and comparing the expression of $\underline{q}$ with the explicit formula of probabilists' Hermite polynomials \cite[Eq. 18.5.13]{NIST:DLMF}.
+    Let $\mathbf{U}$ be the same matrix defined in Lemma \ref{lemma:Upem}. From Lemma \ref{lemma:UUN} we have $\mathbf{N}_{ij} = \sum_{k=0}^m \mathbf{U}_{ki}\mathbf{U}_{kj}$. Therefore $\mathbf{N} = \mathbf{U}^\T\mathbf{U}$. Let $\Lambda = \diag[1, 0, -1, \dots, 1-m]$, from Equation \ref{eq:UUM} we have $\mathbf{M}_{ij} = \sum_{k=0}^m \mathbf{U}_{ki}\Lambda_{kk}\mathbf{U}_{kj}$. Therefore $\mathbf{M} = \mathbf{U}^\T\Lambda\mathbf{U}$. Then the problem $\min_{\underline{p}^\T N \underline{p} = 1} \underline{p}^\T \mathbf{M}\underline{p} = \min_{\underline{\tilde{p}}^\T\underline{\tilde{p}} = 1} \sum_{k=0}^m (1-k)\underline{\tilde{p}}_k^2 = 1-m$. We have made the invertible transformations $\underline{\tilde{p}} = \mathbf{U}\underline{p}$. Since the minimum value is achieved at $\underline{\tilde{p}} = \underline{e_m}$, from Lemma \ref{lemma:Upem} we have $\underline{p}_i = \delta(i, m) (-1)^{(m-i)/2}\frac{\sqrt{m!}}{i!(m-i)!!}$. Equation \eqref{eq:ximopt} follows by Transforming $\underline{p}$ back to $\underline{q}$ using Equation \eqref{eq:pqt} and comparing the expression of $\underline{q}$ with the explicit formula of probabilists' Hermite polynomials \cite[Eq. 18.5.13]{NIST:DLMF}.
 \end{proof}
 %%%%%%
 %% To balance the columns at the last page of the paper use this
