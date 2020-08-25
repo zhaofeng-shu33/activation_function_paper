@@ -219,15 +219,11 @@ Proposition \ref{prop:linear} says the averaged estimation error $\mathrm{E}$ fo
 This result is consistent with our intuition
 since we use $k$ degrees of freedom to estimate arbitrary vector in $n$ dimensional space.
 
-The proof of Proposition \ref{prop:linear} depends on the following lemma:
-\begin{lemma}\label{lem:A}
-Suppose $\bm{X}$ is uniformly distributed random orthogonal matrix, $\bm{A} = \bm{X}\bm{X}^\T$.
-Then $\E[\bm{A}] = \frac{k}{n} \mathbf{I}_n$.
-\end{lemma}
-We defined random matrix $\bm{A}$ in Lemma \ref{lem:A} for notation convenience.
-Since $\bm{X}$ is orthogonal, $\bm{A}$ is idempotent. That is, we have $\bm{A}^2 = \bm{A}$.
 
-We have analyzed the averaged error for linear function. To extend our result on general non-linear functions, we need to choose a proper function space $F$. By detailed analysis we consider a local regime. That is, differential functions which are near to linear function. The distance is quantified by a positive value $\epsilon$. Thus we consider $F_{\sigma_0}(\epsilon) =\{ \sigma \,|\, \norm{\sigma - \sigma_0} \leq \epsilon\}$. Then all differential functions can be treated as $\cup_{\epsilon>0} F(\epsilon)$. The norm is actually the expectation w.r.t. the distribution space $G$. That is $\E[\norm{(\sigma - \sigma_0)(\bm{A}\underline{Y})}^2] \leq \epsilon^2$.
+
+We have analyzed the averaged error for linear function. To extend our result on general non-linear functions, we need to choose a proper function space $F$. By detailed analysis we consider a local regime. That is, differential functions which are near to linear function. The distance is quantified by a positive value $\epsilon$. Thus we consider $F_{\sigma_0}(\epsilon) =\{ \sigma \,|\, \norm{\sigma - \sigma_0} \leq \epsilon\}$. Then all differential functions can be treated as $\cup_{\epsilon>0} F(\epsilon)$. The norm is actually the expectation w.r.t. the distribution space $G$. That is $\E[\norm{(\sigma - \sigma_0)(\bm{A}\underline{Y})}^2] \leq \epsilon^2$
+where $\bm{A} = \bm{X}\bm{X}^\T$.
+
 
 We are particularly interested in how the averaged error changes when $\sigma$ is contracted to $\sigma_0$ along a certain path in $F(\sigma)$. That is, given a function $\xi$ we can construct $\sigma = \sigma_0 + \epsilon \xi$ where $\xi \in F_0 = \{\xi | \norm{\xi} \leq 1 \}$. $\sigma \to \sigma_0$ is equivalent to $\epsilon \to 0$.
 
@@ -314,6 +310,10 @@ In this paper, we have investigated the mechanism of non-linearity in one node n
 
 %\section*{Acknowledgment}
 \appendix
+\begin{lemma}\label{lem:A}
+	Suppose $\bm{X}$ is uniformly distributed random orthogonal matrix, $\bm{A} = \bm{X}\bm{X}^\T$.
+	Then $\E[\bm{A}] = \frac{k}{n} \mathbf{I}_n$.
+\end{lemma}
 \begin{proof}[Proof of Lemma \ref{lem:A} ]
 By the symmetric property we only need to show $\E[\bm{A}_{11}] = \frac{k}{n}$ and
 $\E[\bm{A}_{12}] = 0$. For the first equation, we have $n\E[\bm{A}_{11}]
@@ -430,7 +430,7 @@ $  \E[X^i Y^j] = \sum_{k=0}^{\min\{i,j\}} C_k \Sigma_{12}^k \Sigma_{11}^{(i-k)/2
 \begin{proof}[Proof of Lemma \ref{lemma:UUN} ]
 	If $ i + j $ is odd, $ \ide{i}{j} = 0 $ and
 	$ \ide{k}{i}\ide{k}{j} = 0 $. Then Equation \eqref{eq:UUN} holds.
-	Therefore we only need to consider the case if $ i + j $ is even.
+	Therefore, we only need to consider the case if $ i + j $ is even.
 	First we define $A(i, j) = \sum_{k=0}^{\min\{i, j\}}
 	\ide{k}{i} \ide{k}{j} \frac{i! j!}{(i-k)!!(j-k)!! k!}$.
 	Then we can show that
@@ -440,7 +440,7 @@ $  \E[X^i Y^j] = \sum_{k=0}^{\min\{i,j\}} C_k \Sigma_{12}^k \Sigma_{11}^{(i-k)/2
 	\end{align*}
 	Then using mathematical induction we have $A(i,j) = (i+j-1)!!$ if $i + j $ is even.
 	Based on our discussion on the parity of $i+j$, in general we have $A(i,j)=\ide{i}{j}(i+j-1)!!$.
-Equation \eqref{eq:UUM} follows by applying \eqref{eq:UUN}.
+	Equation \eqref{eq:UUM} follows by applying \eqref{eq:UUN}.
 \end{proof}
 
 \begin{proof}[Proof of Proposition \ref{prop:quadratic}]
