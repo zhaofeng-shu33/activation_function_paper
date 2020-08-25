@@ -207,8 +207,8 @@ is called the universally good activation function for the single node neural ne
 
 Definition \ref{def:ug} is a general formulation for any distribution space $G$.
 To get some analytical result we should choose some specific distribution.
-Indeed, we assume $\underline{Y}$ is Gaussian distribution with covariance matrix $\frac{1}{n} \mathbf{I}_n$ and
-we choose $\bm{X}$ as uniformly distributed random orthogonal matrix \cite{eaton1989group}. The choice of $\bm{X}$ is based on the following observations: If each element of $\bm{X}'$ is iid N(0,1) random variables and $\sigma(\bm{X}'\underline{w}')$ is considered, we can make the transformation $\bm{X} = \bm{X}'(\bm{X}'^\T\bm{X}')^{-1/2}, \underline{w} = (\bm{X}'^\T\bm{X}')^{1/2}\underline{w}'$. We see that $\bm{X}'\underline{w}' = \bm{X}\underline{w}$. From \cite[Proposition 7.1]{eaton1989group} $\bm{X}$ is random orthogonal matrix.
+Indeed, we assume $\underline{Y}$ follows Gaussian distribution $\mathcal{N}(\mathbf{0},\frac{1}{n} \mathbf{I}_n)$ and
+we choose $\bm{X}$ as uniformly distributed random orthogonal matrix \cite{eaton1989group}. The choice of $\bm{X}$ is based on the following observations: If each element of $\bm{X}'$ is i.i.d. $\mathcal{N}(0, 1)$ random variables and $\sigma(\bm{X}'\underline{w}')$ is considered, we can make the transformation $\bm{X} = \bm{X}'(\bm{X}'^\T\bm{X}')^{-1/2}, \underline{w} = (\bm{X}'^\T\bm{X}')^{1/2}\underline{w}'$. We see that $\bm{X}'\underline{w}' = \bm{X}\underline{w}$. From \cite[Proposition 7.1]{eaton1989group} $\bm{X}$ is random orthogonal matrix.
 Further we assume $\underline{Y}$ and $\bm{X}$ are independent.
 This defines our distribution space $G$. Such choice is natural and it leads to simple expression of the averaged error for linear function.
 
