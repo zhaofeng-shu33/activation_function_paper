@@ -52,7 +52,7 @@
 
 % ------------------------------------------------------------
 \begin{document}
-\title{On the Universally Good Activation Function for One Node Neural Network} 
+\title{On the Universally Optimal Activation Function for a Class of Residual Neural Networks} 
 
 % %%% Single author, or several authors with same affiliation:
 % \author{%
@@ -116,9 +116,8 @@
 %% to remove this comment!
 %%
 \begin{abstract}
-Non-linear activation function plays a vital role in artificial neural network.
-In this paper, we show that under certain conditions using Hermite orthogonal polynomial as activation function
-can achieve the minimal error on average. The non-linear gain increases linearly as we increase the maximal degree of Hermite polynomials. Our study shares insight on the mechanism of non-linearity in neural networks.
+While non-linear activation functions play vital roles in artificial neural networks, it is generally unclear of how non-linearity can improve the quality of function approximations.
+In this paper, we present a theoretical framework to rigorously analyze the performance gain of using non-linear activation functions for a class of residual neural networks (ResNets). In particular, we show that when the input features to the ResNet are assumed to be uniformly chosen from the functional spaces, using the non-linear activation functions to generate the ResNet output averagely outperforms the linear activation functions, in which the performance gain can be explicitly computed. Moreover, we show that when the activation functions are chosen as polynomials with the degree much less than the dimension of the input features, the optimal activation functions are precisely the Hermite polynomials. This demonstrates the role of the Hermite polynomials in function approximations for ResNets.
 \end{abstract}
 
 
@@ -142,6 +141,9 @@ And without loss of generality, we assume input features are orthogonal to each 
 Our measure of activation function is not restricted to one specific network input and output but is averaged over numerous different such pairs.
 We find that the averaged loss function is minimized when the perturbation term is Hermite orthogonal polynomial.
 Hermite polynomial as activation function has been argued to be beneficial in previous work \cite{ma2005constructive} and our result confirms this fact to some extent.
+
+
+To the best of our knowledge, this is the first work that can explicitly quantify the performance gain in functional approximation, and provide the close form solutions of the optimal non-linear activation functions for certain classes of neural networks.
 
 The paper is organized as follows: In Section \ref{sec:mm}, the universally good activation function problem
 is formulated mathematically.
