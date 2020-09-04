@@ -129,7 +129,9 @@ In this paper, we present a theoretical framework to rigorously analyze the perf
 
 \section{Introduction}
 In artificial neural networks, activation functions are applied to linear combinations of input features and contribute magically to the whole system.
-There are many choices for activation function and none of them performs best for all problems. There have been empirical works which propose methods  to optimize over parameterized activation function together with network weight \cite{ramachandran2017searching}.
+To design a good neural network requires not only the inner structure of each layer but the layer to layer activation. The current approach to choose
+activation function is mostly empirically motivated.
+For example, there have been empirical works which propose methods to optimize over parameterized activation function together with network weight \cite{ramachandran2017searching}.
 However, to balance the training efficiency and network performance the activation function family can not be too complex\cite{laudani2015training}.
 Besides empirical study, there are also theoretical investigation on the expressive power of neural networks, which mainly focuses on the power of the number of layers and hidden units while the activation function is fixed to some commonly used one\cite{AroraBMM18}. But we still know little about the theoretical property of activity function, which also contributes to the expressive power of neural network. Our study fills this gap to some extent: we focus on how the activation function influences the network loss.
 
@@ -229,9 +231,9 @@ where $\bm{A} = \bm{X}\bm{X}^\T$.
 
 We are particularly interested in how the averaged error changes when $\sigma$ is contracted to $\sigma_0$ along a certain path in $F(\sigma)$. That is, given a function $\xi$ we can construct $\sigma = \sigma_0 + \epsilon \xi$ where $\xi \in F_0 = \{\xi | \norm{\xi} \leq 1 \}$. $\sigma \to \sigma_0$ is equivalent to $\epsilon \to 0$.
 
-To measure the change rate of $E[\sigma]$ in local regime of linear function we introduce the concept of the index of the averaged estimation error as follows:
+To measure the change rate of $E[\sigma]$ in local regime of linear function we introduce the concept of the asymptotic error rate as follows:
 \begin{definition}
-Let $\xi \in F_0$, the index of the averaged estimation error for $\xi$ is
+Let $\xi \in F_0$, the asymptotic error rate for $\xi$ is
 \begin{equation}\label{eq:Cxi}
 \mathrm{C}[\xi] = \lim_{\substack{\epsilon \to 0 \\ \sigma = \sigma_0 + \epsilon \xi}} \frac{E[\sigma] - E[\sigma_0]}{\epsilon^2}
 \end{equation}
