@@ -131,8 +131,8 @@ In this paper, we present a theoretical framework to rigorously analyze the perf
 In artificial neural networks, activation functions are applied to linear combinations of input features and contribute magically to the whole system.
 A good neural network requires not only the careful choice of the inner structure of each layer but designing the layer to layer activation. The current approach to choose
 activation function is mostly empirically motivated.
-For example, we could optimize over parameterized activation function together with network weight to obtain desirable activation function \cite{ramachandran2017searching}.
-However, to balance the training efficiency and network performance, the activation function family can not be too complex \cite{laudani2015training}. The searched activation
+For example, it is a common practice to optimize over parameterized activation function together with network weight to obtain desirable activation function \cite{ramachandran2017searching}.
+However, to balance the training efficiency and network performance, the family of activation functions cannot be too complex \cite{laudani2015training}. The searched activation
 function is not necessary the optimal one. These two characteristics limits the effectiveness of empirical study.
 Besides empirical study, there are also theoretical investigation on the expressive power of neural networks, which mainly focuses on the power of the number of layers and hidden units while the activation function is fixed to some commonly used one \cite{AroraBMM18}. Current research explores little about the theoretical property of activity function, which also contributes to the expressive power of neural network. Our study fills this gap by studying how the activation function influences the network loss.
 
