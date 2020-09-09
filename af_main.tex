@@ -129,20 +129,21 @@ In this paper, we present a theoretical framework to rigorously analyze the perf
 
 \section{Introduction}
 In artificial neural networks, activation functions are applied to linear combinations of input features and
-enhance performance of the whole system.
+enhance the performance of the whole system.
 The current approach to choose
-activation function is mostly empirically motivated.
-For example, it is a common practice to optimize over parameterized activation function to obtain desirable activation function \cite{ramachandran2017searching}.
+activation function is mainly empirically motivated.
+For example, it is a common practice to optimize over parameterized activation function to obtain desirable one \cite{ramachandran2017searching}.
 However, to balance the training efficiency and network performance, the family of activation functions should be carefully chosen \cite{laudani2015training}. In addition, the searched activation function is not necessary the optimal one. These two characteristics limits the effectiveness of empirical study.
-Besides empirical study, there are also theoretical investigation on the expressive power of neural networks, which mainly focuses on the power of the number of layers and hidden units while the activation function is fixed to some commonly used one \cite{AroraBMM18}. Current research explores little about the theoretical property of activity function, which also contributes to the expressive power of neural network. Our study fills this gap by studying how the activation function influences the network loss.
+Besides empirical study, there are also theoretical investigation on the expressive power of neural networks, which mainly focuses on studying the number of layers and hidden units while the activation function is fixed to some commonly used one \cite{AroraBMM18}. Current research explores little about the theoretical property of activity function, which also contributes to the expressive power of neural network. Our study fills this gap by studying how the activation function influences the network loss.
 
 To be more specific, we fix the network structure and choose activation function from some function space.
 In our study, the activation function is chosen from the space which contains non-linear functions ``near" the linear space.
 By doing so, we can compare the non-linear loss with that of linear network.
-To simplify the analysis, we consider the simplest neural network with only one output node and several input node.
+To simplify the analysis, we consider the simplest neural network with only one output node and several input node, which can be regarded as a simplified
+ResNet model.
 % This network can be regarded as a kind of non-linear regression.
 And without loss of generality, we assume input features are orthogonal to each other since orthogonality can simply be achieved by Principal Canonical Analysis.
-Our measure of activation function is not restricted to one specific network input and output but is averaged over numerous different such pairs.
+Our measure of activation function is not restricted to one specific input and output pair but is averaged over the pair sampled from some distributions.
 We find that the averaged loss is minimized when the non-linear term is Hermite orthogonal polynomial.
 Hermite polynomial as activation function has been argued to be beneficial in previous work \cite{ma2005constructive} and our result confirms this fact to some extent.
 
