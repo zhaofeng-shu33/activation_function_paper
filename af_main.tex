@@ -459,7 +459,7 @@ Let $\mathbf{C}_1 = \E_{\underline{Y}} [\norm{\xi(\bm{A}\underline{Y})}^2]$, $\m
 = \E_{\underline{Y}}
 [\norm{\bm{X}^\T\xi(\bm{A}\underline{Y})}^2]$, $\mathbf{C}_3 
 = \E_{\underline{Y}}
-[\norm{\bm{X}^\T \nabla\xi(\bm{A}\underline{Y})(Y-\bm{A}\underline{Y})}^2]$,
+[\norm{\bm{X}^\T \nabla\xi(\bm{A}\underline{Y})(\underline{Y}-\bm{A}\underline{Y})}^2]$,
 $\mathrm{C}[\bm{X}, \xi] :=  \mathrm{C}_1 - \mathrm{C}_2 - \mathrm{C}_3$, Then $\mathrm{C}[\xi] = \E_{\bm{X}}[\mathrm{C}[\bm{X}, \xi]]$.
 We then have
 \begin{align*}
@@ -495,7 +495,7 @@ $\xi(z) = \sum_{i=0}^m \underline{q}_i z^i $,
 there will be an $(m+1) \times (m+1) $ random matrix $\bm{M}$ and
 we can write $\mathrm{C}[\bm{X}, \xi]$
 as the quadratic form $ \underline{q}^T \bm{M} \underline{q} $.
-The element $\bm{M}_{ij}$ is the coefficient of $a_ia_j$:
+The element $\bm{M}_{ij}$ is the coefficient of $q_iq_j$:
 \begin{align*}
     \bm{M}_{ij} &= n(1-\bm{A}_{11}) (\E[\underline{Z}_1^{i+j}] -
     ij \frac{1}{n}\bm{A}_{11} \E[\underline{Z}_1^{i+j-2}])  \\
