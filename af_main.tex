@@ -131,16 +131,17 @@ In this paper, we present a theoretical framework to rigorously analyze the perf
 % importance or advantage of activation function
 Activation functions
 enhance the mapping capabilities of the neural network.
-The current approach to choose
+The current approach to design
 activation function is mainly empirically motivated.
-For example, it is a common practice to optimize over parameterized activation function to obtain desirable one \cite{ramachandran2017searching}.
-Blind optimization increases the computational cost with little network performance gain \cite{laudani2015training}. In addition, the searched activation function is not necessary the optimal one and behaves equally well for other datasets.
-Besides empirical study, there are also theoretical investigation on the expressive power of neural networks, which mainly focuses on studying the number of layers and hidden units while choosing some commonly used activation function \cite{AroraBMM18}. Current research explores little about the theoretical property of activity function, which also contributes to the expressive power of neural network. Our study fills this gap by studying how the activation function reduces the neural network loss.
+For example, it is a common practice to optimize over parameterized activation function \cite{ramachandran2017searching}.
+Blind optimization increases the computational cost with little network performance gain \cite{laudani2015training}.
+In addition, the searched activation function may not behave well for all kinds of datasets.
+Besides empirical study, there are also theoretical investigation on the expressive power of neural networks, which mainly focuses on studying the number of layers and hidden units while choosing some commonly used activation function \cite{AroraBMM18}. As we can see, current research explores little about the theoretical property of activity function, which also contributes to the expressive power of neural network. Our study fills this gap by studying how the activation function reduces the neural network loss. 
 
 To be more specific, we fix the network structure and choose activation function from some function space.
 In our study, the activation function is chosen from the space which contains non-linear functions ``near" the linear space.
-By doing so, we can compare quantitatively the loss function of non-linear network with that of linear network.
-To simplify the analysis, we consider the one node neural network -- the simplest neural network with only one output node and several input nodes, which can also be regarded as a special ResNet model.
+By doing so, we can compute quantitatively the network loss using second order approximation.
+To simplify the analysis, we consider the one-node neural network -- the simplest neural network with only one output node and several input nodes, which can also be regarded as a special ResNet model.
 % This network can be regarded as a kind of non-linear regression.
 And without loss of generality, we assume input features are orthogonal to each other since orthogonality can simply be achieved by Principal Canonical Analysis.
 Our measure of activation functions is not restricted to one specific input and output pair but is averaged over the pair sampled from some distributions.
@@ -169,11 +170,11 @@ $n!!$ is the double factorial which equals $n \times (n-2) \dots \times1$ if $n$
 
 \begin{figure}\label{fig:ns}
 \includegraphics[width=\linewidth]{network_structure.eps}
-\caption{The structure of one node neural network. The activation function $\sigma$ takes the form $\sigma(z)=z + \epsilon \xi(z)$}
+\caption{The structure of one-node neural network. The activation function $\sigma$ takes the form $\sigma(z)=z + \epsilon \xi(z)$}
 \end{figure}
 
 \section{Mathematical Model}\label{sec:mm}
-We consider one node neural networks, whose structure is shown in Figure \ref{fig:ns}.
+We consider one-node neural networks, whose structure is shown in Figure \ref{fig:ns}.
 This type of network arises naturally from function approximation problems, where a target function $g$
 is estimated by $\sigma(\sum_{i=1}^k w_i f_i)$ and the domain of definition for $f_i, g$ is a finite set.
 
@@ -314,7 +315,7 @@ the higher order term contributes more.
 
 \section{Conclusion}\label{sec:con}
 
-In this paper, we have investigated the mechanism of non-linearity in one node neural network. If we allow polynomial perturbation of linear activation function, the loss is linearly decreased as the maximal degree of polynomial is increased. How non-linearity works in more complex neural networks will be considered in the future. 
+In this paper, we have investigated the mechanism of non-linearity in one-node neural network. If we allow polynomial perturbation of linear activation function, the loss is linearly decreased as the maximal degree of polynomial is increased. How non-linearity works in more complex neural networks will be considered in the future. 
 
 %\section*{Acknowledgment}
 \appendix
