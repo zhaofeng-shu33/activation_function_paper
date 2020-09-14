@@ -174,7 +174,7 @@ $n!!$ is the double factorial which equals $n \times (n-2) \dots \times1$ if $n$
 \end{figure}
 
 \section{Mathematical Model}\label{sec:mm}
-We consider one-node neural networks, whose structure is shown in Figure \ref{fig:ns}.
+We consider one-node neural networks, whose structure is shown in Fig. \ref{fig:ns}.
 This type of network arises naturally from function approximation problems, where a target function $g$
 is estimated by $\sigma(\sum_{i=1}^k w_i f_i)$ and the domain of definition for $f_i, g$ is a finite set.
 
@@ -304,7 +304,7 @@ It says the local decreasing rate of $\mathrm{E}[\sigma]$ is strictly linearly i
 
 To verify the change rate of $C[\xi]$ as we increase the maximal degree of polynomials $m$,
 we conduct a simple experiment. We choose $n=180, k=120$ and use $\xi_m(z)$ from Proposition
-\ref{prop:value} and normalized polynomials with only highest degree $\tilde{\xi}_m(z) = \frac{(nz/\sqrt{k})^m}{\sqrt{(2m-1)!!n}}$ as activation function. Using the Monte Carlo method to compute $\mathrm{C}[\xi]$ from Proposition \ref{prop:Esigma}, the result is shown in Figure \ref{fig:fixednk}. As can be seen, the Hermite polynomial results coincide with the theoretical lower bound in Proposition \ref{prop:value}; For other polynomials, it cannot achieve the minimum value but we can still see that the nearly linear relationship between $C[\xi]$ and degree $m$. From Equation \eqref{eq:pqt}, we also notice that for $\tilde{\xi}_m$, the highest degree term contributes $-(1-\frac{k}{n})\frac{(m-1)^2}{2m-1}$ to $C[\xi]$, which is approximately $\frac{1}{2} C[\xi_m]$. This phenomenon tells us that the contribution of each degree of the polynomial to $C[\xi]$ is not evenly distributed and
+\ref{prop:value} and normalized polynomials with only highest degree $\tilde{\xi}_m(z) = \frac{(nz/\sqrt{k})^m}{\sqrt{(2m-1)!!n}}$ as activation function. Using the Monte Carlo method to compute $\mathrm{C}[\xi]$ from Proposition \ref{prop:Esigma}, the result is shown in Fig. \ref{fig:fixednk}. As can be seen, the Hermite polynomial results coincide with the theoretical lower bound in Proposition \ref{prop:value}; For other polynomials, it cannot achieve the minimum value but we can still see that the nearly linear relationship between $C[\xi]$ and degree $m$. From Equation \eqref{eq:pqt}, we also notice that for $\tilde{\xi}_m$, the highest degree term contributes $-(1-\frac{k}{n})\frac{(m-1)^2}{2m-1}$ to $C[\xi]$, which is approximately $\frac{1}{2} C[\xi_m]$. This phenomenon tells us that the contribution of each degree of the polynomial to $C[\xi]$ is not evenly distributed and
 the higher order term contributes more.  
 
 
