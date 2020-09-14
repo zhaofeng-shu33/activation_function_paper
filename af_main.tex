@@ -168,9 +168,9 @@ $[\cdot]^\T$ is the transpose operation on matrix; $\ide{i}{j} = (i+j)\, \mathrm
 which equals 1 if $ i + j$ is even and 0 otherwise;
 $n!!$ is the double factorial which equals $n \times (n-2) \dots \times1$ if $n$ is odd and $n \times (n-2)\dots \times 2$ for even $n$. Furthermore, $(-1)!!=1,(-3)!!=-1$.
 
-\begin{figure}\label{fig:ns}
+\begin{figure}
 \includegraphics[width=\linewidth]{network_structure.eps}
-\caption{The structure of one-node neural network. The activation function $\sigma$ takes the form $\sigma(z)=z + \epsilon \xi(z)$}
+\caption{The structure of one-node neural network. The activation function $\sigma$ takes the form $\sigma(z)=z + \epsilon \xi(z)$}\label{fig:ns}
 \end{figure}
 
 \section{Mathematical Model}\label{sec:mm}
@@ -178,14 +178,14 @@ We consider one-node neural networks, whose structure is shown in Fig. \ref{fig:
 This type of network arises naturally from function approximation problems, where a target function $g$
 is estimated by $\sigma(\sum_{i=1}^k w_i f_i)$ and the domain of definition for $f_i, g$ is a finite set.
 
-To formulate the problem using neural networks, we consider a k dimensional random vector $\underline{X}=(X_1, \dots, X_k)$ and a random variable $Y$.
+To formulate the problem using neural networks, we consider a $k$-dimensional random vector $\underline{X}=(X_1, \dots, X_k)$ and a random variable $Y$.
 Our goal is to predict $Y$ using the neural network with $\underline{X}$ as input.
 To be more specific, $Y$ is approximated by $ \sigma(\sum_{i=1}^k w_i X_i)$.
-For a given problem, we have $n$ data pairs $(x_1, y_1), \dots, (x_n, y_n)$ and
+For a given problem, we have $n$ data pairs $(x_1, y_1), \dots, (x_n, y_n)$, and
 the $\ell_2$ loss function is given by
 $\ell_2(\underline{y}, \bm{x}) = \norm{\underline{y} - \sigma(\sum_{i=1}^k w_i \underline{x}_i)}^2 $
-where $\underline{x}_i= (x_{1i}, \dots, x_{ni})^\T$ is the i-th column of the feature vector $\bm{x}$ and
-$\underline{y} = (y_1, \dots, y_n)$ is the label vector. $\sigma$ is applied to a vector element-wise.
+where $\underline{x}_i= (x_{1i}, \dots, x_{ni})^\T$ is the $i$-th column of the feature vector $\bm{x}$ and
+$\underline{y} = (y_1, \dots, y_n)$ is the label vector. $\sigma$ is applied to a vector in elementwise way.
 The optimal weight for a given activation function $\sigma$ is the solution to $\min \ell_2(\underline{y}, \bm{x})$.
 
 
@@ -194,13 +194,13 @@ For different problems, we suppose $\underline{y}, \bm{x}$ are drawing from some
 That is, we treat them as random vectors and rewrite them as $\underline{Y}, \bm{X}$.
 We are interested to find a function $\sigma$ which minimizes
 $\E[ \min \ell_2(\underline{Y}, \bm{X})]$.
-Our constraint on the activation function $\sigma$ is that
+Our requirement of the activation function $\sigma$ is that
 $\sigma(z) = z + \epsilon \xi(z)$ where
-$\epsilon$ is a small constant.
+$\epsilon$ is a small constant. The non-linear term should satisfy the normalization constraint
 $\E[\xi(\bm{X}\underline{w})]=1$ where
-$\bm{X}\underline{w} = \sum_{i=1}^k w_i \underline{X}_i$ is the matrix product with  $\underline{w}=(w_1, \dots, w_k)$.
+$\bm{X}\underline{w} = \sum_{i=1}^k w_i \underline{X}_i$ is the matrix-vector product with  $\underline{w}=(w_1, \dots, w_k)$.
 
-We formulate the universally good activation function $\sigma$ as follows:
+We formulate the universally optimal activation function $\sigma$ as follows:
 \begin{definition}\label{def:ug}
 Suppose $G$ is a distribution space for $(\bm{X}, \underline{Y})$,
 $F$ is a function space for $\xi(z)$.
@@ -211,15 +211,15 @@ $\mathrm{E}[\sigma]$ is called the averaged estimation error whose definition is
 %&\E[\norm{\xi(\bm{X}\underline{w})}^2]=1
 \end{align}
 The function $\sigma^*$ which minimizes $\mathrm{E}(\sigma)$
-is called the universally good activation function for the single node neural network.
+is called the universally optimal activation function for the single node neural network.
 \end{definition}
 
 Definition \ref{def:ug} is a general formulation for any distribution space $G$.
 To get some analytical result we should choose some specific distribution.
-Indeed, we assume $\underline{Y}$ follows Gaussian distribution $\mathcal{N}(\mathbf{0},\frac{1}{n} \mathbf{I}_n)$ and
-we choose $\bm{X}$ as uniformly distributed random orthogonal matrix \cite{eaton1989group}. The choice of $\bm{X}$ is based on the following observations: If each element of $\bm{X}'$ is i.i.d. $\mathcal{N}(0, 1)$ random variables and $\sigma(\bm{X}'\underline{w}')$ is considered, we can make the transformation $\bm{X} = \bm{X}'(\bm{X}'^\T\bm{X}')^{-1/2}, \underline{w} = (\bm{X}'^\T\bm{X}')^{1/2}\underline{w}'$. We see that $\bm{X}'\underline{w}' = \bm{X}\underline{w}$. From \cite[Proposition 7.1]{eaton1989group} $\bm{X}$ is random orthogonal matrix.
+In the following analysis, we assume $\underline{Y}$ follows Gaussian distribution $\mathcal{N}(\mathbf{0},\frac{1}{n} \mathbf{I}_n)$ and
+we choose $\bm{X}$ as uniformly distributed random orthogonal matrix \cite{eaton1989group}. The choice of $\bm{X}$ is based on the following observations: If each element of $\bm{X}'$ is i.i.d. $\mathcal{N}(0, 1)$ random variables and $\sigma(\bm{X}'\underline{w}')$ is considered, we can make the transformation $\bm{X} = \bm{X}'(\bm{X}'^\T\bm{X}')^{-1/2}, \underline{w} = (\bm{X}'^\T\bm{X}')^{1/2}\underline{w}'$. We see that $\bm{X}'\underline{w}' = \bm{X}\underline{w}$. From \cite[Proposition 7.1]{eaton1989group} $\bm{X}$ is a random orthogonal matrix.
 Further we assume $\underline{Y}$ and $\bm{X}$ are independent.
-This defines our distribution space $G$. Such choice is natural and it leads to simple expression of the averaged error for linear function.
+This defines our distribution space $G$. Such choice is natural and leads to simple expression of the averaged error for linear function.
 
 \begin{proposition}\label{prop:linear}
 We have $\mathrm{E}(\sigma_0) = 1 - \frac{k}{n}$ where $\sigma_0(z) = z$ is the identity function.
