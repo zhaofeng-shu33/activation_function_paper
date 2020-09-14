@@ -143,7 +143,7 @@ In our study, the activation function is chosen from the space which contains no
 By doing so, we can compute quantitatively the network loss using second order approximation.
 To simplify the analysis, we consider the one-node neural network -- the simplest neural network with only one output node and several input nodes, which can also be regarded as a special ResNet model.
 % This network can be regarded as a kind of non-linear regression.
-And without loss of generality, we assume input features are orthogonal to each other since orthogonality can simply be achieved by Principal Canonical Analysis.
+And without loss of generality, we assume input features are orthogonal to each other since orthogonality can simply be achieved by Principal Component Analysis.
 Our measure of activation functions is not restricted to one specific input and output pair but is averaged over the pair sampled from some distributions.
 We find that the averaged loss is minimized when the non-linear term is Hermite orthogonal polynomial.
 Hermite polynomial as activation function has been argued to be beneficial in previous work \cite{ma2005constructive} and our result confirms this fact to some extent.
