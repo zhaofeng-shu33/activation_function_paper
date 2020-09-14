@@ -170,7 +170,7 @@ $n!!$ is the double factorial which equals $n \times (n-2) \dots \times1$ if $n$
 
 \begin{figure}
 \includegraphics[width=\linewidth]{network_structure.eps}
-\caption{The structure of one-node neural network. The activation function $\sigma$ takes the form $\sigma(z)=z + \epsilon \xi(z)$}\label{fig:ns}
+\caption{The structure of one-node neural network. The activation function $\sigma$ takes the form $\sigma(z)=z + \epsilon \xi(z)$.}\label{fig:ns}
 \end{figure}
 
 \section{Mathematical Model}\label{sec:mm}
@@ -225,19 +225,19 @@ This defines our distribution space $G$. Such choice is natural and leads to sim
 We have $\mathrm{E}(\sigma_0) = 1 - \frac{k}{n}$ where $\sigma_0(z) = z$ is the identity function.
 \end{proposition}
 
-Proposition \ref{prop:linear} says the averaged estimation error $\mathrm{E}$ for linear function is equal to $1-\frac{k}{n}$.
+Proposition \ref{prop:linear} says that the averaged estimation error $\mathrm{E}$ for linear function is equal to $1-\frac{k}{n}$.
 This result is consistent with our intuition
-since we use $k$ degrees of freedom to estimate arbitrary vector in $n$ dimensional space.
+since we use $k$ degrees of freedom to estimate arbitrary vector in $n$-dimensional space.
 
 
 
-We have analyzed the averaged error for linear function. To extend our result on general non-linear functions, we need to choose a proper function space $F$. By detailed analysis we consider a local regime. That is, differential functions which are near to linear function. The distance is quantified by a positive value $\epsilon$. Thus we consider $F_{\sigma_0}(\epsilon) =\{ \sigma \,|\, \norm{\sigma - \sigma_0} \leq \epsilon\}$. Then all differential functions can be treated as $\cup_{\epsilon>0} F(\epsilon)$. The norm is actually the expectation w.r.t. the distribution space $G$. That is $\E[\norm{(\sigma - \sigma_0)(\bm{A}\underline{Y})}^2] \leq \epsilon^2$
+We have analyzed the averaged error for linear function. To extend our result on general non-linear functions, we need to choose a proper function space $F$. By detailed analysis we consider a local regime which contains functions near to linear function. The distance between non-linear and linear function is quantified by a positive value $\epsilon$. Thus we consider $F_{\sigma_0}(\epsilon) =\{ \sigma \,|\, \norm{\sigma - \sigma_0} \leq \epsilon\}$. Then all differential functions can be treated as $\cup_{\epsilon>0} F(\epsilon)$. The norm is actually the expectation w.r.t. the distribution space $G$. That is, $\E[\norm{(\sigma - \sigma_0)(\bm{A}\underline{Y})}^2] \leq \epsilon^2$
 where $\bm{A} = \bm{X}\bm{X}^\T$.
 
 
 We are particularly interested in how the averaged error changes when $\sigma$ is contracted to $\sigma_0$ along a certain path in $F(\sigma)$. That is, given a function $\xi$ we can construct $\sigma = \sigma_0 + \epsilon \xi$ where $\xi \in F_0 = \{\xi | \norm{\xi} \leq 1 \}$. $\sigma \to \sigma_0$ is equivalent to $\epsilon \to 0$.
 
-To measure the change rate of $E[\sigma]$ in local regime of linear function we introduce the concept of the asymptotic error rate as follows:
+To measure the change rate of $E[\sigma]$ in local regime of linear function, we introduce the concept of the asymptotic error rate as follows:
 \begin{definition}
 Let $\xi \in F_0$, the asymptotic error rate for $\xi$ is
 \begin{equation}\label{eq:Cxi}
@@ -245,10 +245,10 @@ Let $\xi \in F_0$, the asymptotic error rate for $\xi$ is
 \end{equation}
 \end{definition}
 
-$\mathrm{C}[\xi]$ can represent the change rate of perturbation from linear function. If $\mathrm{C}[\xi]$ is negative for a given $\xi$, we can decrease $\mathrm{E}[\sigma]$ in the rate of $\abs{\mathrm{C}[\xi]}$ along  the perturbation path of $\xi$.
-The definition of $\mathcal{C}[\xi]$ in Equation \eqref{eq:Cxi} can also be rewritten in another way as
+$\mathrm{C}[\xi]$ can represent the error change rate of perturbation from linear function. If $\mathrm{C}[\xi]$ is negative for a given $\xi$, we can decrease $\mathrm{E}[\sigma]$ in the rate of $\abs{\mathrm{C}[\xi]}$ along  the perturbation path $\xi$.
+The definition of $\mathrm{C}[\xi]$ in Equation \eqref{eq:Cxi} can also be rewritten in another way as
 $\mathrm{E}[\sigma] = \mathrm{E}[\sigma_0] +
-\mathrm{C}[\xi]\epsilon^2 + o(\epsilon^2)$. In this form, we can see more clearly that $\mathrm{C}[\xi]$ is the coefficient of second order term of $\mathrm{E}[\sigma]$.
+\mathrm{C}[\xi]\epsilon^2 + o(\epsilon^2)$. In this form, we can see more clearly that $\mathrm{C}[\xi]$ is the coefficient of the second order term of $\mathrm{E}[\sigma]$.
 
 To justify the definition of $\mathrm{C}[\xi]$, we need to show the limit in Equation \eqref{eq:Cxi} exists, which is guaranteed by the following proposition:
 %For functional space $F$, we choose $P_m(z)$,
@@ -263,7 +263,7 @@ Let $\nabla \xi(\underline{z})  = \diag[\xi'(\underline{z}_1), \dots, \xi'(\unde
 \end{align}
 \end{proposition}
 
-Our goal is to get the largest decreasing rate for $E[\sigma]$ from $E[\sigma_0]$, this is equivalent to solve an optimization problem $\min \mathrm{C}[\xi]$ constraint by $\xi \in F_0$. It is hard to optimize on $F_0$ directly, and we consider $F_{0,m} = F_0 \cap P_m$ first. $P_m$ consists of polynomials with the highest degree no more than $m$. And we have $F_0 = \lim_{m\to \infty} F_{0,m}$.
+Our goal is to get the fastest decreasing path from $E[\sigma_0]$ to $E[\sigma]$, this is equivalent to solve an optimization problem $\min \mathrm{C}[\xi]$ constraint by $\xi \in F_0$. It is hard to optimize on $F_0$ directly, and we consider $F_{0,m} = F_0 \cap P_m$ instead. $P_m$ consists of polynomials with the highest degree no more than $m$, and we have $F_0 = \lim_{m\to \infty} F_{0,m}$.
 
 For $\xi \in F_{0,m}$ we have the following result:
 \begin{proposition}\label{prop:quadratic}
@@ -284,12 +284,13 @@ The constraint $\xi \in F_{0,m}$ is equivalent with
 
 Proposition \ref{prop:quadratic} gives a feasible approach to choose the optimal $\xi$ by solving a quadratic optimization problem. We make the assumption $
 m \ll k$ to write $M_{ij}$ in a concise form. This assumption requires that we should choose low degree polynomials as activation function and the number of node $k$ should be relatively large to represent features. Since computational cost
-is proportional to the degree of polynomials, our assumption does not lose practicality. 
+is proportional to the degree of polynomials and feature dimensions are usually high, our assumption does not lose practicality. 
 
 \section{Hermite Polynomials}\label{sec:hp}
 
-One of our major result is that we find Proposition \ref{prop:quadratic} leads naturally to the Hermite Polynomials solutions. Probabilists' Hermite polynomial $H_m(x) (m=1,2,\dots)$ is a serial of polynomial with the orthogonal property $ \E[H_m(X)H_n(X)] = n! \delta_{mn}$ where $X$ is standard normal random variable.
-The highest degree of $H_m(x)$ is $m$. $\xi(z) \in F_{0, m}$ which minimizes $\mathrm{C}[\xi]$ has the following relationship with Hermite polynomials:
+One of our major result is that we find Proposition \ref{prop:quadratic} leads naturally to the Hermite polynomials solutions. Hermite polynomials $H_m(x) (m=1,2,\dots)$
+are a series of polynomials with the orthogonal property $ \E[H_m(X)H_n(X)] = n! \delta_{mn}$ where $X$ is the standard normal random variable.
+The highest degree of $H_m(x)$ is $m$. $\xi(z) \in F_{0, m}$ which minimizes $\mathrm{C}[\xi]$ can be expressed by Hermite polynomials in the following way:
 \begin{proposition}\label{prop:value}
 Let
 \begin{equation}\label{eq:ximopt}
@@ -298,25 +299,27 @@ Let
 Then $\mathrm{C}[\xi_m] = -(1-\frac{k}{n})(m-1) \leq \mathrm{C}[\xi] $ for all $\xi \in F_{0, m}$.
 \end{proposition}
 Proposition \ref{prop:value} also gives the lower bound for $\mathrm{C}[\xi]$.
-It says the local decreasing rate of $\mathrm{E}[\sigma]$ is strictly linearly improved if we increase the degree of Hermite polynomials. This result is made under the assumption $ m \ll k$ and in general case when $ m \ll k$ does not hold, we find by experiments that $-(1-\frac{k}{n})(m-1) < \mathrm{C}[\xi]$ while $\mathrm{C}[\xi]$ decreases in linear way.
+It says the maximal asymptotic error rate at $\mathrm{E}[\sigma_0]$ has linear relation with the degree of Hermite polynomials. This result is made under the assumption $ m \ll k$ and in general case when $ m \ll k$ does not hold, by numerical simulation we find that $-(1-\frac{k}{n})(m-1) < \mathrm{C}[\xi]$ while $\mathrm{C}[\xi]$ decreases in linear way.
 
 \section{Experiment Result}\label{sec:er}
 
-To verify the change rate of $C[\xi]$ as we increase the maximal degree of polynomials $m$,
-we conduct a simple experiment. We choose $n=180, k=120$ and use $\xi_m(z)$ from Proposition
-\ref{prop:value} and normalized polynomials with only highest degree $\tilde{\xi}_m(z) = \frac{(nz/\sqrt{k})^m}{\sqrt{(2m-1)!!n}}$ as activation function. Using the Monte Carlo method to compute $\mathrm{C}[\xi]$ from Proposition \ref{prop:Esigma}, the result is shown in Fig. \ref{fig:fixednk}. As can be seen, the Hermite polynomial results coincide with the theoretical lower bound in Proposition \ref{prop:value}; For other polynomials, it cannot achieve the minimum value but we can still see that the nearly linear relationship between $C[\xi]$ and degree $m$. From Equation \eqref{eq:pqt}, we also notice that for $\tilde{\xi}_m$, the highest degree term contributes $-(1-\frac{k}{n})\frac{(m-1)^2}{2m-1}$ to $C[\xi]$, which is approximately $\frac{1}{2} C[\xi_m]$. This phenomenon tells us that the contribution of each degree of the polynomial to $C[\xi]$ is not evenly distributed and
+To verify the change rate of $C[\xi]$ is linear as we increase the maximal degree of polynomials $m$,
+we conduct a simple experiment with $n=180, k=120$. We use $\xi_m(z)$ from Proposition
+\ref{prop:value} and normalized polynomials with only highest degree $\tilde{\xi}_m(z) = \frac{(nz/\sqrt{k})^m}{\sqrt{(2m-1)!!n}}$ as activation function. Using the Monte Carlo method to compute $\mathrm{C}[\xi]$ from Proposition \ref{prop:Esigma}, the result is shown in Fig. \ref{fig:fixednk}. As can be seen, the Hermite polynomial results coincide with the theoretical lower bound in Proposition \ref{prop:value}. For other polynomials, it cannot achieve the minimum value but we can still see that the nearly linear relationship between $C[\xi]$ and degree $m$. From Equation \eqref{eq:pqt}, we also notice that for $\tilde{\xi}_m$, the highest degree term contributes $-(1-\frac{k}{n})\frac{(m-1)^2}{2m-1}$ to $C[\xi]$, which is approximately $\frac{1}{2} C[\xi_m]$. This phenomenon tells us that the contribution of each polynomial
+degree to $C[\xi]$ is not evenly distributed and
 the higher order term contributes more.  
 
 
 \begin{figure}
     \includegraphics[width=\linewidth]{fixed_nk.eps}
-    \caption{Illustration of the linear decreasing property of $C[\xi]$}\label{fig:fixednk}
+    \caption{Illustration of the linear decreasing property of $C[\xi]$.}\label{fig:fixednk}
 \end{figure}
 
 
 \section{Conclusion}\label{sec:con}
 
-In this paper, we have investigated the mechanism of non-linearity in one-node neural network. If we allow polynomial perturbation of linear activation function, the loss is linearly decreased as the maximal degree of polynomial is increased. How non-linearity works in more complex neural networks will be considered in the future. 
+In this paper, we have investigated the mechanism of non-linearity in one-node neural network. If we allow polynomial perturbation of linear activation function,
+the network loss is linearly decreased as the maximal degree of polynomial is increased. How non-linearity works in more complex neural networks will be considered in the future. 
 
 %\section*{Acknowledgment}
 \appendix
