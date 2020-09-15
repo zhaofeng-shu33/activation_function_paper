@@ -130,23 +130,23 @@ In this paper, we present a theoretical framework to rigorously analyze the perf
 \section{Introduction}
 % importance or advantage of activation function
 Activation functions
-enhance the mapping capabilities of the neural network.
+enhance the expressive power of the neural network.
 The current approach to design
 activation function is mainly empirically motivated.
 For example, it is a common practice to optimize over parameterized activation function \cite{ramachandran2017searching}.
 Blind optimization increases the computational cost with little network performance gain \cite{laudani2015training}.
 Another shortcoming of such study is that the searched activation function may not behave well for all kinds of datasets.
-Besides empirical study, there are also theoretical investigation on the expressive power of neural networks, which mainly focuses on studying the number of layers and hidden units while choosing ReLU activation function \cite{AroraBMM18}. As we can see, current research explores little about the theoretical property of activity function, which also contributes to the expressive power of neural network. Our study fills this gap by studying how the activation function reduces the neural network loss. 
+In addition to empirical study, there are also theoretical investigation on the expressive power of neural networks, which mainly focuses on studying the number of layers and hidden units while choosing ReLU activation function \cite{AroraBMM18}. As we can see, current research explores little about the theoretical property of activity function, which also contributes to the expressive power of neural network. Our study fills this gap by studying how the activation function reduces the neural network loss. 
 
-To be more specific, we fix the network structure and choose activation function from some function space.
+To be specific, we fix the network structure and choose activation function from differential function space.
 In our study, the activation function is chosen from the space which contains non-linear functions ``near" the linear space.
 By doing so, we can compute quantitatively the network loss using second order approximation.
-To simplify the analysis, we consider the one-node neural network -- the simplest neural network with only one output node and several input nodes, which can also be regarded as a special ResNet model.
+To simplify the analysis, we consider the one-node neural network which outputs one-dimensional feature. This one-node network can be regarded as a special ResNet model, which learns the residual representation of feature space.
 % This network can be regarded as a kind of non-linear regression.
 And without loss of generality, we assume input features are orthogonal to each other since orthogonality can simply be achieved by Principal Component Analysis.
 Our measure of activation functions is not restricted to one specific input and output pair but is averaged over the pair sampled from some distributions.
-We find that the averaged loss is minimized when the non-linear term is Hermite orthogonal polynomial.
-Hermite polynomial as activation function has been argued to be beneficial in previous work \cite{ma2005constructive} and our result confirms this fact to some extent.
+We find that the averaged loss is minimized when the non-linear term is Hermite orthogonal polynomial, which
+has been argued to be beneficial as activation function in previous work \cite{ma2005constructive}.
 
 
 To the best of our knowledge, this is the first work that can explicitly quantify the performance gain in functional approximation, and provide the closed-form solutions of the optimal non-linear activation functions for certain classes of neural networks.
@@ -288,7 +288,7 @@ is proportional to the degree of polynomials and feature dimensions are usually 
 
 \section{Hermite Polynomials}\label{sec:hp}
 
-One of our major result is that we find Proposition \ref{prop:quadratic} leads naturally to the Hermite polynomials solutions. Hermite polynomials $H_m(x) (m=1,2,\dots)$
+One of our major result is that we find Proposition \ref{prop:quadratic} leads naturally to the Hermite polynomials solutions. (Probabilists') Hermite polynomials $H_m(x) (m=1,2,\dots)$
 are a series of polynomials with the orthogonal property $ \E[H_m(X)H_n(X)] = n! \delta_{mn}$ where $X$ is the standard normal random variable.
 The highest degree of $H_m(x)$ is $m$. $\xi(z) \in F_{0, m}$ which minimizes $\mathrm{C}[\xi]$ can be expressed by Hermite polynomials in the following way:
 \begin{proposition}\label{prop:value}
