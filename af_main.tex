@@ -133,18 +133,18 @@ Activation functions
 enhance the expressive power of the neural network.
 The current approach to design
 activation function is mainly empirically motivated.
-For example, it is a common practice to optimize over parameterized activation function \cite{ramachandran2017searching}.
-Blind optimization increases the computational cost with little network performance gain \cite{laudani2015training}.
-Another shortcoming of such study is that the searched activation function may not behave well for all kinds of datasets.
-In addition to empirical study, there are also theoretical investigation on the expressive power of neural networks, which mainly focuses on studying the number of layers and hidden units while choosing ReLU activation function \cite{AroraBMM18}. As we can see, current research explores little about the theoretical property of activity function, which also contributes to the expressive power of neural network. Our study fills this gap by studying how the activation function reduces the neural network loss. 
+For example, to obtain better representation of features, it is possible to optimize over parameterized activation function \cite{ramachandran2017searching}.
+Such optimization increases the computational cost with little network performance gain \cite{laudani2015training}.
+Another shortcoming of this approach is that the searched activation function does not work well for other datasets.
+In addition to empirical study, there are also theoretical investigation on the expressive power of neural networks, which mainly focuses on studying the number of layers and hidden units while choosing ReLU activation function \cite{AroraBMM18}. However, current research seldom explores about the theoretical property of activity function, which is important to the expressive power of neural network. Our study fills this gap by studying how the activation function reduces the neural network loss. 
 
 To be specific, we fix the network structure and choose activation function from differential function space.
 In our study, the activation function is chosen from the space which contains non-linear functions ``near" the linear space.
 By doing so, we can compute quantitatively the network loss using second order approximation.
 To simplify the analysis, we consider the one-node neural network which outputs one-dimensional feature. This one-node network can be regarded as a special ResNet model, which learns the residual representation of feature space.
 % This network can be regarded as a kind of non-linear regression.
-And without loss of generality, we assume input features are orthogonal to each other since orthogonality can simply be achieved by Principal Component Analysis.
-Our measure of activation functions is not restricted to one specific input and output pair but is averaged over the pair sampled from some distributions.
+In addition, we assume input features are orthogonal to each other since orthogonality can simply be achieved by PCA (Principal Component Analysis).
+To achieve universally optimal solution, we use an averaged error to measure the network loss.
 We find that the averaged loss is minimized when the non-linear term is Hermite orthogonal polynomial, which
 has been argued to be beneficial as activation function in previous work \cite{ma2005constructive}.
 
@@ -156,7 +156,7 @@ The paper is organized as follows: In Section \ref{sec:mm}, we formulate the uni
 mathematically.
 Under some assumptions we derive optimal solution as the Hermite polynomial and find the expression of error rate in Section \ref{sec:hp}.
 Furthermore, in Section \ref{sec:er}, numerical experiments are conducted to verify our theoretical results.
-Section \ref{sec:con} concludes the paper. Proof details of main conclusion are provided in the Appendix.
+Section \ref{sec:con} concludes the paper. Proof details of main conclusion are provided in \ref{sec:Proofs}.
 
 Throughout this paper, we use $X$ to represent random variables;
 $\underline{X}$ to represent random vectors;
@@ -321,8 +321,8 @@ the higher order term contributes more.
 In this paper, we have investigated the mechanism of non-linearity in one-node neural network. If we allow polynomial perturbation of linear activation function,
 the network loss is linearly decreased as the maximal degree of polynomial is increased. How non-linearity works in more complex neural networks will be considered in the future. 
 
-%\section*{Acknowledgment}
-\appendix
+\section{Proofs}\label{sec:Proofs}
+%\appendix
 \begin{lemma}\label{lem:A}
 	Suppose $\bm{X}$ is uniformly distributed random orthogonal matrix, $\bm{A} = \bm{X}\bm{X}^\T$.
 	Then $\E[\bm{A}] = \frac{k}{n} \mathbf{I}_n$.
