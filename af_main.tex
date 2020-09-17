@@ -129,14 +129,14 @@ In this paper, we present a theoretical framework to rigorously analyze the perf
 
 \section{Introduction}
 % importance or advantage of activation function
-Activation functions
+Non-linear activation functions
 enhance the expressive power of the neural network.
 The current approach to design
 activation function is mainly empirically motivated.
-For example, to obtain better representation of features, it is possible to optimize over parameterized activation function \cite{ramachandran2017searching}.
+For example, to obtain better representation of features, it is a common practice to optimize over parameterized activation function \cite{ramachandran2017searching}.
 Such optimization increases the computational cost with little network performance gain \cite{laudani2015training}.
 Another shortcoming of this approach is that the searched activation function does not generalize for other problems.
-In addition to empirical study, there are also theoretical investigation on the expressive power of neural networks, which mainly focuses on studying the number of layers and hidden units while choosing ReLU activation function \cite{AroraBMM18}. However, current research seldom explores about the theoretical property of activity function, which is important to the expressive power of neural network. Our study fills this gap by studying how the activation function reduces the neural network loss. 
+In addition to empirical study, there are also theoretical investigations which study specific network architecture. For example, \cite{AroraBMM18} focuses on studying the number of layers and hidden units while choosing ReLU activation function. Such researches are restricted on a specific activation function and seldom explore about the theoretical property of activity function, which is important to the expressive power of neural network. Our study fills this gap by studying how the activation function reduces the neural network loss. 
 
 To be specific, we fix the network structure and choose activation function from differential function space.
 In our study, the activation function is chosen from the space which contains non-linear functions ``near" the linear space.
@@ -145,14 +145,14 @@ To simplify the analysis, we consider the one-node neural network which outputs 
 % This network can be regarded as a kind of non-linear regression.
 In addition, we assume input features are orthogonal to each other since orthogonality can simply be achieved by PCA (Principal Component Analysis).
 To achieve universally optimal solution, we use an averaged error to measure the network loss.
-We find that the averaged loss is minimized when the non-linear term is Hermite orthogonal polynomial, which
+We find that the averaged loss is minimized when the activation function is Hermite orthogonal polynomial, which
 has been argued to be beneficial as activation function in previous work \cite{ma2005constructive}.
 
 
 To the best of our knowledge, this is the first work that can explicitly quantify the performance gain in functional approximation, and provide the closed-form solutions of the optimal non-linear activation functions for certain classes of neural networks.
 
 % passive and active
-The paper is organized as follows: In Section \ref{sec:mm}, we formulate the universally optimal activation function problem
+The rest of this paper is organized as follows: In Section \ref{sec:mm}, we formulate the universally optimal activation function problem
 mathematically.
 Under some assumptions we derive optimal solution as the Hermite polynomial and find the expression of error rate in Section \ref{sec:hp}.
 Furthermore, in Section \ref{sec:er}, numerical experiments are conducted to verify our theoretical results.
