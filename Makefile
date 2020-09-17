@@ -11,7 +11,7 @@ $(BUILD_DIR)/exportlist.bib: exportlist.bib
 
 $(BUILD_DIR)/af_main.pdf: af_main.tex $(BUILD_DIR)/exportlist.bib
 	mkdir -p $(BUILD_DIR)
-	xelatex -output-directory=$(BUILD_DIR) af_main.tex
+	pdflatex -output-directory=$(BUILD_DIR) af_main.tex
 	cd $(BUILD_DIR) && bibtex af_main.aux && cd ..
-	xelatex -output-directory=$(BUILD_DIR) af_main.tex
-	xelatex -output-directory=$(BUILD_DIR) af_main.tex
+	pdflatex -output-directory=$(BUILD_DIR) af_main.tex
+	pdflatex -output-directory=$(BUILD_DIR) af_main.tex
