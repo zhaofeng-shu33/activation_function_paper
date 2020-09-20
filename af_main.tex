@@ -135,18 +135,17 @@ The current approach to design
 activation function is mainly empirically motivated.
 For example, to obtain better representation of features, it is a common practice to optimize over parameterized activation function \cite{ramachandran2017searching}.
 Such optimization increases the computational cost with little network performance gain \cite{laudani2015training}.
-Another shortcoming of this approach is that the searched activation function does not generalize for other problems.
-In addition to empirical study, there are also theoretical investigations which study specific network architecture. For example, \cite{AroraBMM18} focuses on studying the number of layers and hidden units while choosing ReLU activation function. Such researches are restricted on a specific activation function and seldom explore about the theoretical property of activity function, which is important to the expressive power of neural network. Our study fills this gap by studying how the activation function reduces the neural network loss. 
+Another shortcoming of this approach is that the searched activation function cannot be guaranteed for other problems.
+In addition to empirical study, there are also theoretical investigations which study specific network architecture.  Many researches are restricted on a specific activation function and seldom explore about the theoretical property of activity function, which is important to the expressive power of neural network. For example, \cite{AroraBMM18} focuses on studying the number of layers and hidden units while choosing ReLU activation function. Our study fills the theoretical gap by studying how the activation function reduces the neural network loss.
 
-To be specific, we fix the network structure and choose activation function from differential function space.
+In particular, our work is not restricted to specific function but only assumes the activation function is smooth.
 In our study, the activation function is chosen from the space which contains non-linear functions ``near" the linear space.
 By doing so, we can compute quantitatively the network loss using second order approximation.
-To simplify the analysis, we consider the one-node neural network which outputs one-dimensional feature. This one-node network can be regarded as a special ResNet model, which learns the residual representation of feature space.
+To simplify the analysis, we consider the one-node neural network which outputs one-dimensional feature \cite{dey2018approximation}. The network we considered can be regarded as a special ResNet model, which are widely used in deep neural network architecture.
 % This network can be regarded as a kind of non-linear regression.
-In addition, we assume input features are orthogonal to each other since orthogonality can simply be achieved by PCA (Principal Component Analysis).
-To achieve universally optimal solution, we use an averaged error to measure the network loss.
+We use an averaged error to measure the network loss, which can be regarded as an universally optimal activation function for the given network.
 We find that the averaged loss is minimized when the activation function is Hermite orthogonal polynomial, which
-has been argued to be beneficial as activation function in previous work \cite{ma2005constructive}.
+has been argued only empirically to be beneficial as activation function in previous work \cite{ma2005constructive}.
 
 
 To the best of our knowledge, this is the first work that can explicitly quantify the performance gain in functional approximation, and provide the closed-form solutions of the optimal non-linear activation functions for certain classes of neural networks.
@@ -217,7 +216,8 @@ is called the universally optimal activation function for the single node neural
 Definition \ref{def:ug} is a general formulation for any distribution space $G$.
 To get some analytical result we should choose some specific distribution.
 In the following analysis, we assume $\underline{Y}$ follows Gaussian distribution $\mathcal{N}(\mathbf{0},\frac{1}{n} \mathbf{I}_n)$ and
-we choose $\bm{X}$ as uniformly distributed random orthogonal matrix \cite{eaton1989group}. The choice of $\bm{X}$ is based on the following observations: If each element of $\bm{X}'$ is i.i.d. $\mathcal{N}(0, 1)$ random variables and $\sigma(\bm{X}'\underline{w}')$ is considered, we can make the transformation $\bm{X} = \bm{X}'(\bm{X}'^\T\bm{X}')^{-1/2}, \underline{w} = (\bm{X}'^\T\bm{X}')^{1/2}\underline{w}'$. We see that $\bm{X}'\underline{w}' = \bm{X}\underline{w}$. From \cite[Proposition 7.1]{eaton1989group} $\bm{X}$ is a random orthogonal matrix.
+we choose $\bm{X}$ as uniformly distributed random orthogonal matrix \cite{eaton1989group}. The choice of $\bm{X}$ can be regarded as the post-processing result of can simply PCA (Principal Component Analysis): If each element of $\bm{X}'$ is i.i.d. $\mathcal{N}(0, 1)$ random variables and $\sigma(\bm{X}'\underline{w}')$ is considered, we can make the transformation $\bm{X} = \bm{X}'(\bm{X}'^\T\bm{X}')^{-1/2}, \underline{w} = (\bm{X}'^\T\bm{X}')^{1/2}\underline{w}'$. We see that $\bm{X}'\underline{w}' = \bm{X}\underline{w}$.
+From \cite[Proposition 7.1]{eaton1989group} $\bm{X}$ is a random orthogonal matrix.
 Further we assume $\underline{Y}$ and $\bm{X}$ are independent.
 This defines our distribution space $G$. Such choice is natural and leads to simple expression of the averaged error for linear function.
 
