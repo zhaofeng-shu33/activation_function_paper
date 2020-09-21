@@ -241,7 +241,7 @@ To measure the change rate of $E[\sigma]$ in local regime of linear function, we
 \begin{definition}
 Let $\xi \in F_0$, the asymptotic error rate for $\xi$ is
 \begin{equation}\label{eq:Cxi}
-\mathrm{C}[\xi] = \lim_{\substack{\epsilon \to 0 \\ \sigma = \sigma_0 + \epsilon \xi}} \frac{E[\sigma] - E[\sigma_0]}{\epsilon^2}
+\mathrm{C}[\xi] \triangleq \lim_{\substack{\epsilon \to 0 \\ \sigma = \sigma_0 + \epsilon \xi}} \frac{E[\sigma] - E[\sigma_0]}{\epsilon^2}
 \end{equation}
 \end{definition}
 
@@ -506,8 +506,8 @@ The element $\bm{M}_{ij}$ is the coefficient of $q_iq_j$:
     ij \frac{1}{n}\bm{A}_{11} \E[\underline{Z}_1^{i+j-2}])  \\
     &-n(n-1)\bm{A}_{12}(\E[\underline{Z}_1^i \underline{Z}_2^j] - ij \frac{1}{n}\bm{A}_{12}\E[\underline{Z}_1^{i-1}\underline{Z}_2^{j-1}])
 \end{align*}
-Since $\bm{Z}_1$ is Gaussian, $\E[Z_1^{2t}] = \frac{1}{n^t}\bm{A}_{11}^t (2t-1)!!$. If $\ide{i}{j} = 0, \bm{M}_{ij}=0$. Otherwise,
-let $ 2t = i + j $, from Lemma \ref{lemma:Isserlis2}, $\E[\underline{Z}_1^i \underline{Z}_2^j]$ can be expanded and we have:
+Since $\bm{Z}_1$ is Gaussian, we have $\E[Z_1^{2t}] = \frac{1}{n^t}\bm{A}_{11}^t (2t-1)!!$. If $\ide{i}{j} = 0$, then $\bm{M}_{ij}=0$. Otherwise,
+let $ 2t = i + j $, from Lemma \ref{lemma:Isserlis2}, $\E[\underline{Z}_1^i \underline{Z}_2^j]$ can be expanded, and we have:
 \begin{align*}
     &\bm{M}_{ij} = -n(1-\bm{A}_{11}) \frac{\bm{A}_{11}^t}{n^t}(i-1)(j-1)(2t-3)!! \\
     &-\frac{n(n-1)\bm{A}_{12}}{n^t}\sum_{s=0}^{\min\{i,j\}}
@@ -515,16 +515,17 @@ let $ 2t = i + j $, from Lemma \ref{lemma:Isserlis2}, $\E[\underline{Z}_1^i \und
     \bm{A}_{12}^s \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}
 \end{align*}
 $C[\xi] = \E_{\bm{X}}[\mathrm{C}[\bm{X}, \xi]] =  \underline{q}^T \mathbf{M}' \underline{q}$ where $\mathbf{M}'_{ij} = \E_{\bm{X}} [\bm{M}_{ij}] = -M_1 + M_2$
-where 
+and 
 \begin{align*}
-    M_1 & =   \frac{\E[\bm{A}_{11}^t]-\E[\bm{A}_{11}^{t+1}]}{n^{t-1}}(i-1)(j-1)(2t-3)!! \\
+    M_1 & =   \frac{\E[\bm{A}_{11}^t]-\E[\bm{A}_{11}^{t+1}]}{n^{t-1}}(i-1)(j-1)(2t-3)!!, \\
     M_2 & = \frac{n-1}{n^{t-1}}\sum_{s=0}^{\min\{i,j\}}
     \frac{\ide{s}{i}(s-1)i!j!}{s!(i-s)!!(j-s)!!}
-    \E[\bm{A}_{12}^{s+1} \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}]
+    \E[\bm{A}_{12}^{s+1} \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}].
 \end{align*}
-We estimate the order of positive number $M_1, M_2$ under the condition $ m \ll k$. Since $k$ is large, we assume $k, n \to +\infty$ while $m$ is finite. Let $ r= \frac{k}{n}$. Since $\bm{A}=\bm{X}\bm{X}^\T$, from Proposition 7.2, Chapter 7 of \cite{eaton1989group} we can get $\bm{A}_{11}$ is Beta distribution with parameter $B(\frac{k}{2}, \frac{n-k}{2})$.
+We estimate the order of positive number $M_1, M_2$ under the condition $ m \ll k$. Since $k$ is large, we assume $k, n \to +\infty$ while $m$ is finite.Since $\bm{A}=\bm{X}\bm{X}^\T$, from Proposition 7.2 of \cite{eaton1989group} we can get $\bm{A}_{11}$ is Beta distribution with parameter $B(\frac{k}{2}, \frac{n-k}{2})$.
 From Theorem 1 of \cite{multivariateBeta},
-$\E[\bm{A}_{11}^t]-\E[\bm{A}_{11}^{t+1}] = (1-r)\prod_{s=0}^{t-1} \frac{2s+k}{2s+n+2} \sim (1-r)r^t$. Therefore $M_1 \sim \frac{(1-r)r^t}{n^{t-1}}(i-1)(j-1)(2t-3)!!$.
+$\E[\bm{A}_{11}^t]-\E[\bm{A}_{11}^{t+1}] = (1-r)\prod_{s=0}^{t-1} \frac{2s+k}{2s+n+2} \sim (1-r)r^t$ where
+$ r \triangleq \frac{k}{n}$. Therefore, $M_1 \sim \frac{(1-r)r^t}{n^{t-1}}(i-1)(j-1)(2t-3)!!$.
 We consider the case when $s+1$ is even, $\E[\bm{A}_{12}^{s+1} \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}] \leq \sqrt{\E[\bm{A}_{12}^{s+1}\bm{A}_{11}^{i-s}]\E[\bm{A}_{12}^{s+1}\bm{A}_{22}^{j-s}]}$. When $k, n$ are sufficiently large, we can treat $\bm{A}_{11}, \bm{A}_{12}$ as joint Gaussian. From Theorem 2 of \cite{multivariateBeta}: $\E[\bm{A}_{12}^{s+1}\bm{A}_{11}^{i-s}] \sim s!! r^{i-s}(\frac{r(1-r)}{n})^{(s+1)/2}$. Similarly, $\E[\bm{A}_{12}^{s+1}\bm{A}_{22}^{j-s}] \sim s!! r^{j-s}(\frac{r(1-r)}{n})^{(s+1)/2}$. It implies that $\E[\bm{A}_{12}^{s+1} \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}] \leq (s!!) r^{t-s}(\frac{r(1-r)}{n})^{(s+1)/2}$. We can get an upper bound of $M_2$ using Equation \ref{eq:UUM}: $M_2 \leq \frac{1}{n^{t-2}} (i-1)(j-1)(2t-3)!!\E[\bm{A}_{12}^{4} \bm{A}_{11}^{\frac{i - 3}{2}}\bm{A}_{22}^{\frac{j - 3}{2}}] \leq \frac{(1-r)^2 r^{t-1}}{n^t}3(i-1)(j-1)(2t-3)!!= \frac{3(1-r)}{k} M_1$.
 When $k \to \infty$, we see that $M_2$ can be ignored and $\mathbf{M}'_{ij} = -\ide{i}{j}\frac{(1-r)r^t}{n^{t-1}}(i-1)(j-1)(2t-3)!!$. By changing of variables by Equation \ref{eq:pqt} we can get the correspondence $\mathbf{M}_{ij} = \frac{n^{-1+2t}}{k^t} \mathbf{M}'_{ij} = -\ide{i}{j}(1-r)(i-1)(j-1)(2t-3)!!$. 
 
