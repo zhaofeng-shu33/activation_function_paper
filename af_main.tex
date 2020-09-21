@@ -496,11 +496,10 @@ By symmetric property, we can simplify the above equation as:
 \end{align*}
 
 Since 
-$\xi(z) = \sum_{i=0}^m \underline{q}_i z^i $,
-there will be an $(m+1) \times (m+1) $ random matrix $\bm{M}$ and
-we can write $\mathrm{C}[\bm{X}, \xi]$
+$\xi(z) = \sum_{i=0}^m \underline{q}_i z^i $, we can rewrite $\mathrm{C}[\bm{X}, \xi]$
 as the quadratic form $ \underline{q}^T \bm{M} \underline{q} $.
-The element $\bm{M}_{ij}$ is the coefficient of $q_iq_j$:
+where $\bm{M}$ is an $(m+1) \times (m+1) $ random matrix 
+whose element $\bm{M}_{ij}$ is given by
 \begin{align*}
     \bm{M}_{ij} &= n(1-\bm{A}_{11}) (\E[\underline{Z}_1^{i+j}] -
     ij \frac{1}{n}\bm{A}_{11} \E[\underline{Z}_1^{i+j-2}])  \\
@@ -522,7 +521,7 @@ and
     \frac{\ide{s}{i}(s-1)i!j!}{s!(i-s)!!(j-s)!!}
     \E[\bm{A}_{12}^{s+1} \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}].
 \end{align*}
-We estimate the order of positive number $M_1, M_2$ under the condition $ m \ll k$. Since $k$ is large, we assume $k, n \to +\infty$ while $m$ is finite.Since $\bm{A}=\bm{X}\bm{X}^\T$, from Proposition 7.2 of \cite{eaton1989group} we can get $\bm{A}_{11}$ is Beta distribution with parameter $B(\frac{k}{2}, \frac{n-k}{2})$.
+Below we consider the case when $k, n \to +\infty$ while $m$ is finite. Since $\bm{A}=\bm{X}\bm{X}^\T$, from Proposition 7.2 of \cite{eaton1989group} we can get $\bm{A}_{11}$ is Beta distribution with parameter $B(\frac{k}{2}, \frac{n-k}{2})$.
 From Theorem 1 of \cite{multivariateBeta},
 $\E[\bm{A}_{11}^t]-\E[\bm{A}_{11}^{t+1}] = (1-r)\prod_{s=0}^{t-1} \frac{2s+k}{2s+n+2} \sim (1-r)r^t$ where
 $ r \triangleq \frac{k}{n}$. Therefore, $M_1 \sim \frac{(1-r)r^t}{n^{t-1}}(i-1)(j-1)(2t-3)!!$.
