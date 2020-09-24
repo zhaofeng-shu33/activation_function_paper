@@ -145,7 +145,7 @@ To simplify the analysis, we consider the one-node neural network which outputs 
 % This network can be regarded as a kind of non-linear regression.
 We use an averaged error to measure the network loss, which can be regarded as an universally optimal activation function for the given network.
 We find that the averaged loss is minimized when the activation function is Hermite orthogonal polynomial, which
-has been argued only empirically to be beneficial as activation function in previous work \cite{ma2005constructive}.
+has been argued only empirically to be beneficial as activation functions in previous work \cite{ma2005constructive}.
 
 
 To the best of our knowledge, this is the first work that can explicitly quantify the performance gain in functional approximation, and provide the closed-form solutions of the optimal non-linear activation functions for certain classes of neural networks.
@@ -415,7 +415,7 @@ Substituting $\underline{\hat{w}}$ in expression in \eqref{eq:st} with the above
 \end{lemma}
 \begin{proof}
 Using Isserlis' theorem \cite{isserlis1918formula} we obtain
-$  \E[X^i Y^j] = \sum_{k=0}^{\min\{i,j\}} C_k \Sigma_{12}^k \Sigma_{11}^{(i-k)/2}\Sigma_{22}^{(j-k)/2}$. Since the power of $\Sigma_{11}$ should be an integer, $C_k = 0$ if $\ide{k}{i} = 0$. If $\ide{k}{i} = 1$, we choose $k$ items of $X$ and $Y$ to form $\Sigma_{12} = \E[XY]$, which has $\binom{i}{k}\binom{j}{k}$ choices. For the remaining $(i-k)$ number of $X$, we should pair them, which has $\frac{1}{(\frac{i-k}{2})!}\prod_{i=1}^{(i-k)/2} \binom{2i}{2} = \frac{(i-k)!}{(i-k)!!}$ number of choices; For $(j-k)$ number of $Y$, it is $\frac{(j-k)!}{(j-k)!!}$; Finally, for $k$ pairs of $XY$, we have $k!$ number of choices. The product $\binom{i}{k}\binom{j}{k}\frac{(i-k)!}{(i-k)!!}\frac{(j-k)!}{(j-k)!!}k!$ is the coefficient $C_k$.
+$  \E[X^i Y^j] = \sum_{k=0}^{\min\{i,j\}} C_k \Sigma_{12}^k \Sigma_{11}^{(i-k)/2}\Sigma_{22}^{(j-k)/2}$. Since the power of $\Sigma_{11}$ should be an integer, $C_k = 0$ if $\ide{k}{i} = 0$. If $\ide{k}{i} = 1$, we choose $k$ items of $X$ and $Y$ to form $\Sigma_{12} = \E[XY]$, which has $\binom{i}{k}\binom{j}{k}$ choices. For the remaining $(i-k)$ numbers of $X$, we should pair them. There are $\frac{1}{(\frac{i-k}{2})!}\prod_{i=1}^{(i-k)/2} \binom{2i}{2} = \frac{(i-k)!}{(i-k)!!}$ possible combinations; For $(j-k)$ numbers of $Y$, it is $\frac{(j-k)!}{(j-k)!!}$; Finally, for $k$ pairs of $XY$, there are $k!$ possible combinations. The product $\binom{i}{k}\binom{j}{k}\frac{(i-k)!}{(i-k)!!}\frac{(j-k)!}{(j-k)!!}k!$ is the coefficient $C_k$.
 \end{proof}
 %\begin{lemma}\label{lemma:A1112}
 %For random matrix $\bm{A}$ we have $\E[\bm{A}_{11}^t] = \prod_{i=0}^{t-1} \frac{k+2t}{n+2t}$ and
@@ -458,7 +458,7 @@ $  \E[X^i Y^j] = \sum_{k=0}^{\min\{i,j\}} C_k \Sigma_{12}^k \Sigma_{11}^{(i-k)/2
 \end{proof}
 
 \begin{proof}[Proof of Proposition \ref{prop:quadratic}]
-Let $\underline{Z} = \bm{A}\underline{Y}, \underline{Z'} = (\mathbf{I} - \bm{A})\underline{Y}$. Given $\bm{X}$, $\underline{Z}$ is Gaussian vector with covariance matrix $\bm{A} \Cov[\underline{Y}] \bm{A}^\T = \frac{\bm{A}}{n}$. Similarly, $\Cov[\underline{Z'}] = \frac{\mathbf{I} - \bm{A}}{n}$. Using $\bm{A}^2 = \bm{A}$ we have $\E[\underline{Z'}\underline{Z}^\T] = 0$. That is, $\underline{Z'}$ and $\underline{Z}$ are independent. The expectation of $\E[f(\underline{Z}_i)g(\underline{Z'}_j)] = \E[f(\underline{Z}_i)]\E[g(\underline{Z'}_j)]$ for arbitrary function.
+Let $\underline{Z} = \bm{A}\underline{Y}, \underline{Z}' = (\mathbf{I} - \bm{A})\underline{Y}$. Given $\bm{X}$, $\underline{Z}$ is Gaussian vector with covariance matrix $\bm{A} \Cov[\underline{Y}] \bm{A}^\T = \frac{\bm{A}}{n}$. Similarly, $\Cov[\underline{Z}'] = \frac{\mathbf{I} - \bm{A}}{n}$. Using $\bm{A}^2 = \bm{A}$ we have $\E[\underline{Z}'\underline{Z}^\T] = 0$. That is, $\underline{Z}'$ and $\underline{Z}$ are independent, and we have $\E[f(\underline{Z}_i)g(\underline{Z}'_j)] = \E[f(\underline{Z}_i)]\E[g(\underline{Z}'_j)]$ for arbitrary function.
     
 Let $\mathbf{C}_1 = \E_{\underline{Y}} [\norm{\xi(\bm{A}\underline{Y})}^2]$, $\mathbf{C}_2 
 = \E_{\underline{Y}}
@@ -473,8 +473,8 @@ We then have
     \sum_{i=1}^n \bm{\bm{A}}_{ii}  \E[\xi^2(\underline{Z}_i)] \\
     \mathrm{C}_3 & = \sum_{i,j=1, i \neq j}^n \bm{A}_{ij}\bm{\Sigma}_{ij} +
     \sum_{i=1}^n \bm{A}_{ii}\bm{\Sigma}_{ii}    \\
-    \bm{\Sigma}_{ii} &=  \E[ [\underline{Z'}_i]^2 [\xi'(\underline{Z}_i)]^2] = \frac{1-\bm{A}_{ii}}{n}[\xi'(\underline{Z}_i)]^2   \\
-    \bm{\Sigma}_{ij} &=  \E[\underline{Z'}_i \underline{Z'}_j \xi'(\underline{Z}_i)
+    \bm{\Sigma}_{ii} &=  \E[ [\underline{Z}'_i]^2 [\xi'(\underline{Z}_i)]^2] = \frac{1-\bm{A}_{ii}}{n}[\xi'(\underline{Z}_i)]^2   \\
+    \bm{\Sigma}_{ij} &=  \E[\underline{Z}'_i \underline{Z}'_j \xi'(\underline{Z}_i)
     \xi'(\underline{Z}_j)]
      = - \frac{\bm{A}_{ij}}{n} \E[ \xi'(\underline{Z}_i)
     \xi'(\underline{Z}_j)]
@@ -552,7 +552,7 @@ Then we have $ \mathbf{U} \underline{p} = \underline{e_m}$.
     $ \iff (1+x)^{m'} = 0 \,(x=-1)$
 \end{proof}
 \begin{proof}[Proof of Proposition \ref{prop:value} ]
-    Let $\mathbf{U}$ be the same matrix defined in Lemma \ref{lemma:Upem}. From Lemma \ref{lemma:UUN} we have $\mathbf{N}_{ij} = \sum_{k=0}^m \mathbf{U}_{ki}\mathbf{U}_{kj}$. Therefore $\mathbf{N} = \mathbf{U}^\T\mathbf{U}$. Let $\Lambda = \diag[1, 0, -1, \dots, 1-m]$, from Equation \ref{eq:UUM} we have $\mathbf{M}_{ij} = \sum_{k=0}^m \mathbf{U}_{ki}\Lambda_{kk}\mathbf{U}_{kj}$. Therefore $\mathbf{M} = \mathbf{U}^\T\Lambda\mathbf{U}$. Then the problem $\min_{\underline{p}^\T N \underline{p} = 1} \underline{p}^\T \mathbf{M}\underline{p} = \min_{\underline{\tilde{p}}^\T\underline{\tilde{p}} = 1} \sum_{k=0}^m (1-k)\underline{\tilde{p}}_k^2 = 1-m$. We have made the invertible transformations $\underline{\tilde{p}} = \mathbf{U}\underline{p}$. Since the minimum value is achieved at $\underline{\tilde{p}} = \underline{e_m}$, from Lemma \ref{lemma:Upem} we have $\underline{p}_i = \ide{i}{m} (-1)^{(m-i)/2}\frac{\sqrt{m!}}{i!(m-i)!!}$. Equation \eqref{eq:ximopt} follows by Transforming $\underline{p}$ back to $\underline{q}$ using Equation \eqref{eq:pqt} and comparing the expression of $\underline{q}$ with the explicit formula of probabilists' Hermite polynomials \cite[Eq. 18.5.13]{NIST:DLMF}.
+    Let $\mathbf{U}$ be the same matrix defined in Lemma \ref{lemma:Upem}. From Lemma \ref{lemma:UUN} we have $\mathbf{N}_{ij} = \sum_{k=0}^m \mathbf{U}_{ki}\mathbf{U}_{kj}$. Therefore, $\mathbf{N} = \mathbf{U}^\T\mathbf{U}$. Let $\Lambda = \diag[1, 0, -1, \dots, 1-m]$, from Equation \ref{eq:UUM} we have $\mathbf{M}_{ij} = \sum_{k=0}^m \mathbf{U}_{ki}\Lambda_{kk}\mathbf{U}_{kj}$. Therefore, $\mathbf{M} = \mathbf{U}^\T\Lambda\mathbf{U}$. Then $\min_{\underline{p}^\T N \underline{p} = 1} \underline{p}^\T \mathbf{M}\underline{p} = \min_{\underline{\tilde{p}}^\T\underline{\tilde{p}} = 1} \sum_{k=0}^m (1-k)\underline{\tilde{p}}_k^2 = 1-m$. We have made the invertible transformations $\underline{\tilde{p}} = \mathbf{U}\underline{p}$. Since the minimum value is achieved at $\underline{\tilde{p}} = \underline{e_m}$, from Lemma \ref{lemma:Upem} we have $\underline{p}_i = \ide{i}{m} (-1)^{(m-i)/2}\frac{\sqrt{m!}}{i!(m-i)!!}$. Equation \eqref{eq:ximopt} follows by transforming $\underline{p}$ back to $\underline{q}$ using Equation \eqref{eq:pqt} and comparing the expression of $\underline{q}$ with the explicit formula of probabilists' Hermite polynomials \cite[Eq. 18.5.13]{NIST:DLMF}.
 \end{proof}
 %%%%%%
 %% To balance the columns at the last page of the paper use this
