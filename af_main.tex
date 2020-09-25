@@ -343,11 +343,11 @@ for $j\leq k$. For $\bm{\bar{X}}$, the first and second row are orthogonal:
 \end{proof}
 \begin{proof}[Proof of Proposition \ref{prop:linear}]
     When $\epsilon = 0$, the optimal $\underline{w}_0 = \bm{X}^\T\underline{Y}$. Therefore
-    $\E[\norm{\underline{Y} - \sigma(\bm{X} \underline{w}_0)}^2] = \E[\norm{\underline{Y}-\bm{X}\bm{X}^\T\underline{Y}}^2]$
+    $\E[\norm{\underline{Y} - \sigma(\bm{X} \underline{w}_0)}^2] = \E[\norm{\underline{Y}-\bm{X}\bm{X}^\T\underline{Y}}^2]$.
     The expectation can be taken by $\underline{Y}$ first and then by $\bm{X}$.
-    Let $\underline{Z} = (I-\bm{A}) \underline{Y}$ which transforms a Gaussian random vector $\underline{Y}$.
-    for given $\bm{X}$. Therefore $\E_{\underline{Y}}[\norm{\underline{Z}}^2] = \Tr[(I-A)^\T\Cov[Y](I-A)]
-    = \frac{1}{n}\Tr[I - A]$. Using Lemma \ref{lem:A}. $\mathrm{E}(\sigma) = 1 - \frac{k}{n}$ follows.
+    Let $\underline{Z} = (I-\bm{A}) \underline{Y}$ which transforms a Gaussian random vector $\underline{Y}$
+    for given $\bm{X}$. Therefore, $\E_{\underline{Y}}[\norm{\underline{Z}}^2] = \Tr[(I-A)^\T\Cov[Y](I-A)]
+    = \frac{1}{n}\Tr[I - A]$. Using Lemma \ref{lem:A}, $\mathrm{E}(\sigma) = 1 - \frac{k}{n}$ follows.
 \end{proof}
 \begin{proof}[Proof of Proposition \ref{prop:Esigma} ]
 For the problem $\min_{\underline{w}} \norm{\underline{Y} - \sigma(\bm{X} \underline{w})}$
@@ -381,7 +381,7 @@ $\bm{X}\bm{X}^\T \underline{Y} = \bm{X}\bm{X}^\T \tilde{\underline{Y}}$ and
 $(\underline{Y}- \bm{X}\bm{X}^\T\underline{Y}) = -(\tilde{\underline{Y}} - \bm{X}\bm{X}^\T \tilde{\underline{Y}})$.
 The density function of $\underline{Y}$ is also symmetric about this subspace.
 These symmetric properties lead to $\E_{\underline{Y}}[\xi(\bm{X}\underline{w}_0)^\T (\underline{Y}-\bm{X}\underline{w}_0)]=0$.
-On the other hand, since $\bm{X}^\T \bm{X} = \mathbf{I}_k$. $(\bm{X}\underline{\hat{w}})^\T (\underline{Y}-\bm{X}\underline{w}_0) = \underline{\hat{w}}^\T (X^\T \underline{Y} - \underline{w}_0) = 0$.
+On the other hand, since $\bm{X}^\T \bm{X} = \mathbf{I}_k$, $(\bm{X}\underline{\hat{w}})^\T (\underline{Y}-\bm{X}\underline{w}_0) = \underline{\hat{w}}^\T (X^\T \underline{Y} - \underline{w}_0) = 0$.
 
 Next, we minimize the coefficient of $\epsilon^2$ by $\underline{\hat{w}}$, which is simplified to 
 \begin{equation}\label{eq:st}
