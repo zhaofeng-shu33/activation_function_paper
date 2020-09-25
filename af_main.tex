@@ -288,9 +288,9 @@ is proportional to the degree of polynomials and feature dimensions are usually 
 
 \section{Hermite Polynomials}\label{sec:hp}
 
-One of our major result is that we find Proposition \ref{prop:quadratic} leads naturally to the Hermite polynomials solutions. (Probabilists') Hermite polynomials $H_m(x) (m=1,2,\dots)$
-are a series of polynomials with the orthogonal property $ \E[H_m(X)H_n(X)] = n! \delta_{mn}$ where $X$ is the standard normal random variable.
-The highest degree of $H_m(x)$ is $m$. $\xi(z) \in F_{0, m}$ which minimizes $\mathrm{C}[\xi]$ can be expressed by Hermite polynomials in the following way:
+One of our major result is that we find Proposition \ref{prop:quadratic} leads naturally to the Hermite polynomials solutions. (Probabilists') Hermite polynomials $H_m(x),m=1,2,\dots$
+are a series of polynomials with the orthogonal property $ \E[H_m(X)H_n(X)] = n! \mathrm{1}_{m=n}$ where $X$ is the standard normal random variable.
+The degree of $H_m(x)$ is $m$. $\xi(z) \in F_{0, m}$ which minimizes $\mathrm{C}[\xi]$ can be expressed by Hermite polynomials in the following way:
 \begin{proposition}\label{prop:value}
 Let
 \begin{equation}\label{eq:ximopt}
@@ -324,7 +324,7 @@ the network loss is linearly decreased as the maximal degree of polynomial is in
 \section{Proofs}\label{sec:Proofs}
 %\appendix
 \begin{lemma}\label{lem:A}
-	Suppose $\bm{X}$ is uniformly distributed random orthogonal matrix and $\bm{A} = \bm{X}\bm{X}^\T$,
+	Suppose $\bm{X}$ is a uniformly distributed random orthogonal matrix and $\bm{A} = \bm{X}\bm{X}^\T$,
 	then $\E[\bm{A}] = \frac{k}{n} \mathbf{I}_n$.
 \end{lemma}
 \begin{proof}[Proof of Lemma \ref{lem:A} ]
@@ -345,7 +345,7 @@ for $j\leq k$. For $\bm{\bar{X}}$, the first and second row are orthogonal:
     When $\epsilon = 0$, the optimal $\underline{w}_0 = \bm{X}^\T\underline{Y}$. Therefore
     $\E[\norm{\underline{Y} - \sigma(\bm{X} \underline{w}_0)}^2] = \E[\norm{\underline{Y}-\bm{X}\bm{X}^\T\underline{Y}}^2]$.
     The expectation can be taken by $\underline{Y}$ first and then by $\bm{X}$.
-    Let $\underline{Z} = (I-\bm{A}) \underline{Y}$ which transforms a Gaussian random vector $\underline{Y}$
+    Let $\underline{Z} = (I-\bm{A}) \underline{Y}$, and $Z$ is a Gaussian random vector
     for given $\bm{X}$. Therefore, $\E_{\underline{Y}}[\norm{\underline{Z}}^2] = \Tr[(I-A)^\T\Cov[Y](I-A)]
     = \frac{1}{n}\Tr[I - A]$. Using Lemma \ref{lem:A}, $\mathrm{E}(\sigma) = 1 - \frac{k}{n}$ follows.
 \end{proof}
@@ -365,7 +365,7 @@ up to $o(\epsilon^2)$ as
 &-  \epsilon^2(\bm{X}\underline{\tilde{w}} + \nabla \xi(\bm{X} \underline{w}_0 )\bm{X}\underline{\hat{w}})}^2 \\
 = & \norm{\underline{Y}-\bm{X} \underline{w}_0  }^2 -
 2 \epsilon (\bm{X} \underline{\hat{w}} +
-\xi(\bm{X} \underline{w}_0))^\T (\underline{Y} - \bm{X} \underline{w}_0) +\\
+\xi(\bm{X} \underline{w}_0))^\T (\underline{Y} - \bm{X} \underline{w}_0) \\
 & +  \epsilon^2(\norm{\bm{X}\underline{\hat{w}} + \xi(\bm{X} \underline{w}_0)}^2 \\
 & -
 2 (\bm{X} \underline{\tilde{w}}+
