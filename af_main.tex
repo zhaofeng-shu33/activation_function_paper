@@ -143,9 +143,9 @@ which is important to the expressive power of neural network.
 For example, \cite{AroraBMM18} focuses on studying the number of layers and hidden units while choosing ReLU activation function.
 Our study fills the theoretical gap by studying how the activation function reduces the neural network loss.
 
-In particular, our work is not restricted to specific function but only assumes the activation function is smooth.
+In particular, our work is not restricted to specific functions but only requires the activation function to be smooth.
 In our study, the activation function is chosen from the space which contains non-linear functions ``near" the linear space.
-By doing so, we can compute quantitatively the network loss using second order approximation.
+By doing so, the network loss can be computed quantitatively using second order approximation.
 To simplify the analysis, we consider the one-node neural network which outputs one-dimensional feature \cite{dey2018approximation}.
 The network we considered can be regarded as a special ResNet model, which are widely used in deep neural network architecture.
 % This network can be regarded as a kind of non-linear regression.
@@ -186,7 +186,7 @@ is estimated by $\sigma(\sum_{i=1}^k w_i f_i)$ and the domain of definition for 
 
 To formulate the problem using neural networks, we consider a $k$-dimensional random vector $\underline{X}=(X_1, \dots, X_k)$ and a random variable $Y$.
 Our goal is to predict $Y$ using the neural network with $\underline{X}$ as input.
-To be more specific, $Y$ is approximated by $ \sigma(\sum_{i=1}^k w_i X_i)$.
+To be more specific, $Y$ is approximated using $ \sigma(\sum_{i=1}^k w_i X_i)$.
 For a given problem, we have $n$ data pairs $(x_1, y_1), \dots, (x_n, y_n)$, and
 the $\ell_2$ loss function is given by
 $\ell_2(\underline{y}, \bm{x}) = \norm{\underline{y} - \sigma(\sum_{i=1}^k w_i \underline{x}_i)}^2 $
@@ -238,11 +238,20 @@ since we use $k$ degrees of freedom to estimate arbitrary vector in $n$-dimensio
 
 
 
-We have analyzed the averaged error for linear function. To extend our result on general non-linear functions, we need to choose a proper function space $F$. By detailed analysis we consider a local regime which contains functions near to linear function. The distance between non-linear and linear function is quantified by a positive value $\epsilon$. Thus we consider $F_{\sigma_0}(\epsilon) =\{ \sigma \,|\, \norm{\sigma - \sigma_0} \leq \epsilon\}$. Then all differential functions can be treated as $\cup_{\epsilon>0} F(\epsilon)$. The norm is actually the expectation w.r.t. the distribution space $G$. That is, $\E[\norm{(\sigma - \sigma_0)(\bm{A}\underline{Y})}^2] \leq \epsilon^2$
+We have analyzed the averaged error for linear function.
+To extend our result on general non-linear functions, we need to choose a proper function space $F$.
+By detailed analysis we consider a local regime which contains functions near to linear function.
+The distance between non-linear and linear function is quantified by a positive value $\epsilon$.
+Thus we consider $F_{\sigma_0}(\epsilon) =\{ \sigma \,|\, \norm{\sigma - \sigma_0} \leq \epsilon\}$.
+Then all differential functions can be treated as $\cup_{\epsilon>0} F(\epsilon)$.
+The norm is actually the expectation w.r.t. the distribution space $G$.
+That is, $\E[\norm{(\sigma - \sigma_0)(\bm{A}\underline{Y})}^2] \leq \epsilon^2$
 where $\bm{A} = \bm{X}\bm{X}^\T$.
 
 
-We are particularly interested in how the averaged error changes when $\sigma$ is contracted to $\sigma_0$ along a certain path in $F(\sigma)$. That is, given a function $\xi$ we can construct $\sigma = \sigma_0 + \epsilon \xi$ where $\xi \in F_0 = \{\xi | \norm{\xi} \leq 1 \}$. $\sigma \to \sigma_0$ is equivalent to $\epsilon \to 0$.
+We are particularly interested in how the averaged error changes when $\sigma$ is contracted to $\sigma_0$ along a certain path in $F(\sigma)$.
+That is, given a function $\xi$ we can construct $\sigma = \sigma_0 + \epsilon \xi$
+where $\xi \in F_0 = \{\xi | \norm{\xi} \leq 1 \}$. $\sigma \to \sigma_0$ is equivalent to $\epsilon \to 0$.
 
 To measure the change rate of $E[\sigma]$ in local regime of linear function, we introduce the concept of the asymptotic error rate as follows:
 \begin{definition}
@@ -262,7 +271,7 @@ To justify the definition of $\mathrm{C}[\xi]$, we need to show the limit in Equ
 %which consists of polynomials with the highest degree no more than $m$.
 
 \begin{proposition}\label{prop:Esigma} 
-Let $\nabla \xi(\underline{z})  = \diag[\xi'(\underline{z}_1), \dots, \xi'(\underline{z}_n)]$, we have
+Let $\nabla \xi(\underline{z})  = \diag[\xi'(\underline{z}_1), \dots, \xi'(\underline{z}_n)]$. Then we have
 \begin{align}\notag
 \mathrm{C}[\xi]= & \E[\norm{\xi(\bm{A}\underline{Y})}^2 -
 \norm{\bm{X}^\T\xi(\bm{A}\underline{Y})}^2 \\
@@ -302,7 +311,7 @@ Using Hermite polynomials, the minimizer of $\mathrm{C}[\xi]$ is expressed in th
 \begin{proposition}\label{prop:value}
 Let
 \begin{equation}\label{eq:ximopt}
-    \xi_m(z) = \frac{1}{\sqrt{m!n}} H_m(\frac{n}{k^{1/2}} z)
+    \xi_m(z) \triangleq \frac{1}{\sqrt{m!n}} H_m(\frac{n}{k^{1/2}} z)
 \end{equation}
 Then $\mathrm{C}[\xi_m] = -(1-\frac{k}{n})(m-1) \leq \mathrm{C}[\xi] $ for all $\xi \in F_{0, m}$.
 \end{proposition}
@@ -382,7 +391,7 @@ up to $o(\epsilon^2)$ as
 $\bm{X}\underline{w}_0 = \bm{X}\bm{X}^\T \underline{Y}$ is the projection of $\underline{Y}$ onto linear subspace spanned by
 columns of $\bm{X}$.
 
-We first show that in the expansion of $\E[\sigma]$, the coefficient of $\epsilon$ is zero.
+We first show that in the expansion of $\E[\sigma]$, the coefficient of $\epsilon$-term is zero.
 We use $\tilde{\underline{Y}}$ to denote the mirror of $\underline{Y}$ about this linear subspace.
 Then we have
 $\bm{X}\bm{X}^\T \underline{Y} = \bm{X}\bm{X}^\T \tilde{\underline{Y}}$ and
