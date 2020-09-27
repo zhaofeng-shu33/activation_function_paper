@@ -160,7 +160,7 @@ and provide the closed-form solutions of the optimal non-linear activation funct
 % passive and active
 The rest of this paper is organized as follows: In Section \ref{sec:mm}, we formulate the universally optimal activation function problem
 mathematically.
-Under some assumptions we establish the optimal solution as the Hermite polynomial and discover the expression of error rate in Section \ref{sec:hp}.
+Under specific assumptions we derive the optimal solution as the Hermite polynomial and establish error rate in Section \ref{sec:hp}.
 Furthermore, in Section \ref{sec:er}, numerical experiments are conducted to verify our theoretical results.
 Section \ref{sec:con} concludes the paper. Proof details of our conclusion are provided in \ref{sec:Proofs}.
 
@@ -171,7 +171,7 @@ random matrix. In addition,
 $x, \underline{x}, \bm{x}$ (or $\mathbf{M}$) represents a numerical value,
 a numerical vector
 and numerical matrix.
-Besides, $\mathbf{I}_n$ is n-dimensional identity matrix, and
+Besides, $\mathbf{I}_n$ denotes n-dimensional identity matrix, and
 $[\cdot]^\T$ is the transpose operation on matrix. What's more, $\ide{i}{j} = (i+j)\, \mathrm{mod} \, 2$
 which equals 1 if $ i + j$ is even and 0 otherwise. Finally,
 $n!!$ is the double factorial which equals $n \times (n-2) \dots \times1$ if $n$ is odd and $n \times (n-2)\dots \times 2$ for even $n$. $(-1)!!=1$
@@ -196,12 +196,12 @@ the $\ell_2$ loss function is given by
 $\ell_2(\underline{y}, \bm{x}) = \norm{\underline{y} - \sigma(\sum_{i=1}^k w_i \underline{x}_i)}^2 $
 where $\underline{x}_i= (x_{1i}, \dots, x_{ni})^\T$ is the $i$-th column of the feature vector $\bm{x}$ and
 $\underline{y} = (y_1, \dots, y_n)$ is the label vector. $\sigma$ is applied to a vector in elementwise way.
-The optimal weight for a given activation function $\sigma$ is the solution to $\min \ell_2(\underline{y}, \bm{x})$.
+The optimal weight for a given activation function $\sigma$ is the minimizer of $\ell_2(\underline{y}, \bm{x})$.
 
 
 
-For different problems, we suppose $\underline{y}, \bm{x}$ are drawn from some distribution $G$.
-That is, we treat them as random vectors and rewrite them as $\underline{Y}, \bm{X}$.
+For different problems, we suppose $\underline{y}, \bm{x}$ are drawn from distribution $G$.
+That is, $\underline{y}, \bm{x}$ are samples of random vector $\underline{Y}$ and random matrix $\bm{X}$.
 We are interested to find a function $\sigma$ which minimizes
 $\E[ \min \ell_2(\underline{Y}, \bm{X})]$.
 Our requirement of the activation function $\sigma$ is that
@@ -266,10 +266,13 @@ Let $\xi \in \mathcal{F}_0$, the asymptotic error rate for $\xi$ is
 \end{equation}
 \end{definition}
 
-$\mathrm{C}[\xi]$ can represent the error change rate of perturbation from linear function. If $\mathrm{C}[\xi]$ is negative for a given $\xi$, we can decrease $\mathrm{E}[\sigma]$ in the rate of $\abs{\mathrm{C}[\xi]}$ along  the perturbation path $\xi$.
+$\mathrm{C}[\xi]$ can represent the error change rate of perturbation from linear function.
+If $\mathrm{C}[\xi]$ is negative for a given $\xi$,
+we can decrease $\mathrm{E}[\sigma]$ in the rate of $\abs{\mathrm{C}[\xi]}$ along the perturbation direction $\xi$.
 The definition of $\mathrm{C}[\xi]$ in Equation \eqref{eq:Cxi} can also be rewritten in another way as
 $\mathrm{E}[\sigma] = \mathrm{E}[\sigma_0] +
-\mathrm{C}[\xi]\epsilon^2 + o(\epsilon^2)$. In this form, we can see more clearly that $\mathrm{C}[\xi]$ is the coefficient of the second order term of $\mathrm{E}[\sigma]$.
+\mathrm{C}[\xi]\epsilon^2 + o(\epsilon^2)$.
+In this form, we can see more clearly that $\mathrm{C}[\xi]$ is the coefficient of the second order term of $\mathrm{E}[\sigma]$.
 
 To justify the definition of $\mathrm{C}[\xi]$, we need to show the limit in Equation \eqref{eq:Cxi} exists, which is guaranteed by the following proposition:
 %For functional space $F$, we choose $P_m(z)$,
