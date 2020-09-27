@@ -164,15 +164,19 @@ Under some assumptions we establish the optimal solution as the Hermite polynomi
 Furthermore, in Section \ref{sec:er}, numerical experiments are conducted to verify our theoretical results.
 Section \ref{sec:con} concludes the paper. Proof details of our conclusion are provided in \ref{sec:Proofs}.
 
-Throughout this paper, we use $X$ to represent random variables;
-$\underline{X}$ to represent random vectors;
-$\bm{X}$ to denote random matrix;
-$x$ to represent a numerical value;
-$\underline{x}$ as a numerical vector;
-$\bm{x}$  or $\mathbf{M}$ as numerical matrix; $\mathbf{I}_n$ is n-dimensional identity matrix;
-$[\cdot]^\T$ is the transpose operation on matrix; $\ide{i}{j} = (i+j)\, \mathrm{mod} \, 2$
-which equals 1 if $ i + j$ is even and 0 otherwise;
-$n!!$ is the double factorial which equals $n \times (n-2) \dots \times1$ if $n$ is odd and $n \times (n-2)\dots \times 2$ for even $n$. Furthermore, $(-1)!!=1,(-3)!!=-1$.
+Throughout this paper,
+we use $X,\underline{X}, \bm{X}, $ to represent random variables,
+random vectors and
+random matrix. In addition,
+$x, \underline{x}, \bm{x}$ (or $\mathbf{M}$) represents a numerical value,
+a numerical vector
+and numerical matrix.
+Besides, $\mathbf{I}_n$ is n-dimensional identity matrix, and
+$[\cdot]^\T$ is the transpose operation on matrix. What's more, $\ide{i}{j} = (i+j)\, \mathrm{mod} \, 2$
+which equals 1 if $ i + j$ is even and 0 otherwise. Finally,
+$n!!$ is the double factorial which equals $n \times (n-2) \dots \times1$ if $n$ is odd and $n \times (n-2)\dots \times 2$ for even $n$. $(-1)!!=1$
+and $(-3)!!=-1$
+are defined specifically.
 
 \begin{figure}
 \includegraphics[width=\linewidth]{network_structure.eps}
@@ -196,7 +200,7 @@ The optimal weight for a given activation function $\sigma$ is the solution to $
 
 
 
-For different problems, we suppose $\underline{y}, \bm{x}$ are drawing from some distribution $G$.
+For different problems, we suppose $\underline{y}, \bm{x}$ are drawn from some distribution $G$.
 That is, we treat them as random vectors and rewrite them as $\underline{Y}, \bm{X}$.
 We are interested to find a function $\sigma$ which minimizes
 $\E[ \min \ell_2(\underline{Y}, \bm{X})]$.
