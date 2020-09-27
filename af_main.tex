@@ -151,7 +151,7 @@ The network we considered can be regarded as a special ResNet model, which are w
 % This network can be regarded as a kind of non-linear regression.
 We use an averaged error to measure the network loss, which can be regarded as an universally optimal activation function for the given network.
 We find that the averaged loss is minimized when the activation function is Hermite orthogonal polynomial, which
-has been argued only empirically to be beneficial as activation functions in previous work \cite{ma2005constructive}.
+validates the previous empirical results \cite{ma2005constructive}.
 
 
 To the best of our knowledge, this is the first work that can explicitly quantify the performance gain in functional approximation,
@@ -239,23 +239,24 @@ since we use $k$ degrees of freedom to estimate arbitrary vector in $n$-dimensio
 
 
 We have analyzed the averaged error for linear function.
-To extend our result on general non-linear functions, we need to choose a proper function space $F$.
+To extend our result on general non-linear functions, we need to choose a proper function space $\mathcal{F}$.
 By detailed analysis we consider a local regime which contains functions near to linear function.
 The distance between non-linear and linear function is quantified by a positive value $\epsilon$.
-Thus we consider $F_{\sigma_0}(\epsilon) =\{ \sigma \,|\, \norm{\sigma - \sigma_0} \leq \epsilon\}$.
-Then all differential functions can be treated as $\cup_{\epsilon>0} F(\epsilon)$.
+Thus we consider $\mathcal{F}_{\sigma_0}(\epsilon) =\{ \sigma \,|\, \norm{\sigma - \sigma_0} \leq \epsilon\}$.
+Then all differential functions can be treated as $\cup_{\epsilon>0} \mathcal{F}(\epsilon)$.
 The norm is actually the expectation w.r.t. the distribution space $G$.
 That is, $\E[\norm{(\sigma - \sigma_0)(\bm{A}\underline{Y})}^2] \leq \epsilon^2$
 where $\bm{A} = \bm{X}\bm{X}^\T$.
 
 
-We are particularly interested in how the averaged error changes when $\sigma$ is contracted to $\sigma_0$ along a certain path in $F(\sigma)$.
+We are particularly interested in how the averaged error changes
+when $\sigma$ is contracted to $\sigma_0$ along a certain path in $\mathcal{F}(\sigma)$.
 That is, given a function $\xi$ we can construct $\sigma = \sigma_0 + \epsilon \xi$
-where $\xi \in F_0 = \{\xi | \norm{\xi} \leq 1 \}$. $\sigma \to \sigma_0$ is equivalent to $\epsilon \to 0$.
+where $\xi \in \mathcal{F}_0 = \{\xi | \norm{\xi} \leq 1 \}$. $\sigma \to \sigma_0$ is equivalent to $\epsilon \to 0$.
 
 To measure the change rate of $E[\sigma]$ in local regime of linear function, we introduce the concept of the asymptotic error rate as follows:
 \begin{definition}
-Let $\xi \in F_0$, the asymptotic error rate for $\xi$ is
+Let $\xi \in \mathcal{F}_0$, the asymptotic error rate for $\xi$ is
 \begin{equation}\label{eq:Cxi}
 \mathrm{C}[\xi] \triangleq \lim_{\substack{\epsilon \to 0 \\ \sigma = \sigma_0 + \epsilon \xi}} \frac{E[\sigma] - E[\sigma_0]}{\epsilon^2}
 \end{equation}
@@ -279,9 +280,9 @@ Let $\nabla \xi(\underline{z})  = \diag[\xi'(\underline{z}_1), \dots, \xi'(\unde
 \end{align}
 \end{proposition}
 
-Our goal is to get the fastest decreasing path from $E[\sigma_0]$ to $E[\sigma]$, this is equivalent to solve an optimization problem $\min \mathrm{C}[\xi]$ constraint by $\xi \in F_0$. It is hard to optimize on $F_0$ directly, and we consider $F_{0,m} = F_0 \cap P_m$ instead. $P_m$ consists of polynomials with the highest degree no more than $m$, and we have $F_0 = \lim_{m\to \infty} F_{0,m}$.
+Our goal is to get the fastest decreasing path from $E[\sigma_0]$ to $E[\sigma]$, this is equivalent to solve an optimization problem $\min \mathrm{C}[\xi]$ constraint by $\xi \in \mathcal{F}_0$. It is hard to optimize on $\mathcal{F}_0$ directly, and we consider $\mathcal{F}_{0,m} = \mathcal{F}_0 \cap P_m$ instead. $P_m$ consists of polynomials with the highest degree no greater than $m$, and we have $\mathcal{F}_0 = \lim_{m\to \infty} \mathcal{F}_{0,m}$.
 
-For $\xi \in F_{0,m}$ we have the following result:
+For $\xi \in \mathcal{F}_{0,m}$ we have the following result:
 \begin{proposition}\label{prop:quadratic}
 If
 $\xi(z) = \sum_{i=0}^m \underline{q}_i z^i$,
@@ -291,7 +292,7 @@ and $m \ll k$, then we have
 \textrm{where }\underline{p}_i &= \frac{k^{i/2}}{n^{- 1/2 + i}}\underline{q}_i\label{eq:pqt} \\
 \mathbf{M}_{ij} =& -\ide{i}{j}(i-1)(j-1)(i+j-3)!! \notag
 \end{align}
-The constraint $\xi \in F_{0,m}$ is equivalent with
+The constraint $\xi \in \mathcal{F}_{0,m}$ is equivalent with
 \begin{align}
 \underline{p}^\T \mathbf{N} \underline{p} & = 1 \notag\\
 \mathbf{N}_{ij}  & = \ide{i}{j}(i+j-1)!!
@@ -313,7 +314,7 @@ Let
 \begin{equation}\label{eq:ximopt}
     \xi_m(z) \triangleq \frac{1}{\sqrt{m!n}} H_m(\frac{n}{k^{1/2}} z)
 \end{equation}
-Then $\mathrm{C}[\xi_m] = -(1-\frac{k}{n})(m-1) \leq \mathrm{C}[\xi] $ for all $\xi \in F_{0, m}$.
+Then $\mathrm{C}[\xi_m] = -(1-\frac{k}{n})(m-1) \leq \mathrm{C}[\xi] $ for all $\xi \in \mathcal{F}_{0,m}$.
 \end{proposition}
 Proposition \ref{prop:value} also gives the lower bound for $\mathrm{C}[\xi]$.
 It says the maximal asymptotic error rate at $\mathrm{E}[\sigma_0]$ has linear relation with the degree of Hermite polynomials. This result is made under the assumption $ m \ll k$ and in general case when $ m \ll k$ does not hold, by numerical simulation we find that $-(1-\frac{k}{n})(m-1) < \mathrm{C}[\xi]$ while $\mathrm{C}[\xi]$ decreases in linear way.
@@ -384,7 +385,7 @@ up to $o(\epsilon^2)$ as
 2 \epsilon (\bm{X} \underline{\hat{w}} +
 \xi(\bm{X} \underline{w}_0))^\T (\underline{Y} - \bm{X} \underline{w}_0) \\
 & +  \epsilon^2(\norm{\bm{X}\underline{\hat{w}} + \xi(\bm{X} \underline{w}_0)}^2 \\
-& -
+& \qquad -
 2 (\bm{X} \underline{\tilde{w}}+
 \nabla \xi(\bm{X} \underline{w}_0)\bm{X}\underline{\hat{w}})^\T(\underline{Y}-\bm{X} \underline{w}_0))
 \end{align*}
@@ -398,7 +399,9 @@ $\bm{X}\bm{X}^\T \underline{Y} = \bm{X}\bm{X}^\T \tilde{\underline{Y}}$ and
 $(\underline{Y}- \bm{X}\bm{X}^\T\underline{Y}) = -(\tilde{\underline{Y}} - \bm{X}\bm{X}^\T \tilde{\underline{Y}})$.
 The density function of $\underline{Y}$ is also symmetric about this subspace.
 These symmetric properties lead to $\E_{\underline{Y}}[\xi(\bm{X}\underline{w}_0)^\T (\underline{Y}-\bm{X}\underline{w}_0)]=0$.
-On the other hand, since $\bm{X}^\T \bm{X} = \mathbf{I}_k$, $(\bm{X}\underline{\hat{w}})^\T (\underline{Y}-\bm{X}\underline{w}_0) = \underline{\hat{w}}^\T (X^\T \underline{Y} - \underline{w}_0) = 0$.
+On the other hand, since $\bm{X}^\T \bm{X} = \mathbf{I}_k$,
+we have
+$(\bm{X}\underline{\hat{w}})^\T (\underline{Y}-\bm{X}\underline{w}_0) = \underline{\hat{w}}^\T (X^\T \underline{Y} - \underline{w}_0) = 0$.
 
 Next, we minimize the coefficient of $\epsilon^2$ by $\underline{\hat{w}}$, which is simplified to 
 \begin{equation}\label{eq:st}
