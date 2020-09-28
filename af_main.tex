@@ -400,11 +400,12 @@ $\bm{X}\underline{w}_0 = \bm{X}\bm{X}^\T \underline{Y}$ is the projection of $\u
 columns of $\bm{X}$.
 
 We first show that in the expansion of $\E[\sigma]$, the coefficient of $\epsilon$-term is zero.
-We use $\tilde{\underline{Y}}$ to denote the mirror of $\underline{Y}$ about this linear subspace.
+We define $\tilde{\underline{Y}} = -\underline{Y} + 2\bm{X}\bm{X}^T\underline{Y}$, which is
+the mirror of $\underline{Y}$ about linear subspace spanned by $\bm{X}\bm{X}^T$.
 Then we have
 $\bm{X}\bm{X}^\T \underline{Y} = \bm{X}\bm{X}^\T \tilde{\underline{Y}}$ and
 $(\underline{Y}- \bm{X}\bm{X}^\T\underline{Y}) = -(\tilde{\underline{Y}} - \bm{X}\bm{X}^\T \tilde{\underline{Y}})$.
-The density function of $\underline{Y}$ is also symmetric about this subspace.
+The density function $p_{\underline{Y}}$ satisfies $p_{\underline{Y}}(\underline{Y})=p_{\underline{Y}}(\tilde{\underline{Y}})$.
 These symmetric properties lead to $\E_{\underline{Y}}[\xi(\bm{X}\underline{w}_0)^\T (\underline{Y}-\bm{X}\underline{w}_0)]=0$.
 On the other hand, since $\bm{X}^\T \bm{X} = \mathbf{I}_k$,
 we have
@@ -499,20 +500,22 @@ We then have
     \sum_{i=1}^n \bm{\bm{A}}_{ii}  \E[\xi^2(\underline{Z}_i)]\\
     \mathrm{C}_3 & = \sum_{i,j=1, i \neq j}^n \bm{A}_{ij}\bm{\Sigma}_{ij} +
     \sum_{i=1}^n \bm{A}_{ii}\bm{\Sigma}_{ii}     \textrm{ where }\\
-    \bm{\Sigma}_{ii} &=  \E[ [\underline{Z}'_i]^2 [\xi'(\underline{Z}_i)]^2] = \frac{1-\bm{A}_{ii}}{n}[\xi'(\underline{Z}_i)]^2   \\
+    \bm{\Sigma}_{ii} &=  \E[ [\underline{Z}'_i]^2 [\xi'(\underline{Z}_i)]^2] = \frac{1-\bm{A}_{ii}}{n}\E[\xi'^2(\underline{Z}_i)]   \\
     \bm{\Sigma}_{ij} &=  \E[\underline{Z}'_i \underline{Z}'_j \xi'(\underline{Z}_i)
     \xi'(\underline{Z}_j)]
-     = - \frac{\bm{A}_{ij}}{n} \E[ \xi'(\underline{Z}_i)
+     =  \frac{-\bm{A}_{ij}}{n} \E[ \xi'(\underline{Z}_i)
     \xi'(\underline{Z}_j)]
 \end{align*}
-The expression for $\Sigma_{ij}$ holds for $i \neq j$ above. Combining the above equations we have
+%The expression for $\Sigma_{ij}$ holds for $i \neq j$ above.
+Combining the above equations we have
 \begin{align*}
    &  \mathrm{C}[\bm{X}, \xi] = \sum_{i=1}^n (1-\bm{A}_{ii})(\E[\xi^2(\underline{Z}_i)] -
     \frac{ \bm{A}_{ii}}{n} \E[ \xi'^2(\underline{Z}_i)]) \\
     &- \sum_{i,j=1, i \neq j}^n \bm{A}_{ij} (\E[\xi(\underline{Z}_i)\xi(\underline{Z}_j)] -
     \frac{\bm{A}_{ij}}{n}\E[\xi'(\underline{Z}_i) \xi'(\underline{Z}_j)])
 \end{align*}
-By symmetric property, we can simplify the above equation as:
+The summation term contributes equally to $\E_{\bm{X}}[\mathrm{C}[\bm{X}, \xi]]$. Therefore, will a little abuse of notation,
+we can rewrite $\mathrm{C}[\bm{X}, \xi]$ as:
 \begin{align*}
     &  \mathrm{C}[\bm{X}, \xi] =n(1-\bm{A}_{11})(\E[\xi^2(\underline{Z}_1)] -
     \frac{\bm{A}_{11}}{n}  \E[ \xi'^2(\underline{Z}_1)]) \\
@@ -539,7 +542,8 @@ let $ 2t = i + j $, from Lemma \ref{lemma:Isserlis2}, $\E[\underline{Z}_1^i \und
     \frac{\ide{s}{i}(1-s)i!j!}{s!(i-s)!!(j-s)!!}
     \bm{A}_{12}^s \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}
 \end{align*}
-$C[\xi] = \E_{\bm{X}}[\mathrm{C}[\bm{X}, \xi]] =  \underline{q}^T \mathbf{M}' \underline{q}$ where $\mathbf{M}'_{ij} = \E_{\bm{X}} [\bm{M}_{ij}] = -M_1 + M_2$
+$C[\xi] = \E_{\bm{X}}[\mathrm{C}[\bm{X}, \xi]] =  \underline{q}^T \mathbf{M}' \underline{q}$
+where $\mathbf{M}'_{ij} = \E_{\bm{X}} [\bm{M}_{ij}] = -M_1 + M_2$
 and 
 \begin{align*}
     M_1 & =   \frac{\E[\bm{A}_{11}^t]-\E[\bm{A}_{11}^{t+1}]}{n^{t-1}}(i-1)(j-1)(2t-3)!!, \\
