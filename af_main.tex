@@ -226,43 +226,46 @@ i.e. $\sigma^* = \arg\min_{\sigma \in \mathcal{F}} \mathrm{E}(\sigma)$.
 
 Definition \ref{def:ug} is a general formulation for any distribution space $G$.
 To get analytical insights we should choose some specific distribution.
-In the following analysis, we assume $\underline{Y}$ follows Gaussian distribution $\mathcal{N}(\mathbf{0},\frac{1}{n} \mathbf{I}_n)$ and
+Therefore, in the following analysis, we assume $\underline{Y}$ follows Gaussian distribution $\mathcal{N}(\mathbf{0},\frac{1}{n} \mathbf{I}_n)$ and
 we choose $\bm{X}$ as uniformly distributed random orthogonal matrix \cite{eaton1989group}.
 The choice of $\bm{X}$ can be regarded as the post-processing result of PCA (Principal Component Analysis):
 If each element of $\bm{X}'$ is i.i.d. $\mathcal{N}(0, 1)$ random variables and $\sigma(\bm{X}'\underline{w}')$ is considered,
 we can make the transformation $\bm{X} = \bm{X}'(\bm{X}'^\T\bm{X}')^{-1/2}, \underline{w} = (\bm{X}'^\T\bm{X}')^{1/2}\underline{w}'$.
 We see that $\bm{X}'\underline{w}' = \bm{X}\underline{w}$.
 From \cite[Proposition 7.1]{eaton1989group} $\bm{X}$ is an orthogonal matrix, uniformly distributed in the orthogonal group.
-Further we assume $\underline{Y}$ and $\bm{X}$ are independent.
-This defines our distribution space $G$. Such choice is natural and leads to simple expression of the averaged error for linear function.
+We also assume that $\underline{Y}$ and $\bm{X}$ are independent.
+This completes the definition of the distribution space $G$.
+%Such choice makes it possible for the analytical analysis of the averaged estimation error.
+Based on such choice, for linear function, we have the following conclusion:
 
 \begin{proposition}\label{prop:linear}
 We have $\mathrm{E}(\sigma_0) = 1 - \frac{k}{n}$ where $\sigma_0(z) = z$ is the identity function.
 \end{proposition}
 
-Proposition \ref{prop:linear} says that the averaged estimation error $\mathrm{E}$ for linear function is equal to $1-\frac{k}{n}$.
-This result is consistent with our intuition
+Proposition \ref{prop:linear} says that the averaged estimation error $\mathrm{E}$ for linear function is equal to $1-\frac{k}{n}$,
+which is consistent with our intuition
 since we use $k$ degrees of freedom to estimate arbitrary vector in $n$-dimensional space.
 
 
 
 We have analyzed the averaged error for linear function.
-To extend our result on general non-linear functions, we need to choose a proper function space $\mathcal{F}$.
-By detailed analysis we consider a local regime which contains functions near to linear function.
-The distance between non-linear and linear function is quantified by a positive value $\epsilon$.
+To extend our result on non-linear functions, we need to choose a proper function space $\mathcal{F}$.
+In this paper we consider a local region which contains non-linear function perturbed from the linear space.
+The distance from non-linear function to linear space is quantified by a positive value $\epsilon$.
 Thus we consider $\mathcal{F}_{\sigma_0}(\epsilon) =\{ \sigma \,|\, \norm{\sigma - \sigma_0} \leq \epsilon\}$.
-Then all differential functions can be treated as $\cup_{\epsilon>0} \mathcal{F}(\epsilon)$.
+Then all smooth functions can be treated as $\cup_{\epsilon>0} \mathcal{F}(\epsilon)$.
 The norm of function is chosen as the expectation w.r.t. the distribution space $G$.
 That is, $||\sigma - \sigma_0||^2\triangleq \E[\norm{(\sigma - \sigma_0)(\bm{A}\underline{Y})}^2] $
 where $\bm{A} = \bm{X}\bm{X}^\T$.
 
 
 We are particularly interested in how the averaged error changes
-when $\sigma$ is contracted to $\sigma_0$ along a certain path in $\mathcal{F}(\sigma)$.
+when $\sigma$ is contracted to $\sigma_0$ along a certain direction in $\mathcal{F}(\sigma)$.
 That is, given a function $\xi$ we can construct $\sigma = \sigma_0 + \epsilon \xi$
 where $\xi \in \mathcal{F}_0 = \{\xi | \norm{\xi} \leq 1 \}$. $\sigma \to \sigma_0$ is equivalent to $\epsilon \to 0$.
 
-To measure the change rate of $E[\sigma]$ in local regime of linear function, we introduce the concept of the asymptotic error rate as follows:
+To measure the change rate of $E[\sigma]$ when $\sigma \to \sigma_0$,
+we introduce the concept of the asymptotic error rate as follows:
 \begin{definition}
 Let $\xi \in \mathcal{F}_0$, the asymptotic error rate for $\xi$ is
 \begin{equation}\label{eq:Cxi}
@@ -291,7 +294,7 @@ Let $\nabla \xi(\underline{z})  = \diag[\xi'(\underline{z}_1), \dots, \xi'(\unde
 \end{align}
 \end{proposition}
 
-Our goal is to get the fastest decreasing path from $E[\sigma_0]$ to $E[\sigma]$, this is equivalent to solve an optimization problem $\min \mathrm{C}[\xi]$ constraint by $\xi \in \mathcal{F}_0$. It is hard to optimize on $\mathcal{F}_0$ directly, and we consider $\mathcal{F}_{0,m} = \mathcal{F}_0 \cap P_m$ instead. $P_m$ consists of polynomials with the highest degree no greater than $m$, and we have $\mathcal{F}_0 = \lim_{m\to \infty} \mathcal{F}_{0,m}$.
+Our goal is to get the fastest decreasing path $\xi$ from $E[\sigma_0]$ to $E[\sigma]$, this is equivalent to solve an optimization problem $\min \mathrm{C}[\xi]$ constraint by $\xi \in \mathcal{F}_0$. It is hard to optimize on $\mathcal{F}_0$ directly, and we consider $\mathcal{F}_{0,m} = \mathcal{F}_0 \cap P_m$ instead. $P_m$ consists of polynomials with the degree no greater than $m$, and we have $\mathcal{F}_0 = \lim_{m\to \infty} \mathcal{F}_{0,m}$.
 
 For $\xi \in \mathcal{F}_{0,m}$ we have the following result:
 \begin{proposition}\label{prop:quadratic}
@@ -305,7 +308,7 @@ and $m \ll k$, then we have
 \end{align}
 The constraint $\xi \in \mathcal{F}_{0,m}$ is equivalent with
 \begin{align}
-\underline{p}^\T \mathbf{N} \underline{p} & = 1 \notag\\
+\underline{p}^\T \mathbf{N} \underline{p} & = 1 \textrm{ with }\notag\\
 \mathbf{N}_{ij}  & = \ide{i}{j}(i+j-1)!!
 \end{align}
 \end{proposition}
@@ -328,16 +331,23 @@ Let
 \end{equation}
 Then $\mathrm{C}[\xi_m] = -(1-\frac{k}{n})(m-1) \leq \mathrm{C}[\xi] $ for all $\xi \in \mathcal{F}_{0,m}$.
 \end{proposition}
-Proposition \ref{prop:value} also gives the lower bound for $\mathrm{C}[\xi]$.
-It says the maximal asymptotic error rate at $\mathrm{E}[\sigma_0]$ has linear relation with the degree of Hermite polynomials. This result is made under the assumption $ m \ll k$ and in general case when $ m \ll k$ does not hold, by numerical simulation we find that $-(1-\frac{k}{n})(m-1) < \mathrm{C}[\xi]$ while $\mathrm{C}[\xi]$ decreases in linear way.
+Proposition \ref{prop:value} also gives the expression of the minimal asymptotic error rate, which has linear relation with the degree of Hermite polynomials. This result is made under the assumption $ m \ll k$ and in general case when $ m \ll k$ does not hold, by numerical simulation we find that $-(1-\frac{k}{n})(m-1) < \mathrm{C}[\xi]$ while $\mathrm{C}[\xi]$ decreases in linear way.
 
 \section{Experiment Result}\label{sec:er}
 
 To verify the change rate of $C[\xi]$ is linear as we increase the maximal degree of polynomials $m$,
 we conduct a simple experiment with $n=180, k=120$. We use $\xi_m(z)$ from Proposition
-\ref{prop:value} and normalized polynomials with only highest degree $\tilde{\xi}_m(z) = \frac{(nz/\sqrt{k})^m}{\sqrt{(2m-1)!!n}}$ as activation function. Using the Monte Carlo method to compute $\mathrm{C}[\xi]$ from Proposition \ref{prop:Esigma}, the result is shown in Fig. \ref{fig:fixednk}. As can be seen, the Hermite polynomial results coincide with the theoretical lower bound in Proposition \ref{prop:value}. For other polynomials, it cannot achieve the minimum value but we can still see that the nearly linear relationship between $C[\xi]$ and degree $m$. From Equation \eqref{eq:pqt}, we also notice that for $\tilde{\xi}_m$, the highest degree term contributes $-(1-\frac{k}{n})\frac{(m-1)^2}{2m-1}$ to $C[\xi]$, which is approximately $\frac{1}{2} C[\xi_m]$. This phenomenon tells us that the contribution of each polynomial
+\ref{prop:value} and normalized polynomials with only highest degree $\tilde{\xi}_m(z) = \frac{(nz/\sqrt{k})^m}{\sqrt{(2m-1)!!n}}$ as activation function. Using the Monte Carlo method to compute $\mathrm{C}[\xi]$ from Proposition \ref{prop:Esigma},
+our experiment result is shown in Fig. \ref{fig:fixednk}.
+As can be seen, the Hermite polynomial results coincide with the theoretical lower bound in Proposition \ref{prop:value}.
+For $\tilde{\xi}_m$, it cannot achieve the minimum value,
+but we can still observe the nearly linear relationship between $C[\tilde{\xi}_m]$ and degree $m$.
+From Equation \eqref{eq:pqt}, we also notice that for $\tilde{\xi}_m$,
+the highest degree term contributes $-(1-\frac{k}{n})\frac{(m-1)^2}{2m-1}$ to $C[\xi]$,
+which is approximately $\frac{1}{2} C[\xi_m]$.
+This phenomenon suggests that the contribution of each polynomial
 degree to $C[\xi]$ is not evenly distributed and
-the higher order term contributes more.  
+the higher degree term contributes more.  
 
 
 \begin{figure}
@@ -349,7 +359,7 @@ the higher order term contributes more.
 \section{Conclusion}\label{sec:con}
 
 In this paper, we have investigated the mechanism of non-linearity in one-node neural network. If we allow polynomial perturbation of linear activation function,
-the network loss is linearly decreased as the maximal degree of polynomial is increased. How non-linearity works in more complex neural networks will be considered in the future. 
+the network loss is linearly decreased as the degree of polynomial is increased. How non-linearity works in more complex neural networks will be considered in the future. 
 
 \section{Proofs}\label{sec:Proofs}
 %\appendix
