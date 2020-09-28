@@ -247,8 +247,8 @@ By detailed analysis we consider a local regime which contains functions near to
 The distance between non-linear and linear function is quantified by a positive value $\epsilon$.
 Thus we consider $\mathcal{F}_{\sigma_0}(\epsilon) =\{ \sigma \,|\, \norm{\sigma - \sigma_0} \leq \epsilon\}$.
 Then all differential functions can be treated as $\cup_{\epsilon>0} \mathcal{F}(\epsilon)$.
-The norm is actually the expectation w.r.t. the distribution space $G$.
-That is, $\E[\norm{(\sigma - \sigma_0)(\bm{A}\underline{Y})}^2] \leq \epsilon^2$
+The norm of function is chosen as the expectation w.r.t. the distribution space $G$.
+That is, $||\sigma - \sigma_0||^2\triangleq \E[\norm{(\sigma - \sigma_0)(\bm{A}\underline{Y})}^2] $
 where $\bm{A} = \bm{X}\bm{X}^\T$.
 
 
@@ -267,11 +267,11 @@ Let $\xi \in \mathcal{F}_0$, the asymptotic error rate for $\xi$ is
 
 $\mathrm{C}[\xi]$ can represent the error change rate of perturbation from linear function.
 If $\mathrm{C}[\xi]$ is negative for a given $\xi$,
-we can decrease $\mathrm{E}[\sigma]$ in the rate of $\abs{\mathrm{C}[\xi]}$ along the perturbation direction $\xi$.
-The definition of $\mathrm{C}[\xi]$ in Equation \eqref{eq:Cxi} can also be rewritten in another way as
+we can decrease $\mathrm{E}[\sigma]$ in the rate of $\abs{\mathrm{C}[\xi]}$ along the perturbation direction $\xi$,
+which can be seen more clearly if we rewrite \eqref{eq:Cxi} as
 $\mathrm{E}[\sigma] = \mathrm{E}[\sigma_0] +
 \mathrm{C}[\xi]\epsilon^2 + o(\epsilon^2)$.
-In this form, we can see more clearly that $\mathrm{C}[\xi]$ is the coefficient of the second order term of $\mathrm{E}[\sigma]$.
+In this form, we can also see that $\mathrm{C}[\xi]$ is the coefficient of the second order term of $\mathrm{E}[\sigma]$.
 
 To justify the definition of $\mathrm{C}[\xi]$, we need to show the limit in Equation \eqref{eq:Cxi} exists, which is guaranteed by the following proposition:
 %For functional space $F$, we choose $P_m(z)$,
