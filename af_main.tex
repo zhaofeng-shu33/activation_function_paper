@@ -172,7 +172,7 @@ $x, \underline{x}, \bm{x}$ (or $\mathbf{M}$) represents numerical value,
 numerical vector
 and numerical matrix.
 Besides, $\mathbf{I}_n$ denotes n-dimensional identity matrix, and
-$[\cdot]^\T$ is the transpose operation on matrix. What's more, $\ide{i}{j} \triangleq (i+j)\, \mathrm{mod} \, 2$
+$[\cdot]^\T$ is the transpose operation on matrix. What's more, $\mathrm{1}_{m=n}$ is the indicator function and $\ide{i}{j} \triangleq (i+j)\, \mathrm{mod} \, 2$
 which equals 1 if $ i + j$ is even and 0 otherwise. Finally,
 $n!!$ is the double factorial which equals $n \times (n-2) \dots \times1$ if $n$ is odd and $n \times (n-2)\dots \times 2$ for even $n$. $(-1)!!=1$
 and $(-3)!!=-1$
@@ -311,7 +311,8 @@ is proportional to the degree of polynomials and feature dimensions are usually 
 
 \section{Hermite Polynomials}\label{sec:hp}
 
-One of our major result is that we find Proposition \ref{prop:quadratic} leads naturally to the Hermite polynomials solutions. (Probabilists') Hermite polynomials $H_m(x),m=1,2,\dots$
+One of our major result is that we find Proposition \ref{prop:quadratic} leads naturally to the Hermite polynomials solutions.
+(Probabilists') Hermite polynomials $H_m(x),m=1,2,\dots$
 are a series of polynomials with the orthogonal property $ \E[H_m(X)H_n(X)] = n! \mathrm{1}_{m=n}$ where $X$ is the standard normal random variable.
 The degree of $H_m(x)$ is $m$.
 Using Hermite polynomials, the minimizer of $\mathrm{C}[\xi]$ is expressed in the following way:
@@ -431,7 +432,7 @@ Substituting $\underline{\hat{w}}$ in expression in \eqref{eq:st} with the above
 %\end{align*}
 \end{proof}
 \begin{lemma}\label{lemma:Isserlis2}
-     Suppose $(X,Y)$ follows two dimensional Gaussian distribution $\mathcal{N}(\binom{0}{0}, \Sigma)$ and $ i + j $ is even, then we have
+     Suppose $(X,Y)$ follows two-dimensional Gaussian distribution $\mathcal{N}(\bm{0}, \Sigma)$, then for the case $i+j$ is even, we have
 \begin{equation*}
     \E[X^i Y^j] =
     \sum_{k=0}^{\min\{i,j\}}
@@ -441,7 +442,10 @@ Substituting $\underline{\hat{w}}$ in expression in \eqref{eq:st} with the above
 \end{lemma}
 \begin{proof}
 Using Isserlis' theorem \cite{isserlis1918formula} we obtain
-$  \E[X^i Y^j] = \sum_{k=0}^{\min\{i,j\}} C_k \Sigma_{12}^k \Sigma_{11}^{(i-k)/2}\Sigma_{22}^{(j-k)/2}$. Since the power of $\Sigma_{11}$ should be an integer, $C_k = 0$ if $\ide{k}{i} = 0$. If $\ide{k}{i} = 1$, we choose $k$ items of $X$ and $Y$ to form $\Sigma_{12} = \E[XY]$, which has $\binom{i}{k}\binom{j}{k}$ choices. For the remaining $(i-k)$ numbers of $X$, we should pair them. There are $\frac{1}{(\frac{i-k}{2})!}\prod_{i=1}^{(i-k)/2} \binom{2i}{2} = \frac{(i-k)!}{(i-k)!!}$ possible combinations; For $(j-k)$ numbers of $Y$, it is $\frac{(j-k)!}{(j-k)!!}$; Finally, for $k$ pairs of $XY$, there are $k!$ possible combinations. The product $\binom{i}{k}\binom{j}{k}\frac{(i-k)!}{(i-k)!!}\frac{(j-k)!}{(j-k)!!}k!$ is the coefficient $C_k$.
+$  \E[X^i Y^j] = \sum_{k=0}^{\min\{i,j\}} C_k \Sigma_{12}^k \Sigma_{11}^{(i-k)/2}\Sigma_{22}^{(j-k)/2}$.
+The power of $\Sigma_{11}$ should be an integer. Therefore, if $\ide{k}{i} = 0$, $C_k = 0$.
+For $\ide{k}{i} = 1$, we choose $k$ items of $X$ and $Y$ to form $\Sigma_{12} = \E[XY]$, which has $\binom{i}{k}\binom{j}{k}$ choices.
+For the remaining $(i-k)$ numbers of $X$, we should pair them. There are $\frac{1}{(\frac{i-k}{2})!}\prod_{i=1}^{(i-k)/2} \binom{2i}{2} = \frac{(i-k)!}{(i-k)!!}$ possible combinations; For $(j-k)$ numbers of $Y$, it is $\frac{(j-k)!}{(j-k)!!}$; Finally, for $k$ pairs of $XY$, there are $k!$ possible combinations. The product $\binom{i}{k}\binom{j}{k}\frac{(i-k)!}{(i-k)!!}\frac{(j-k)!}{(j-k)!!}k!$ is the coefficient $C_k$.
 \end{proof}
 %\begin{lemma}\label{lemma:A1112}
 %For random matrix $\bm{A}$ we have $\E[\bm{A}_{11}^t] = \prod_{i=0}^{t-1} \frac{k+2t}{n+2t}$ and
