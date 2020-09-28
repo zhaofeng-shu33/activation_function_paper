@@ -136,7 +136,7 @@ activation function is mainly empirically motivated.
 For example, to obtain better representation of features,
 it is a common practice to optimize over parameterized activation function \cite{ramachandran2017searching}.
 Such optimization increases the computational cost with little network performance gain \cite{laudani2015training}.
-Another shortcoming of this approach is that the searched activation function cannot be guaranteed for other problems.
+Another shortcoming of this approach is that using searched activation function, the network performance cannot be guaranteed for other problems.
 In addition to empirical study, there are also theoretical investigations which study specific network architecture.
 Many researches are restricted on a specific activation function and seldom explore about the theoretical property of activity function,
 which is important to the expressive power of neural network.
@@ -168,11 +168,11 @@ Throughout this paper,
 we use $X,\underline{X}, \bm{X}, $ to represent random variables,
 random vectors and
 random matrix. In addition,
-$x, \underline{x}, \bm{x}$ (or $\mathbf{M}$) represents numerical value,
+$x, \underline{x}, \bm{x}$ (or $\mathbf{M}$) represent numerical value,
 numerical vector
 and numerical matrix.
 Besides, $\mathbf{I}_n$ denotes n-dimensional identity matrix, and
-$[\cdot]^\T$ is the transpose operation on matrix. What's more, $\mathrm{1}_{m=n}$ is the indicator function and $\ide{i}{j} \triangleq (i+j)\, \mathrm{mod} \, 2$
+$[\cdot]^\T$ is the transpose operation on matrix. Moreover, $\mathrm{1}_{m=n}$ is the indicator function and $\ide{i}{j} \triangleq (i+j)\, \mathrm{mod} \, 2$
 which equals 1 if $ i + j$ is even and 0 otherwise. Finally,
 $n!!$ is the double factorial which equals $n \times (n-2) \dots \times1$ if $n$ is odd and $n \times (n-2)\dots \times 2$ for even $n$. $(-1)!!=1$
 and $(-3)!!=-1$
@@ -185,12 +185,12 @@ are defined specifically.
 
 \section{Mathematical Model}\label{sec:mm}
 We consider one-node neural network, whose structure is shown in Fig. \ref{fig:ns}.
-This type of network arises naturally from function approximation problems, where a target function $g$, defined in a finite set,
+This type of network arises from function approximation problems, where a target function $g$, defined in a finite set,
 is estimated by $\sigma(\sum_{i=1}^k w_i f_i)$. %and the domain of definition for $f_i, g$ is a finite set.
 
 A more common interpretation of one-node neural network is to consider a $k$-dimensional random vector $\underline{X}=(X_1, \dots, X_k)$ and a random variable $Y$.
 Our goal is to predict $Y$ using $ \sigma(\sum_{i=1}^k w_i X_i)$.
-For a given sampling, we have $n$ data pairs $(x_1, y_1), \dots, (x_n, y_n)$, and
+For a given sampling result, we have $n$ data pairs $(x_1, y_1), \dots, (x_n, y_n)$, and
 the $\ell_2$ loss function is given by
 $\ell_2(\bm{x},\underline{y}) = \norm{\underline{y} - \sigma(\sum_{i=1}^k w_i \underline{x}_i)}^2 $
 where $\underline{x}_i= (x_{1i}, \dots, x_{ni})^\T$ is the $i$-th column of the feature vector $\bm{x}$ and
