@@ -144,7 +144,7 @@ For example, \cite{AroraBMM18} focuses on studying the number of layers and hidd
 Our study fills the theoretical gap by studying how the activation function reduces the neural network loss.
 
 In particular, our work is not restricted to specific functions but only requires the activation function to be smooth.
-In our study, the activation function is chosen from the space which contains non-linear functions ``near" the linear space.
+In our study, the activation function is chosen from the space which contains non-linear functions purturbed from the linear space.
 By doing so, the network loss can be computed quantitatively using second order approximation.
 To simplify the analysis, we consider the one-node neural network which outputs one-dimensional feature \cite{dey2018approximation}.
 The network we considered can be regarded as a special ResNet model, which are widely used in deep neural network architecture.
@@ -162,17 +162,17 @@ The rest of this paper is organized as follows: In Section \ref{sec:mm}, we form
 mathematically.
 Under specific assumptions we derive the optimal solution as the Hermite polynomial and establish error rate in Section \ref{sec:hp}.
 Furthermore, in Section \ref{sec:er}, numerical experiments are conducted to verify our theoretical results.
-Section \ref{sec:con} concludes the paper. Proof details of our conclusion are provided in \ref{sec:Proofs}.
+Section \ref{sec:con} concludes the paper. Proof details of our conclusion are provided in Section \ref{sec:Proofs}.
 
 Throughout this paper,
 we use $X,\underline{X}, \bm{X}, $ to represent random variables,
 random vectors and
 random matrix. In addition,
-$x, \underline{x}, \bm{x}$ (or $\mathbf{M}$) represents a numerical value,
-a numerical vector
+$x, \underline{x}, \bm{x}$ (or $\mathbf{M}$) represents numerical value,
+numerical vector
 and numerical matrix.
 Besides, $\mathbf{I}_n$ denotes n-dimensional identity matrix, and
-$[\cdot]^\T$ is the transpose operation on matrix. What's more, $\ide{i}{j} = (i+j)\, \mathrm{mod} \, 2$
+$[\cdot]^\T$ is the transpose operation on matrix. What's more, $\ide{i}{j} \triangleq (i+j)\, \mathrm{mod} \, 2$
 which equals 1 if $ i + j$ is even and 0 otherwise. Finally,
 $n!!$ is the double factorial which equals $n \times (n-2) \dots \times1$ if $n$ is odd and $n \times (n-2)\dots \times 2$ for even $n$. $(-1)!!=1$
 and $(-3)!!=-1$
@@ -184,26 +184,25 @@ are defined specifically.
 \end{figure}
 
 \section{Mathematical Model}\label{sec:mm}
-We consider one-node neural networks, whose structure is shown in Fig. \ref{fig:ns}.
-This type of network arises naturally from function approximation problems, where a target function $g$
-is estimated by $\sigma(\sum_{i=1}^k w_i f_i)$ and the domain of definition for $f_i, g$ is a finite set.
+We consider one-node neural network, whose structure is shown in Fig. \ref{fig:ns}.
+This type of network arises naturally from function approximation problems, where a target function $g$, defined in a finite set,
+is estimated by $\sigma(\sum_{i=1}^k w_i f_i)$. %and the domain of definition for $f_i, g$ is a finite set.
 
-To formulate the problem using neural networks, we consider a $k$-dimensional random vector $\underline{X}=(X_1, \dots, X_k)$ and a random variable $Y$.
-Our goal is to predict $Y$ using the neural network with $\underline{X}$ as input.
-To be more specific, $Y$ is approximated using $ \sigma(\sum_{i=1}^k w_i X_i)$.
-For a given problem, we have $n$ data pairs $(x_1, y_1), \dots, (x_n, y_n)$, and
+A more common interpretation of one-node neural network is to consider a $k$-dimensional random vector $\underline{X}=(X_1, \dots, X_k)$ and a random variable $Y$.
+Our goal is to predict $Y$ using $ \sigma(\sum_{i=1}^k w_i X_i)$.
+For a given sampling, we have $n$ data pairs $(x_1, y_1), \dots, (x_n, y_n)$, and
 the $\ell_2$ loss function is given by
-$\ell_2(\underline{y}, \bm{x}) = \norm{\underline{y} - \sigma(\sum_{i=1}^k w_i \underline{x}_i)}^2 $
+$\ell_2(\bm{x},\underline{y}) = \norm{\underline{y} - \sigma(\sum_{i=1}^k w_i \underline{x}_i)}^2 $
 where $\underline{x}_i= (x_{1i}, \dots, x_{ni})^\T$ is the $i$-th column of the feature vector $\bm{x}$ and
 $\underline{y} = (y_1, \dots, y_n)$ is the label vector. $\sigma$ is applied to a vector in elementwise way.
-The optimal weight for a given activation function $\sigma$ is the minimizer of $\ell_2(\underline{y}, \bm{x})$.
+The optimal weight for a given activation function $\sigma$ is the minimizer of $\ell_2(\bm{x},\underline{y})$.
 
 
 
-For different problems, we suppose $\underline{y}, \bm{x}$ are drawn from distribution $G$.
-That is, $\underline{y}, \bm{x}$ are samples of random vector $\underline{Y}$ and random matrix $\bm{X}$.
+In our model, we suppose $\bm{x},\underline{y}$ are drawn from distribution $G$.
+That is, $\bm{x},\underline{y}$ are samples of random matrix $\bm{X}$ and random vector $\underline{Y}$.
 We are interested to find a function $\sigma$ which minimizes
-$\E[ \min \ell_2(\underline{Y}, \bm{X})]$.
+$\E[ \min \ell_2(\bm{X},\underline{Y})]$.
 Our requirement of the activation function $\sigma$ is that
 $\sigma(z) = z + \epsilon \xi(z)$ where
 $\epsilon$ is a small constant. The non-linear term should satisfy the normalization constraint
@@ -228,7 +227,7 @@ Definition \ref{def:ug} is a general formulation for any distribution space $G$.
 To get some analytical result we should choose some specific distribution.
 In the following analysis, we assume $\underline{Y}$ follows Gaussian distribution $\mathcal{N}(\mathbf{0},\frac{1}{n} \mathbf{I}_n)$ and
 we choose $\bm{X}$ as uniformly distributed random orthogonal matrix \cite{eaton1989group}. The choice of $\bm{X}$ can be regarded as the post-processing result of can simply PCA (Principal Component Analysis): If each element of $\bm{X}'$ is i.i.d. $\mathcal{N}(0, 1)$ random variables and $\sigma(\bm{X}'\underline{w}')$ is considered, we can make the transformation $\bm{X} = \bm{X}'(\bm{X}'^\T\bm{X}')^{-1/2}, \underline{w} = (\bm{X}'^\T\bm{X}')^{1/2}\underline{w}'$. We see that $\bm{X}'\underline{w}' = \bm{X}\underline{w}$.
-From \cite[Proposition 7.1]{eaton1989group} $\bm{X}$ is a random orthogonal matrix.
+From \cite[Proposition 7.1]{eaton1989group} $\bm{X}$ is an orthogonal matrix, uniformly distributed in the orthogonal group.
 Further we assume $\underline{Y}$ and $\bm{X}$ are independent.
 This defines our distribution space $G$. Such choice is natural and leads to simple expression of the averaged error for linear function.
 
