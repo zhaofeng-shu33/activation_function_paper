@@ -556,7 +556,7 @@ whose element $\bm{M}_{ij}$ is given by
 \begin{align*}
     \bm{M}_{ij} &= n(1-\bm{A}_{11}) (\E[\underline{Z}_1^{i+j}] -
     ij \frac{1}{n}\bm{A}_{11} \E[\underline{Z}_1^{i+j-2}])  \\
-    &-n(n-1)\bm{A}_{12}(\E[\underline{Z}_1^i \underline{Z}_2^j] - ij \frac{1}{n}\bm{A}_{12}\E[\underline{Z}_1^{i-1}\underline{Z}_2^{j-1}])
+    &\quad -n(n-1)\bm{A}_{12}(\E[\underline{Z}_1^i \underline{Z}_2^j] - ij \frac{1}{n}\bm{A}_{12}\E[\underline{Z}_1^{i-1}\underline{Z}_2^{j-1}])
 \end{align*}
 Since $\bm{Z}_1$ is Gaussian, we have $\E[Z_1^{2t}] = \frac{1}{n^t}\bm{A}_{11}^t (2t-1)!!$. If $\ide{i}{j} = 0$, then $\bm{M}_{ij}=0$. Otherwise,
 let $ 2t = i + j $, from Lemma \ref{lemma:Isserlis2}, $\E[\underline{Z}_1^i \underline{Z}_2^j]$ can be expanded, and we have:
@@ -570,10 +570,10 @@ $C[\xi] = \E_{\bm{X}}[\mathrm{C}[\bm{X}, \xi]] =  \underline{q}^T \mathbf{M}' \u
 where $\mathbf{M}'_{ij} = \E_{\bm{X}} [\bm{M}_{ij}] = -M_1 + M_2$
 and 
 \begin{align*}
-    M_1 & =   \frac{\E[\bm{A}_{11}^t]-\E[\bm{A}_{11}^{t+1}]}{n^{t-1}}(i-1)(j-1)(2t-3)!!, \\
+    M_1 & =   \frac{\E[\bm{A}_{11}^t]-\E[\bm{A}_{11}^{t+1}]}{n^{t-1}}(i-1)(j-1)(2t-3)!! \\
     M_2 & = \frac{n-1}{n^{t-1}}\sum_{s=0}^{\min\{i,j\}}
     \frac{\ide{s}{i}(s-1)i!j!}{s!(i-s)!!(j-s)!!}
-    \E[\bm{A}_{12}^{s+1} \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}].
+    \E[\bm{A}_{12}^{s+1} \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}]
 \end{align*}
 Below we consider the case when $k, n \to +\infty$ while $m$ is finite. Since $\bm{A}=\bm{X}\bm{X}^\T$, from Proposition 7.2 of \cite{eaton1989group} we can get $\bm{A}_{11}$ is Beta distribution with parameter $B(\frac{k}{2}, \frac{n-k}{2})$.
 From Theorem 1 of \cite{multivariateBeta},
