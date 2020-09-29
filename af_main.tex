@@ -140,7 +140,7 @@ Another shortcoming of this approach is that using searched activation function,
 In addition to empirical study, there are also theoretical investigations which study specific network architecture.
 Many researches are restricted on a specific activation function and seldom explore about the theoretical property of activation function,
 which is important to the expressive power of neural network.
-For example, \cite{AroraBMM18} focuses on studying the number of layers and hidden units while choosing ReLU activation function.
+For example, ReLU activation function is used in \cite{AroraBMM18}, which focuses on studying the number of layers and hidden units.
 Our study fills the theoretical gap by studying how the activation function reduces the neural network loss.
 
 In particular, our work is not restricted to specific functions but only requires the activation function to be smooth.
@@ -227,17 +227,22 @@ i.e. $\sigma^* = \arg\min_{\sigma \in \mathcal{F}} \mathrm{E}(\sigma)$.
 
 Definition \ref{def:ug} is a general formulation for any distribution space $G$.
 To get analytical insights we should choose some specific distribution.
-Therefore, in the following analysis, we assume $\underline{Y}$ follows Gaussian distribution $\mathcal{N}(\mathbf{0},\frac{1}{n} \mathbf{I}_n)$ and
-we choose $\bm{X}$ as uniformly distributed random orthogonal matrix \cite{eaton1989group}.
-The choice of $\bm{X}$ can be regarded as the post-processing result of PCA (Principal Component Analysis):
-If each element of $\bm{X}'$ is i.i.d. $\mathcal{N}(0, 1)$ random variables and $\sigma(\bm{X}'\underline{w}')$ is considered,
-we can make the transformation $\bm{X} = \bm{X}'(\bm{X}'^\T\bm{X}')^{-1/2}, \underline{w} = (\bm{X}'^\T\bm{X}')^{1/2}\underline{w}'$.
+Therefore, in the following analysis, we assume:
+\begin{enumerate}
+\item $\underline{Y}$ follows Gaussian distribution $\mathcal{N}(\mathbf{0},\frac{1}{n} \mathbf{I}_n)$.
+\item $\bm{X}$ is a uniformly distributed random orthogonal matrix.
+\item $\underline{Y}$ and $\bm{X}$ are independent.
+\end{enumerate}
+For assumption 2), we define $\bm{X} \triangleq \bm{X}'(\bm{X}'^\T\bm{X}')^{-1/2}$
+where elements of $\bm{X}'$ are i.i.d. $\mathcal{N}(0, 1)$ random variables \cite[Proposition 7.1]{eaton1989group}.
+Since $\bm{X}^\T\bm{X} = \mathbf{I}_n$, $\bm{X}$ is indeed orthogonal matrix.
+The definition of $\bm{X}$ can be regarded as the post-processing result of PCA (Principal Component Analysis)
+on network input $\bm{X}'$ and weight $\underline{w}'$, because
+we make the transformation $\bm{X} = \bm{X}'(\bm{X}'^\T\bm{X}')^{-1/2}, \underline{w} = (\bm{X}'^\T\bm{X}')^{1/2}\underline{w}'$.
 We see that $\bm{X}'\underline{w}' = \bm{X}\underline{w}$.
-From \cite[Proposition 7.1]{eaton1989group} $\bm{X}$ is an orthogonal matrix, uniformly distributed in the orthogonal group.
-We also assume that $\underline{Y}$ and $\bm{X}$ are independent.
-This completes the definition of the distribution space $G$.
+%This completes the definition of the distribution space $G$.
 %Such choice makes it possible for the analytical analysis of the averaged estimation error.
-Based on such choice, for linear function, we have the following conclusion:
+Based on the distribution space $G$ by 1)\,-3), for linear function, we have the following conclusion:
 
 \begin{proposition}\label{prop:linear}
 We have $\mathrm{E}(\sigma_0) = 1 - \frac{k}{n}$ where $\sigma_0(z) = z$ is the identity function.
@@ -401,14 +406,14 @@ up to $o(\epsilon^2)$ as
 &\norm{\underline{Y} - \bm{X} \underline{w}_0 - \epsilon \bm{X} \underline{\hat{w}} -
 \epsilon^2 \bm{X} \underline{\tilde{w}} - \epsilon \xi(\bm{X} \underline{w}_0 +
 \epsilon \bm{X} \underline{\hat{w}}) }^2 \\
-= & \norm{ \underline{Y} - \bm{X}  \underline{w}_0 -
+&\quad=  \norm{ \underline{Y} - \bm{X}  \underline{w}_0 -
 \epsilon (\bm{X}\underline{\hat{w}} + \xi(\bm{X} \underline{w}_0 )) \\
-&-  \epsilon^2(\bm{X}\underline{\tilde{w}} + \nabla \xi(\bm{X} \underline{w}_0 )\bm{X}\underline{\hat{w}})}^2 \\
-= & \norm{\underline{Y}-\bm{X} \underline{w}_0  }^2 -
+&\qquad-  \epsilon^2(\bm{X}\underline{\tilde{w}} + \nabla \xi(\bm{X} \underline{w}_0 )\bm{X}\underline{\hat{w}})}^2 \\
+&\quad=  \norm{\underline{Y}-\bm{X} \underline{w}_0  }^2 -
 2 \epsilon (\bm{X} \underline{\hat{w}} +
 \xi(\bm{X} \underline{w}_0))^\T (\underline{Y} - \bm{X} \underline{w}_0) \\
-& +  \epsilon^2(\norm{\bm{X}\underline{\hat{w}} + \xi(\bm{X} \underline{w}_0)}^2 \\
-& \quad -
+& \qquad+  \epsilon^2(\norm{\bm{X}\underline{\hat{w}} + \xi(\bm{X} \underline{w}_0)}^2 \\
+& \qquad\quad -
 2 (\bm{X} \underline{\tilde{w}}+
 \nabla \xi(\bm{X} \underline{w}_0)\bm{X}\underline{\hat{w}})^\T(\underline{Y}-\bm{X} \underline{w}_0))
 \end{align*}
@@ -575,7 +580,7 @@ From Theorem 1 of \cite{multivariateBeta},
 $\E[\bm{A}_{11}^t]-\E[\bm{A}_{11}^{t+1}] = (1-r)\prod_{s=0}^{t-1} \frac{2s+k}{2s+n+2} \sim (1-r)r^t$ where
 $ r \triangleq \frac{k}{n}$. Therefore, $M_1 \sim \frac{(1-r)r^t}{n^{t-1}}(i-1)(j-1)(2t-3)!!$.
 We consider the case when $s+1$ is even, $\E[\bm{A}_{12}^{s+1} \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}] \leq \sqrt{\E[\bm{A}_{12}^{s+1}\bm{A}_{11}^{i-s}]\E[\bm{A}_{12}^{s+1}\bm{A}_{22}^{j-s}]}$. When $k, n$ are sufficiently large, we can treat $\bm{A}_{11}, \bm{A}_{12}$ as joint Gaussian. From Theorem 2 of \cite{multivariateBeta}: $\E[\bm{A}_{12}^{s+1}\bm{A}_{11}^{i-s}] \sim s!! r^{i-s}(\frac{r(1-r)}{n})^{(s+1)/2}$. Similarly, $\E[\bm{A}_{12}^{s+1}\bm{A}_{22}^{j-s}] \sim s!! r^{j-s}(\frac{r(1-r)}{n})^{(s+1)/2}$. It implies that $\E[\bm{A}_{12}^{s+1} \bm{A}_{11}^{\frac{i - s}{2}}\bm{A}_{22}^{\frac{j - s}{2}}] \leq (s!!) r^{t-s}(\frac{r(1-r)}{n})^{(s+1)/2}$. We can get an upper bound of $M_2$ using Equation \ref{eq:UUM}: $M_2 \leq \frac{1}{n^{t-2}} (i-1)(j-1)(2t-3)!!\E[\bm{A}_{12}^{4} \bm{A}_{11}^{\frac{i - 3}{2}}\bm{A}_{22}^{\frac{j - 3}{2}}] \leq \frac{(1-r)^2 r^{t-1}}{n^t}3(i-1)(j-1)(2t-3)!!= \frac{3(1-r)}{k} M_1$.
-When $k \to \infty$, we see that $M_2$ can be ignored and $\mathbf{M}'_{ij} = -\ide{i}{j}\frac{(1-r)r^t}{n^{t-1}}(i-1)(j-1)(2t-3)!!$. By changing of variables by Equation \ref{eq:pqt} we can get the correspondence $\mathbf{M}_{ij} = \frac{n^{-1+2t}}{k^t} \mathbf{M}'_{ij} = -\ide{i}{j}(1-r)(i-1)(j-1)(2t-3)!!$. 
+When $k \to \infty$, we see that $M_2$ can be ignored and $\mathbf{M}'_{ij} = -\ide{i}{j}\frac{(1-r)r^t}{n^{t-1}}(i-1)(j-1)(2t-3)!!$. By changing of variables in Equation \ref{eq:pqt} we can get the correspondence $\mathbf{M}_{ij} = \frac{n^{-1+2t}}{k^t} \mathbf{M}'_{ij} = -\ide{i}{j}(1-r)(i-1)(j-1)(2t-3)!!$. 
 
 To get the constraint on $\underline{q}$, we should choose $\norm{\xi} = 1$, which is equivalent to $\E_{\bm{X}}[\mathrm{C}_1] = 1$. By some computation we can get the expression of $\mathrm{N}$ when $ m \ll k$.
 
