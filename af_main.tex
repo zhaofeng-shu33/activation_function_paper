@@ -138,7 +138,7 @@ it is a common practice to optimize over parameterized activation function \cite
 Such optimization increases the computational cost with little network performance gain \cite{laudani2015training}.
 Another shortcoming of this approach is that using searched activation function, the network performance cannot be guaranteed for other problems.
 In addition to empirical study, there are also theoretical investigations which study specific network architecture.
-Many researches are restricted on a specific activation function and seldom explore about the theoretical property of activity function,
+Many researches are restricted on a specific activation function and seldom explore about the theoretical property of activation function,
 which is important to the expressive power of neural network.
 For example, \cite{AroraBMM18} focuses on studying the number of layers and hidden units while choosing ReLU activation function.
 Our study fills the theoretical gap by studying how the activation function reduces the neural network loss.
@@ -149,8 +149,8 @@ By doing so, the network loss can be computed quantitatively using second order 
 To simplify the analysis, we consider the one-node neural network which outputs one-dimensional feature \cite{dey2018approximation}.
 The network we considered can be regarded as a special ResNet model, which are widely used in deep neural network architecture.
 % This network can be regarded as a kind of non-linear regression.
-We use an averaged error to measure the network loss, which can be regarded as an universally optimal activation function for the given network.
-We find that the averaged loss is minimized when the activation function is Hermite orthogonal polynomial, which
+We use an averaged error to measure the network loss, which can be regarded as an universally optimal activation function for the given network,
+and we find that the averaged loss is minimized when the activation function is Hermite orthogonal polynomial, which
 validates the previous empirical results \cite{ma2005constructive}.
 
 
@@ -165,14 +165,15 @@ Furthermore, in Section \ref{sec:er}, numerical experiments are conducted to ver
 Section \ref{sec:con} concludes the paper. Proof details of our conclusion are provided in Section \ref{sec:Proofs}.
 
 Throughout this paper,
-we use $X,\underline{X}, \bm{X}, $ to represent random variables,
+we use $X,\underline{X}$ and $\bm{X} $ to represent random variables,
 random vectors and
 random matrix. In addition,
 $x, \underline{x}, \bm{x}$ (or $\mathbf{M}$) represent numerical value,
 numerical vector
 and numerical matrix.
 Besides, $\mathbf{I}_n$ denotes n-dimensional identity matrix, and
-$[\cdot]^\T$ is the transpose operation on matrix. Moreover, $\mathrm{1}_{m=n}$ is the indicator function and $\ide{i}{j} \triangleq (i+j)\, \mathrm{mod} \, 2$
+$[\cdot]^\T$ is the transpose operation on matrix. Moreover, $\mathrm{1}_{m=n}$ is the indicator function
+and $\ide{i}{j} \triangleq i+j+1\, (\mathrm{mod} \, 2)$
 which equals 1 if $ i + j$ is even and 0 otherwise. Finally,
 $n!!$ is the double factorial which equals $n \times (n-2) \dots \times1$ if $n$ is odd and $n \times (n-2)\dots \times 2$ for even $n$. $(-1)!!=1$
 and $(-3)!!=-1$
@@ -202,7 +203,7 @@ The optimal weight for a given activation function $\sigma$ is the minimizer of 
 In our model, we suppose $\bm{x},\underline{y}$ are drawn from distribution $G$.
 That is, $\bm{x},\underline{y}$ are samples of random matrix $\bm{X}$ and random vector $\underline{Y}$.
 We are interested to find a function $\sigma$ which minimizes
-$\E[ \min \ell_2(\bm{X},\underline{Y})]$.
+$\E[ \min_{\underline{w}} \ell_2(\bm{X},\underline{Y})]$.
 Our requirement of the activation function $\sigma$ is that
 $\sigma(z) = z + \epsilon \xi(z)$ where
 $\epsilon$ is a small constant. The non-linear term should satisfy the normalization constraint
@@ -275,7 +276,7 @@ Let $\xi \in \mathcal{F}_0$, the asymptotic error rate for $\xi$ is
 
 $\mathrm{C}[\xi]$ can represent the error change rate of perturbation from linear function.
 If $\mathrm{C}[\xi]$ is negative for a given $\xi$,
-we can decrease $\mathrm{E}[\sigma]$ in the rate of $\abs{\mathrm{C}[\xi]}$ along the perturbation direction $\xi$,
+$\mathrm{E}[\sigma]$ decreases in the rate of $\abs{\mathrm{C}[\xi]}$ along the perturbation direction $\xi$,
 which can be seen more clearly if we rewrite \eqref{eq:Cxi} as
 $\mathrm{E}[\sigma] = \mathrm{E}[\sigma_0] +
 \mathrm{C}[\xi]\epsilon^2 + o(\epsilon^2)$.
@@ -407,7 +408,7 @@ up to $o(\epsilon^2)$ as
 2 \epsilon (\bm{X} \underline{\hat{w}} +
 \xi(\bm{X} \underline{w}_0))^\T (\underline{Y} - \bm{X} \underline{w}_0) \\
 & +  \epsilon^2(\norm{\bm{X}\underline{\hat{w}} + \xi(\bm{X} \underline{w}_0)}^2 \\
-& \qquad -
+& \quad -
 2 (\bm{X} \underline{\tilde{w}}+
 \nabla \xi(\bm{X} \underline{w}_0)\bm{X}\underline{\hat{w}})^\T(\underline{Y}-\bm{X} \underline{w}_0))
 \end{align*}
@@ -510,8 +511,8 @@ Let $\mathrm{C}_1 = \E_{\underline{Y}} [\norm{\xi(\bm{A}\underline{Y})}^2]$, $\m
 [\norm{\bm{X}^\T\xi(\bm{A}\underline{Y})}^2]$, $\mathrm{C}_3 
 = \E_{\underline{Y}}
 [\norm{\bm{X}^\T \nabla\xi(\bm{A}\underline{Y})(\underline{Y}-\bm{A}\underline{Y})}^2]$,
-$\mathrm{C}[\bm{X}, \xi] :=  \mathrm{C}_1 - \mathrm{C}_2 - \mathrm{C}_3$, Then $\mathrm{C}[\xi] = \E_{\bm{X}}[\mathrm{C}[\bm{X}, \xi]]$.
-We then have
+$\mathrm{C}[\bm{X}, \xi] :=  \mathrm{C}_1 - \mathrm{C}_2 - \mathrm{C}_3$. Then $\mathrm{C}[\xi] = \E_{\bm{X}}[\mathrm{C}[\bm{X}, \xi]]$,
+and we have
 \begin{align*}
     \mathrm{C}_1 &=\E[\norm{\xi(\underline{Z})}^2] = \sum_{i=1}^n \E[\xi^2(\underline{Z}_i)] \\
     \mathrm{C}_2 &= \sum_{i,j=1, i \neq j}^n \bm{\bm{A}}_{ij}\E[\xi(\underline{Z}_i)\xi(\underline{Z}_j)] +
@@ -597,7 +598,7 @@ Then we have $ \mathbf{U} \underline{p} = \underline{e}_m$.
     $\sum_{j=0, j \textrm{ is even}}^{2m'}  \frac{(-1)^{(2m'-j)/2}}{(2m'-j)!! j!!}= 0  \iff $
     $\sum_{j=0}^{m'}  \frac{(-1)^{m'-j}}{(2m'-2j)!! (2j)!!} = 0  \iff $
     $\sum_{j=0}^{m'}  \frac{(-1)^{m'-j}}{(m'-j)! j!} = 0  \iff \sum_{j=0}^{m'} (-1)^{m'-j} \binom{m'}{j} = 0$
-    $ \iff (1+x)^{m'} = 0 \,(x=-1)$
+    $ \iff (1+x)^{m'} = 0 \,(x=-1)$.
 \end{proof}
 \begin{proof}[Proof of Proposition \ref{prop:value} ]
     Let $\mathbf{U}$ be the same matrix defined in Lemma \ref{lemma:Upem}. From Lemma \ref{lemma:UUN} we have $\mathbf{N}_{ij} = \sum_{k=0}^m \mathbf{U}_{ki}\mathbf{U}_{kj}$. Therefore, $\mathbf{N} = \mathbf{U}^\T\mathbf{U}$. Let $\Lambda = \diag[1, 0, -1, \dots, 1-m]$, from Equation \ref{eq:UUM} we have $\mathbf{M}_{ij} = \sum_{k=0}^m \mathbf{U}_{ki}\Lambda_{kk}\mathbf{U}_{kj}$. Therefore, $\mathbf{M} = \mathbf{U}^\T\Lambda\mathbf{U}$. Then $\min_{\underline{p}^\T N \underline{p} = 1} \underline{p}^\T \mathbf{M}\underline{p} = \min_{\underline{\tilde{p}}^\T\underline{\tilde{p}} = 1} \sum_{k=0}^m (1-k)\underline{\tilde{p}}_k^2 = 1-m$. We have made the invertible transformations $\underline{\tilde{p}} = \mathbf{U}\underline{p}$. Since the minimum value is achieved at $\underline{\tilde{p}} = \underline{e}_m$, from Lemma \ref{lemma:Upem} we have $\underline{p}_i = \ide{i}{m} (-1)^{(m-i)/2}\frac{\sqrt{m!}}{i!(m-i)!!}$. Equation \eqref{eq:ximopt} follows by transforming $\underline{p}$ back to $\underline{q}$ using Equation \eqref{eq:pqt} and comparing the expression of $\underline{q}$ with the explicit formula of probabilists' Hermite polynomials \cite[Eq. 18.5.13]{NIST:DLMF}.
