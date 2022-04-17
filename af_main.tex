@@ -1,4 +1,4 @@
-\documentclass[conference]{IEEEtran}
+\documentclass[review]{elsarticle}
 
 %% depending on your installation, you may wish to adjust the top margin:
 
@@ -13,7 +13,7 @@
 %
 \usepackage{url}
 \usepackage{ifthen}
-\usepackage{cite}
+%\usepackage{cite}
 \usepackage[cmex10]{amsmath} % Use the [cmex10] option to ensure complicance
                              % with IEEE Xplore (see bare_conf.tex)
 \usepackage{amssymb}
@@ -65,19 +65,39 @@
 
 
 %%% Several authors with up to three affiliations:
-\author{%
-  \IEEEauthorblockN{Shao-Lun Huang}
-  \IEEEauthorblockA{DSIT Research Center\\
-                    Tsinghua-Berkeley Shenzhen Institute\\
-                    Shenzhen, China 518055\\
-                    Email: shaolun.huang@sz.tsinghua.edu.cn}
-  \and
-  \IEEEauthorblockN{Feng Zhao}
-  \IEEEauthorblockA{Department of Electronic Engineering\\
-                    Tsinghua University\\ 
-                    Beijing, China 100084\\
-                    Email: zhaof17@mails.tsinghua.edu.cn}
+%\author{%
+%  \IEEEauthorblockN{Shao-Lun Huang}
+%  \IEEEauthorblockA{DSIT Research Center\\
+%                    Tsinghua-Berkeley Shenzhen Institute\\
+%                    Shenzhen, China 518055\\
+%                    Email: shaolun.huang@sz.tsinghua.edu.cn}
+%  \and
+%  \IEEEauthorblockN{Feng Zhao}
+%  \IEEEauthorblockA{Department of Electronic Engineering\\
+%                    Tsinghua University\\ 
+%                    Beijing, China 100084\\
+%                    Email: zhaof17@mails.tsinghua.edu.cn}
+%}
+\author[1]{Feng Zhao}
+\ead{zhaof17@mails.tsinghua.edu.cn}
+\author[2]{Shao-Lun Huang\corref{cor1}}
+\ead{shaolun.huang@sz.tsinghua.edu.cn}
+
+\cortext[cor1]{Corresponding author}
+
+\affiliation[1]{organization={Department of Electronics Engineering, Tsinghua University},
+postcode={100089},
+city={Beijing},
+country={China}
 }
+
+\affiliation[2]{organization={Tsinghua-Berkeley Shenzhen Institute},
+postcode={518000},
+city={Shenzhen},
+country={China}
+}
+
+%\emails{ {\tt zhaof17@mails.tsinghua.edu.cn} (Feng Zhao), {\tt shaolun.huang@sz.tsinghua.edu.cn}(Shao-Lun Huang)}
 
 
 %%% Many authors with many affiliations:
@@ -608,6 +628,10 @@ Then we have $ \mathbf{U} \underline{p} = \underline{e}_m$.
 \begin{proof}[Proof of Proposition \ref{prop:value} ]
     Let $\mathbf{U}$ be the same matrix defined in Lemma \ref{lemma:Upem}. From Lemma \ref{lemma:UUN} we have $\mathbf{N}_{ij} = \sum_{k=0}^m \mathbf{U}_{ki}\mathbf{U}_{kj}$. Therefore, $\mathbf{N} = \mathbf{U}^\T\mathbf{U}$. Let $\Lambda = \diag[1, 0, -1, \dots, 1-m]$, from Equation \ref{eq:UUM} we have $\mathbf{M}_{ij} = \sum_{k=0}^m \mathbf{U}_{ki}\Lambda_{kk}\mathbf{U}_{kj}$. Therefore, $\mathbf{M} = \mathbf{U}^\T\Lambda\mathbf{U}$. Then $\min_{\underline{p}^\T N \underline{p} = 1} \underline{p}^\T \mathbf{M}\underline{p} = \min_{\underline{\tilde{p}}^\T\underline{\tilde{p}} = 1} \sum_{k=0}^m (1-k)\underline{\tilde{p}}_k^2 = 1-m$. We have made the invertible transformations $\underline{\tilde{p}} = \mathbf{U}\underline{p}$. Since the minimum value is achieved at $\underline{\tilde{p}} = \underline{e}_m$, from Lemma \ref{lemma:Upem} we have $\underline{p}_i = \ide{i}{m} (-1)^{(m-i)/2}\frac{\sqrt{m!}}{i!(m-i)!!}$. Equation \eqref{eq:ximopt} follows by transforming $\underline{p}$ back to $\underline{q}$ using Equation \eqref{eq:pqt} and comparing the expression of $\underline{q}$ with the explicit formula of probabilists' Hermite polynomials \cite[Eq. 18.5.13]{NIST:DLMF}.
 \end{proof}
+
+\section{Acknowledgements}
+The research of Shao-Lun Huang is supported in part by the Shenzhen Science and Technology Program under Grant KQTD20170810150821146,
+National Key R\&D Program of China under Grant 2021YFA0715202 and High-end Foreign Expert Talent Introduction Plan under Grant G2021032013L.
 %%%%%%
 %% To balance the columns at the last page of the paper use this
 %% command:
@@ -644,7 +668,7 @@ Then we have $ \mathbf{U} \underline{p} = \underline{e}_m$.
 
 %% Or you use manual references (pay attention to consistency and the
 %% formatting style!):
-\bibliographystyle{IEEEtran}
+\bibliographystyle{elsarticle-num}
 \bibliography{exportlist}
 
 
