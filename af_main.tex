@@ -136,7 +136,7 @@ country={China}
 %% to remove this comment!
 %%
 \begin{abstract}
-While non-linear activation functions play vital roles in artificial neural networks, it is generally unclear of how non-linearity can improve the quality of function approximations.
+While non-linear activation functions play vital roles in artificial neural networks, it is generally unclear how non-linearity can improve the quality of function approximations.
 In this paper, we present a theoretical framework to rigorously analyze the performance gain of using non-linear activation functions for a class of residual neural networks (ResNets). In particular, we show that when the input features to the ResNet are assumed to be uniformly chosen from the functional spaces, using the non-linear activation functions to generate the ResNet output averagely outperforms the linear activation functions, and the performance gain can be explicitly computed. Moreover, we show that when the activation functions are chosen as polynomials with the degree much less than the dimension of the input features, the optimal activation functions are precisely the Hermite polynomials. This demonstrates the role of the Hermite polynomials in function approximations for ResNets.
 \end{abstract}
 \maketitle
@@ -157,16 +157,21 @@ For example, to obtain better representation of features,
 it is a common practice to optimize over parameterized activation function \cite{ramachandran2017searching}.
 Such optimization increases the computational cost with little network performance gain \cite{laudani2015training}.
 Another shortcoming of this approach is that using searched activation function, the network performance cannot be guaranteed for other problems.
-In addition to empirical study, there are also theoretical investigations which study specific network architecture.
-Many researches are restricted on a specific activation function and seldom explore about the theoretical property of activation function,
+In addition to empirical study, there are also theoretical results
+which investigate specific network architectures.
+Many researches are restricted on a specific activation function and seldom explore the theoretical property of activation function,
 which is important to the expressive power of neural network.
 For example, ReLU activation function is used in \cite{AroraBMM18}, which focuses on studying the number of layers and hidden units.
-Our study fills the theoretical gap by studying how the activation function reduces the neural network loss.
+Our study fills the theoretical gap by studying quantitatively
+how the activation function reduces the neural network loss.
 
-In particular, our work is not restricted to specific functions but only requires the activation function to be smooth.
-In our study, the activation function is chosen from the space which contains non-linear functions purturbed from the linear space.
-By doing so, the network loss can be computed quantitatively using second order approximation.
-To simplify the analysis, we consider the one-node neural network which outputs one-dimensional feature \cite{dey2018approximation}.
+In particular, our work is not restricted to specific family of functions but only requires the activation function to be 
+a perturbation of linear functions.
+This assumption allows us to study the non-linear gain when
+non-linear activation function is added to the network.
+Such a gain can be expressed quantitatively up to second order approximation.
+To obtain non-trivial insight while simplify the expression,
+we consider the one-node neural network which outputs one-dimensional feature \cite{dey2018approximation}.
 The network we considered can be regarded as a special ResNet model, which are widely used in deep neural network architecture.
 % This network can be regarded as a kind of non-linear regression.
 We use an averaged error to measure the network loss, which can be regarded as an universally optimal activation function for the given network,
