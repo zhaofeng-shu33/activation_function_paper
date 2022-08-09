@@ -137,7 +137,9 @@ country={China}
 %%
 \begin{abstract}
 While non-linear activation functions play vital roles in artificial neural networks, it is generally unclear how non-linearity can improve the quality of function approximations.
-In this paper, we present a theoretical framework to rigorously analyze the performance gain of using non-linear activation functions for a class of residual neural networks (ResNets). In particular, we show that when the input features to the ResNet are assumed to be uniformly chosen from the functional spaces, using the non-linear activation functions to generate the ResNet output averagely outperforms the linear activation functions, and the performance gain can be explicitly computed. Moreover, we show that when the activation functions are chosen as polynomials with the degree much less than the dimension of the input features, the optimal activation functions are precisely the Hermite polynomials. This demonstrates the role of the Hermite polynomials in function approximations for ResNets.
+In this paper, we present a theoretical framework to rigorously analyze the performance gain of using non-linear activation functions for a class of residual neural networks (ResNets).
+In particular, we show that when the input features to the ResNet are uniformly chosen and orthogonal to each other,
+using the non-linear activation functions to generate the ResNet output averagely outperforms the linear activation functions, and the performance gain can be explicitly computed. Moreover, we show that when the activation functions are chosen as polynomials with the degree much less than the dimension of the input features, the optimal activation functions are precisely the Hermite polynomials. This demonstrates the role of the Hermite polynomials in function approximations for ResNets.
 \end{abstract}
 \maketitle
 
@@ -196,7 +198,7 @@ random matrix. In addition,
 $x, \underline{x}, \bm{x}$ (or $\mathbf{M}$) represent numerical value,
 numerical vector
 and numerical matrix.
-Besides, $\mathbf{I}_n$ denotes n-dimensional identity matrix, and
+Besides, $\mathbf{I}_n$ denotes the n-dimensional identity matrix, and
 $[\cdot]^\T$ is the transpose operation on matrix. Moreover, $\mathrm{1}_{m=n}$ is the indicator function
 and $\ide{i}{j} \triangleq i+j+1\, (\mathrm{mod} \, 2)$
 which equals 1 if $ i + j$ is even and 0 otherwise. Finally,
@@ -225,7 +227,8 @@ The optimal weight for a given activation function $\sigma$ is the minimizer of 
 
 
 
-In our model, we suppose $\bm{x},\underline{y}$ are drawn from distribution $G$.
+In our model, we suppose $\bm{x},\underline{y}$ are drawn from
+a joint distribution $G$.
 That is, $\bm{x},\underline{y}$ are samples of random matrix $\bm{X}$ and random vector $\underline{Y}$.
 We are interested to find a function $\sigma$ which minimizes
 $\E[ \min_{\underline{w}} \ell_2(\bm{X},\underline{Y})]$.
@@ -238,7 +241,7 @@ $\bm{X}\underline{w} = \sum_{i=1}^k w_i \underline{X}_i$ is the matrix-vector pr
 We formulate the universally optimal activation function $\sigma$ as follows:
 \begin{definition}\label{def:ug}
 Let $(\bm{X}, \underline{Y})$ follow distribution $G$ and
-$\mathcal{F}$ a function space for $\xi(z)$. Then
+$\mathcal{F}$ a function space for $\sigma(z)$. Then
 we define the averaged estimation error $\mathrm{E}[\sigma]$ as
 \begin{align}\label{eq:ug}
 \mathrm{E}(\sigma) \triangleq & \E[ \min_{\underline{w}} \norm{\underline{Y} - \sigma(\bm{X} \underline{w})}^2] 
@@ -255,19 +258,19 @@ To get analytical insights we should choose some specific distribution.
 Therefore, in the following analysis, we assume:
 \begin{enumerate}
 \item $\underline{Y}$ follows Gaussian distribution $\mathcal{N}(\mathbf{0},\frac{1}{n} \mathbf{I}_n)$.
-\item $\bm{X}$ is a uniformly distributed random orthogonal matrix.
+\item $\bm{X}$ is a $n\times k$ uniformly distributed random orthogonal matrix.
 \item $\underline{Y}$ and $\bm{X}$ are independent.
 \end{enumerate}
-For assumption 2), the definition is $\bm{X} \triangleq \bm{X}'(\bm{X}'^\T\bm{X}')^{-1/2}$
+For assumption 2), the definition of uniformly distributed random orthogonal matrix is $\bm{X} \triangleq \bm{X}'(\bm{X}'^\T\bm{X}')^{-1/2}$
 where elements of $\bm{X}'$ are i.i.d. $\mathcal{N}(0, 1)$ random variables \cite[Proposition 7.1]{eaton1989group}.
-Since $\bm{X}^\T\bm{X} = \mathbf{I}_n$, $\bm{X}$ is indeed orthogonal matrix.
+Since $\bm{X}^\T\bm{X} = \mathbf{I}_k$, $\bm{X}$ is indeed orthogonal matrix.
 The definition of $\bm{X}$ can be regarded as the post-processing result of PCA (Principal Component Analysis)
 on network input $\bm{X}'$ and weight $\underline{w}'$, because
 we make the transformation $\bm{X} = \bm{X}'(\bm{X}'^\T\bm{X}')^{-1/2}, \underline{w} = (\bm{X}'^\T\bm{X}')^{1/2}\underline{w}'$.
 We see that $\bm{X}'\underline{w}' = \bm{X}\underline{w}$.
 %This completes the definition of the distribution space $G$.
 %Such choice makes it possible for the analytical analysis of the averaged estimation error.
-Based on the distribution space $G$ by 1)\,-3), for linear function, we have the following conclusion:
+Based on the distribution space $G$ by 1)\,-3), for linear function space, we have the following conclusion:
 
 \begin{proposition}\label{prop:linear}
 We have $\mathrm{E}(\sigma_0) = 1 - \frac{k}{n}$ where $\sigma_0(z) = z$ is the identity function.
@@ -280,7 +283,7 @@ since we use $k$ degrees of freedom to estimate arbitrary vector in $n$-dimensio
 
 
 We have analyzed the averaged error for linear function.
-To extend our result on non-linear functions, we need to choose a proper function space $\mathcal{F}$.
+To extend our result to non-linear functions, we need to choose a proper function space $\mathcal{F}$.
 In this paper we consider a local region which contains non-linear function perturbed from the linear space.
 The distance from non-linear function to linear space is quantified by a positive value $\epsilon$.
 Thus we consider $\mathcal{F}_{\sigma_0}(\epsilon) =\{ \sigma \,|\, \norm{\sigma - \sigma_0} \leq \epsilon\}$.
@@ -293,7 +296,7 @@ where $\bm{A} = \bm{X}\bm{X}^\T$.
 We are particularly interested in how the averaged error changes
 when $\sigma$ is contracted to $\sigma_0$ along a certain direction in $\mathcal{F}(\sigma)$.
 That is, given a function $\xi$ we can construct $\sigma = \sigma_0 + \epsilon \xi$
-where $\xi \in \mathcal{F}_0 = \{\xi | \norm{\xi} \leq 1 \}$. $\sigma \to \sigma_0$ is equivalent to $\epsilon \to 0$.
+where $\xi \in \mathcal{F}_0 = \{\xi | \norm{\xi} \leq 1 \}$. Then $\sigma \to \sigma_0$ is equivalent to $\epsilon \to 0$.
 
 To measure the change rate of $E[\sigma]$ when $\sigma \to \sigma_0$,
 we introduce the concept of the asymptotic error rate as follows:
@@ -325,7 +328,8 @@ Let $\nabla \xi(\underline{z})  = \diag[\xi'(\underline{z}_1), \dots, \xi'(\unde
 \end{align}
 \end{proposition}
 
-Our goal is to get the fastest decreasing path $\xi$ from $E[\sigma_0]$ to $E[\sigma]$, this is equivalent to solve an optimization problem $\min \mathrm{C}[\xi]$ constraint by $\xi \in \mathcal{F}_0$. It is hard to optimize on $\mathcal{F}_0$ directly, and we consider $\mathcal{F}_{0,m} = \mathcal{F}_0 \cap P_m$ instead. $P_m$ consists of polynomials with the degree no greater than $m$, and we have $\mathcal{F}_0 = \lim_{m\to \infty} \mathcal{F}_{0,m}$.
+Our goal is to get the fastest decreasing path $\xi$ from $E[\sigma_0]$ to $E[\sigma]$, this is equivalent to solve an optimization problem $\min \mathrm{C}[\xi]$ constraint by $\xi \in \mathcal{F}_0$.
+It is hard to optimize $\xi$ over $\mathcal{F}_0$ directly, and we consider $\mathcal{F}_{0,m} = \mathcal{F}_0 \cap P_m$ instead. $P_m$ consists of polynomials with the degree no greater than $m$, and we have $\mathcal{F}_0 = \lim_{m\to \infty} \mathcal{F}_{0,m}$.
 
 For $\xi \in \mathcal{F}_{0,m}$ we have the following result:
 \begin{proposition}\label{prop:quadratic}
@@ -350,25 +354,26 @@ is proportional to the degree of polynomials and feature dimensions are usually 
 
 \section{Hermite Polynomials}\label{sec:hp}
 
-One of our major result is that we find Proposition \ref{prop:quadratic} leads naturally to the Hermite polynomials solutions.
-(Probabilists') Hermite polynomials $H_m(x),m=1,2,\dots$
-are a series of polynomials with the orthogonal property $ \E[H_m(X)H_n(X)] = n! \mathrm{1}_{m=n}$ where $X$ is the standard normal random variable.
+One of our major results is that we find Proposition \ref{prop:quadratic} leads naturally to the Hermite polynomials solutions.
+(Probabilists') Hermite polynomials, denoted as $H_m(x),m=1,2,\dots$,
+are defined as a series of polynomials satisfying the orthogonal property $ \E[H_m(X)H_n(X)] = n! \mathrm{1}_{m=n}$ where $X$ is the standard normal random variable.
 The degree of $H_m(x)$ is $m$.
 Using Hermite polynomials, the minimizer of $\mathrm{C}[\xi]$ is expressed in the following way:
 \begin{proposition}\label{prop:value}
 Let
 \begin{equation}\label{eq:ximopt}
-    \xi_m(z) \triangleq \frac{1}{\sqrt{m!n}} H_m(\frac{n}{k^{1/2}} z)
+    \xi_m(z) \triangleq \frac{1}{\sqrt{m!n}} H_m\left(\frac{n}{k^{1/2}} z\right)
 \end{equation}
 Then $\mathrm{C}[\xi_m] = -(1-\frac{k}{n})(m-1) \leq \mathrm{C}[\xi] $ for all $\xi \in \mathcal{F}_{0,m}$.
 \end{proposition}
-Proposition \ref{prop:value} also gives the expression of the minimal asymptotic error rate, which has linear relation with the degree of Hermite polynomials. This result is made under the assumption $ m \ll k$ and in general case when $ m \ll k$ does not hold, by numerical simulation we find that $-(1-\frac{k}{n})(m-1) < \mathrm{C}[\xi]$ while $\mathrm{C}[\xi]$ decreases in linear way.
+Proposition \ref{prop:value} also gives the expression of the minimal asymptotic error rate, which has linear relation with the degree of Hermite polynomials. This result is obtained
+under the assumption $ m \ll k$. In general case when $ m \ll k$ does not hold, by numerical simulation we find that $-(1-\frac{k}{n})(m-1) < \mathrm{C}[\xi]$ while $\mathrm{C}[\xi]$ decreases in linear way.
 
 \section{Experiment Result}\label{sec:er}
 
 To verify the change rate of $C[\xi]$ is linear as we increase the maximal degree of polynomials $m$,
 we conduct a simple experiment with $n=180, k=120$. We use $\xi_m(z)$ from Proposition
-\ref{prop:value} and normalized polynomials with only highest degree $\tilde{\xi}_m(z) = \frac{(nz/\sqrt{k})^m}{\sqrt{(2m-1)!!n}}$ as activation function. Using the Monte Carlo method to compute $\mathrm{C}[\xi]$ from Proposition \ref{prop:Esigma},
+\ref{prop:value} and normalized polynomials with only the highest degree $\tilde{\xi}_m(z) = \frac{(nz/\sqrt{k})^m}{\sqrt{(2m-1)!!n}}$ as activation function. Using the Monte Carlo method to compute $\mathrm{C}[\xi]$ from Proposition \ref{prop:Esigma},
 our experiment result is shown in Fig. \ref{fig:fixednk}.
 As can be seen, the Hermite polynomial results coincide with the theoretical lower bound in Proposition \ref{prop:value}.
 For $\tilde{\xi}_m$, it cannot achieve the minimum value,
@@ -378,18 +383,21 @@ the highest degree term contributes $-(1-\frac{k}{n})\frac{(m-1)^2}{2m-1}$ to $C
 which is approximately $\frac{1}{2} C[\xi_m]$.
 This phenomenon suggests that the contribution of each polynomial
 degree to $C[\xi]$ is not evenly distributed and
-the higher degree term contributes more.  
+higher degree terms contribute more.  
 
 
 \begin{figure}
     \includegraphics[width=\linewidth]{fixed_nk.eps}
-    \caption{Illustration of the linear decreasing property of $C[\xi]$.}\label{fig:fixednk}
+    \caption{Illustration of the linear decreasing property of $C[\xi]$.
+    The dotted red line represents the theoretical lower bound $-(1-\frac{k}{m})(m-1)$
+    while the dotted blue line is the least square fit of the empirical result by polynomials with only the highest degree.}\label{fig:fixednk}
 \end{figure}
 
 
 \section{Conclusion}\label{sec:con}
 
-In this paper, we have investigated the mechanism of non-linearity in one-node neural network. If we allow polynomial perturbation of linear activation function,
+In this paper, we have investigated the mechanism of non-linearity in one-node neural network.
+If we add polynomial perturbation to linear activation function,
 the network loss is linearly decreased as the degree of polynomial is increased. How non-linearity works in more complex neural networks will be considered in the future. 
 
 \section{Proofs}\label{sec:Proofs}
